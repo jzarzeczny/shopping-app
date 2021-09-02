@@ -1,0 +1,13 @@
+@use "../abstracts/" as *;
+
+.btn {
+  max-width: 250px;
+  align-self: center;
+  padding: 1em 3em;
+  border: none;
+  border-radius: 0.75rem;
+  outline: 2px solid $clr-main-700;
+
+  font-size: 1rem;
+  font-weight: $fw-bold;
+}

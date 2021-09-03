@@ -87,6 +87,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list::before, .list::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list::before {
+  filter: blur(1em);
+}
+.list::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list .list__header {
   background-color: #caffbfff;
@@ -104,6 +121,8 @@ body {
 .list .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list .list__element + .list__element {
   margin-top: 0.5em;
@@ -126,6 +145,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list--vegitables::before, .list--vegitables::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list--vegitables::before {
+  filter: blur(1em);
+}
+.list--vegitables::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list--vegitables .list__header {
   background-color: #ffd6a5ff;
@@ -143,6 +179,8 @@ body {
 .list--vegitables .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list--vegitables .list__element + .list__element {
   margin-top: 0.5em;
@@ -165,6 +203,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list--fruts::before, .list--fruts::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list--fruts::before {
+  filter: blur(1em);
+}
+.list--fruts::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list--fruts .list__header {
   background-color: #ffadadff;
@@ -182,6 +237,8 @@ body {
 .list--fruts .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list--fruts .list__element + .list__element {
   margin-top: 0.5em;
@@ -204,6 +261,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list--drinks::before, .list--drinks::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list--drinks::before {
+  filter: blur(1em);
+}
+.list--drinks::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list--drinks .list__header {
   background-color: #a0c4ffff;
@@ -221,6 +295,8 @@ body {
 .list--drinks .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list--drinks .list__element + .list__element {
   margin-top: 0.5em;
@@ -243,6 +319,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list--frozen::before, .list--frozen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list--frozen::before {
+  filter: blur(1em);
+}
+.list--frozen::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list--frozen .list__header {
   background-color: #9bf6ffff;
@@ -260,6 +353,8 @@ body {
 .list--frozen .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list--frozen .list__element + .list__element {
   margin-top: 0.5em;
@@ -282,6 +377,23 @@ body {
   width: min(15rem);
   background-color: #fff;
   margin-bottom: 2em;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0;
+}
+.list--detergents::before, .list--detergents::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+}
+.list--detergents::before {
+  filter: blur(1em);
+}
+.list--detergents::after {
+  filter: blur(3em);
+  opacity: 0.2;
 }
 .list--detergents .list__header {
   background-color: #ffc6ffff;
@@ -299,6 +411,8 @@ body {
 .list--detergents .list__element {
   font-size: 1.125rem;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 .list--detergents .list__element + .list__element {
   margin-top: 0.5em;

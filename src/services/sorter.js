@@ -5,7 +5,7 @@ export default function sorter(arr) {
       finalObject[element.type] = [];
     }
     if (element.type in finalObject) {
-      finalObject[element.type].push(element.item);
+      finalObject[element.type].push(element);
     }
   });
   return finalObject;

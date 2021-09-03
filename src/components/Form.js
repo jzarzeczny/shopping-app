@@ -3,7 +3,17 @@ import { useForm } from "react-hook-form";
 
 export default function Form({ addItem }) {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => addItem(data);
+
+  function revisedRandId() {
+    return Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, "")
+      .substr(2, 10);
+  }
+  const onSubmit = (data) => {
+    data.id = revisedRandId();
+    addItem(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">

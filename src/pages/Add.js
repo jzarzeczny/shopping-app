@@ -6,26 +6,33 @@ import sorter from "../services/sorter";
 export default function Add() {
   const [newElement, setNewElement] = useState();
   const [shoppingList, setShoppingList] = useState([]);
+  function handleRemove(id) {
+    const newList = shoppingList.filter((element) => element.id !== id);
+    console.log(newList);
+    setShoppingList(newList);
+  }
   useEffect(() => {
     if (newElement !== undefined) {
       setShoppingList((prevArray) => [...prevArray, newElement]);
     }
   }, [newElement]);
-  // console.log(shoppingList);
+  // Create an object with correct grup-value
+  console.log(shoppingList);
+
   const list = sorter(shoppingList);
-  for (const e in list) {
-    // console.log(e);
-    // console.log(list[e]);
-  }
-
-  Object.keys(list).forEach((key) => console.log(list[key]));
-
   return (
     <section className="addContainer">
       <Form addItem={setNewElement} />
       <div className="shoppingList">
         {list &&
-          Object.keys(list).map((key) => <List name={key} data={list[key]} />)}
+          Object.keys(list).map((key) => (
+            <List
+              name={key}
+              key={key}
+              data={list[key]}
+              removeElement={handleRemove}
+            />
+          ))}
       </div>
     </section>
   );

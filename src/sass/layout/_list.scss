@@ -1,43 +1,5 @@
 @use "../abstracts/" as *;
 
-// @mixin list($theme: #fff) {
-//   display: block;
-//   width: min(15rem);
-//   background-color: $clr-light-100;
-//   .list__header {
-//     background-color: $light-pink;
-//     text-align: center;
-//     padding: 1em 0em;
-//     font-weight: 700;
-//   }
-//   .list__list {
-//     list-style: none;
-//     padding: 1em 2em;
-//     margin: 0;
-//     outline: 2px solid $light-pink;
-//     outline-offset: -2px;
-//   }
-//   .list__element {
-//     font-size: 1.125rem;
-//     position: relative;
-//     & + .list__element {
-//       margin-top: 0.5em;
-//       &::after {
-//         content: "";
-//         position: absolute;
-//         left: 0;
-//         top: 0;
-//         right: 0;
-//         height: 2px;
-//         width: 100%;
-//         background-color: $light-pink;
-//         margin-top: -0.25em;
-//         opacity: 0.5;
-//       }
-//     }
-//   }
-// }
-
 .list {
   @include list($theme: $tea-green);
 }

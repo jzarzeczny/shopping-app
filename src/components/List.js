@@ -1,15 +1,14 @@
 import React from "react";
 
-export default function List({ name }) {
+export default function List({ name, data }) {
+  console.log(data);
   return (
     <div className={`list ${name && "list--" + name}`}>
-      <h2 className="list__header">Owoce</h2>
+      <h2 className="list__header">{name.toUpperCase()}</h2>
       <ol className="list__list">
-        <li className="list__element">Pomarańcze</li>
-        <li className="list__element">Gruszki</li>
-        <li className="list__element">Granat</li>
-        <li className="list__element">Winogrona</li>
-        <li className="list__element">Awokado</li>
+        {data.map((element) => (
+          <li className="list__element">{element}</li>
+        ))}
       </ol>
     </div>
   );

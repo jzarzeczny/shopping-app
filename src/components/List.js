@@ -8,8 +8,9 @@ export default function List({ name, data, removeElement }) {
       <ol className="list__list">
         {data.map((element) => (
           <li key={element.id} className="list__element">
-            {element.item}{" "}
+            {element.item}
             <RiDeleteBin5Line
+              data-testid="remove-button"
               onClick={() => {
                 removeElement(element.id);
               }}

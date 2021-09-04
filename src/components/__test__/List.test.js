@@ -2,7 +2,7 @@ import React from "react";
 import List from "../List";
 
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 const name = "name";
 const data = [
@@ -11,7 +11,7 @@ const data = [
     item: "cheese",
   },
 ];
-const fn = () => {};
+const fn = jest.fn();
 
 describe("Testing List component", () => {
   test("Renders component", () => {
@@ -20,7 +20,6 @@ describe("Testing List component", () => {
 
   test("Renders the correct header", () => {
     render(<List name={name} data={data} removeElement={fn} />);
-
     const header = screen.getByRole("heading");
     expect(header.innerHTML).toBe("NAME");
   });
@@ -28,14 +27,18 @@ describe("Testing List component", () => {
     const { container } = render(
       <List name={name} data={data} removeElement={fn} />
     );
-
     const div = container.querySelector("#list");
     expect(div.classList.contains("list--" + name)).toBe(true);
   });
-  test("Chcecks the content of li element", () => {
+  test("Check if button is in the document", () => {
     render(<List name={name} data={data} removeElement={fn} />);
-
-    const LiElement = screen.getByRole("listitem");
-    expect(LiElement.innerHTML).toBe("cheese");
+    const button = screen.getByTestId("remove-button");
+    expect(button).toBeInTheDocument();
+  });
+  test("Check if button runs the function", () => {
+    render(<List name={name} data={data} removeElement={fn} />);
+    const button = screen.getByTestId("remove-button");
+    fireEvent.click(button);
+    expect(fn).toHaveBeenCalled();
   });
 });

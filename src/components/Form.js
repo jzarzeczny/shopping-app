@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Form({ addItem }) {
+export default function Form({ setShoppingList, shoppingList }) {
   const { register, handleSubmit } = useForm();
 
   function revisedRandId() {
@@ -12,7 +12,7 @@ export default function Form({ addItem }) {
   }
   const onSubmit = (data) => {
     data.id = revisedRandId();
-    addItem(data);
+    setShoppingList((prevArray) => [...prevArray, data]);
   };
 
   return (

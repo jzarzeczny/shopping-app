@@ -3,7 +3,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 
 export default function List({ name, data, removeElement }) {
   return (
-    <div className={`list ${name && "list--" + name}`}>
+    <div id="list" className={`list ${name && "list--" + name}`}>
       <h2 className="list__header">{name.toUpperCase()}</h2>
       <ol className="list__list">
         {data.map((element) => (

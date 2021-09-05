@@ -1,9 +1,10 @@
 import React from "react";
+import PaperCard from "../components/PaperCard";
 
 export default function Main() {
   return (
     <div>
-      <h1>hi there</h1>
+      <PaperCard />
     </div>
   );
 }

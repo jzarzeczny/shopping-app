@@ -1,9 +1,7 @@
 @use '../abstracts/' as *;
 
-body {
+.submitList__container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $clr-main-100;
-  margin-top: 5rem;
 }

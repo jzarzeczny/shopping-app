@@ -1,0 +1,54 @@
+@use '../abstracts/' as *;
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+.paper {
+  position: relative;
+  height: 400px;
+  width: 300px;
+  background-color: $clr-light-100;
+  opacity: 0.9;
+  margin: 0 auto;
+  box-shadow: 0 0 5px 0 #888;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 45px;
+    height: 100%;
+    width: 2px;
+    background-color: rgba(255, 0, 0, 0.4);
+  }
+}
+.paper__lines {
+  margin-top: 40px;
+  height: calc(100% - 40px);
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    white 0px,
+    white 24px,
+    steelblue 25px
+  );
+}
+.paper__text {
+  position: absolute;
+  top: 25px;
+  left: 55px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  overflow: hidden;
+  outline: none;
+  font-family: "Indie Flower", cursive;
+}
+
+.paper__header {
+  text-transform: capitalize;
+}
+.paper__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+}
+.paper__item--taken {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 0, 0);
+}

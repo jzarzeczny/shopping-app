@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { ListContext } from "../context/DisplayListContext";
 
 export default function SubmitList({ setShoppingList, shoppingList }) {
+  const { setListToDisplay } = useContext(ListContext);
   const removeTheList = () => {
     setShoppingList([]);
   };
 
   const saveTheList = (list) => {
-    console.log(list);
+    setListToDisplay(list);
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
 export default function SubmitList({ setShoppingList, shoppingList }) {
   const removeTheList = () => {
@@ -15,14 +16,16 @@ export default function SubmitList({ setShoppingList, shoppingList }) {
       <Button type="red" clickHandler={removeTheList}>
         Usuń listę
       </Button>
-      <Button
-        type="green"
-        clickHandler={() => {
-          saveTheList(shoppingList);
-        }}
-      >
-        Zapisz listę
-      </Button>
+      <Link to="/">
+        <Button
+          type="green"
+          clickHandler={() => {
+            saveTheList(shoppingList);
+          }}
+        >
+          Zapisz listę
+        </Button>
+      </Link>
     </div>
   );
 }

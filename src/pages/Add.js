@@ -22,7 +22,7 @@ export default function Add() {
     checkLocalStorage();
   }, []);
   // Fill the shopping list after refresh
-  if (shoppingList.length !== 0) {
+  if (shoppingList.length !== null) {
     localStorage.setItem("list", JSON.stringify(shoppingList));
   }
 

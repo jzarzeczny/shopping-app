@@ -60,3 +60,8 @@
     }
   }
 }
+
+@mixin checked-radio($theme: #fff) {
+  background-color: $theme;
+  outline: 2px solid $clr-main-100;
+}

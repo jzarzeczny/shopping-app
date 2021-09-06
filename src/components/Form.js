@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 export default function Form({ setShoppingList, shoppingList }) {
   const { register, handleSubmit } = useForm();
-
+  const categories = ["fruits", "vegitables", "drinks", "frozen", "detergents"];
   function revisedRandId() {
     return Math.random()
       .toString(36)
@@ -19,17 +19,34 @@ export default function Form({ setShoppingList, shoppingList }) {
     <form onSubmit={handleSubmit(onSubmit)} className="form">
       <div className="form__control">
         <label htmlFor="item">Przedmiot</label>
-        <input type="text" id="item" {...register("item")} />
+        <input
+          type="text"
+          id="item"
+          {...register("item", { required: true })}
+        />
       </div>
       <div className="form__control">
         <label htmlFor="type">Dział</label>
-        <select name="type" id="type" {...register("type")}>
-          <option value="fruits">Owoce</option>
-          <option value="vegitables">Warzywa</option>
-          <option value="drinks">Napoje</option>
-          <option value="frozen">Mrożonki</option>
-          <option value="detergents">Chemia</option>
-        </select>
+        <div className="form__control--radio">
+          {categories.map((category) => (
+            <div className="form__radio" key={category}>
+              <input
+                type="radio"
+                id={category}
+                key={category}
+                value={category}
+                // change into type!
+                {...register("type")}
+              />
+              <label
+                htmlFor={category}
+                className={`form__option form__option--${category}`}
+              >
+                {category}
+              </label>
+            </div>
+          ))}
+        </div>
       </div>
       <input
         className=" btn form__submit"

@@ -1,6 +1,5 @@
 import React from "react";
 import List from "../List";
-
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, fireEvent } from "@testing-library/react";
 

@@ -4,7 +4,6 @@ export default function PaperText({ data }) {
   const [taken, setTaken] = useState(0);
   const handleBoughtItem = (id) => {
     data.forEach((order) => {
-      console.log(order);
       if (order.id === id && order.className) {
         return delete order.className;
       }
@@ -14,9 +13,7 @@ export default function PaperText({ data }) {
     });
     setTaken(taken + 1);
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  useEffect(() => {}, [data]);
   return (
     <>
       <h2 className="paper__header">{data[0].type}</h2>

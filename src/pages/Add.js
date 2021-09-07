@@ -32,6 +32,7 @@ export default function Add() {
   return (
     <Layout>
       <section className="addContainer">
+        <h2 className="add__title">Stwórz listę zakupów</h2>
         <Form setShoppingList={setShoppingList} shoppingList={shoppingList} />
         <div className="shoppingList">
           {list &&

@@ -22,22 +22,39 @@ p {
 .btn {
   max-width: 200px;
   align-self: center;
-  padding: 0.5em 1em;
+  padding: 0.75em 1.5em;
   border: none;
+  background-color: #00b4d8ff;
+  color: #fff;
   border-radius: 0.75rem;
-  outline: 2px solid #0077b6ff;
   margin: 1em;
-  background-color: #fff;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 300;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+}
+.btn:hover, .btn:active {
+  background-color: #0077b6ff;
+  outline-offset: -2px;
+}
+.btn + .btn {
+  margin-left: 1em;
 }
 
 .btn--red {
   background-color: #ffadadff;
+  color: #555;
+}
+.btn--red:hover, .btn--red:active {
+  color: #fff;
 }
 
 .btn--green {
   background-color: #caffbfff;
+  color: #555;
+}
+.btn--green:hover, .btn--green:active {
+  color: #fff;
 }
 
 .form {
@@ -126,18 +143,16 @@ input[type=radio]:checked ~ .form__option--detergents {
   transition: all 0.1s ease-in-out;
 }
 
-.form__submit {
-  width: 100%;
-}
-
 .list {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list:first-of-type {
+  margin-top: 2rem;
 }
 .list::before, .list::after {
   content: "";
@@ -155,22 +170,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list .list__header {
   background-color: #caffbfff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #caffbfff;
-  outline-offset: -2px;
+  outline: 5px solid #caffbfff;
+  outline-offset: -5px;
 }
 .list .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list .list__element + .list__element {
   margin-top: 0.5em;
@@ -187,15 +207,20 @@ input[type=radio]:checked ~ .form__option--detergents {
   margin-top: -0.25em;
   opacity: 0.5;
 }
+.list .list__remove :hover {
+  color: red;
+}
 
 .list--vegitables {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list--vegitables:first-of-type {
+  margin-top: 2rem;
 }
 .list--vegitables::before, .list--vegitables::after {
   content: "";
@@ -213,22 +238,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list--vegitables .list__header {
   background-color: #ffd6a5ff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list--vegitables .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #ffd6a5ff;
-  outline-offset: -2px;
+  outline: 5px solid #ffd6a5ff;
+  outline-offset: -5px;
 }
 .list--vegitables .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list--vegitables .list__element + .list__element {
   margin-top: 0.5em;
@@ -245,15 +275,20 @@ input[type=radio]:checked ~ .form__option--detergents {
   margin-top: -0.25em;
   opacity: 0.5;
 }
+.list--vegitables .list__remove :hover {
+  color: red;
+}
 
 .list--fruts {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list--fruts:first-of-type {
+  margin-top: 2rem;
 }
 .list--fruts::before, .list--fruts::after {
   content: "";
@@ -271,22 +306,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list--fruts .list__header {
   background-color: #ffadadff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list--fruts .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #ffadadff;
-  outline-offset: -2px;
+  outline: 5px solid #ffadadff;
+  outline-offset: -5px;
 }
 .list--fruts .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list--fruts .list__element + .list__element {
   margin-top: 0.5em;
@@ -303,15 +343,20 @@ input[type=radio]:checked ~ .form__option--detergents {
   margin-top: -0.25em;
   opacity: 0.5;
 }
+.list--fruts .list__remove :hover {
+  color: red;
+}
 
 .list--drinks {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list--drinks:first-of-type {
+  margin-top: 2rem;
 }
 .list--drinks::before, .list--drinks::after {
   content: "";
@@ -329,22 +374,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list--drinks .list__header {
   background-color: #a0c4ffff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list--drinks .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #a0c4ffff;
-  outline-offset: -2px;
+  outline: 5px solid #a0c4ffff;
+  outline-offset: -5px;
 }
 .list--drinks .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list--drinks .list__element + .list__element {
   margin-top: 0.5em;
@@ -361,15 +411,20 @@ input[type=radio]:checked ~ .form__option--detergents {
   margin-top: -0.25em;
   opacity: 0.5;
 }
+.list--drinks .list__remove :hover {
+  color: red;
+}
 
 .list--frozen {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list--frozen:first-of-type {
+  margin-top: 2rem;
 }
 .list--frozen::before, .list--frozen::after {
   content: "";
@@ -387,22 +442,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list--frozen .list__header {
   background-color: #9bf6ffff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list--frozen .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #9bf6ffff;
-  outline-offset: -2px;
+  outline: 5px solid #9bf6ffff;
+  outline-offset: -5px;
 }
 .list--frozen .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list--frozen .list__element + .list__element {
   margin-top: 0.5em;
@@ -419,15 +479,20 @@ input[type=radio]:checked ~ .form__option--detergents {
   margin-top: -0.25em;
   opacity: 0.5;
 }
+.list--frozen .list__remove :hover {
+  color: red;
+}
 
 .list--detergents {
   display: block;
   width: min(15rem);
   background-color: #fff;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-  box-shadow: 0;
+}
+.list--detergents:first-of-type {
+  margin-top: 2rem;
 }
 .list--detergents::before, .list--detergents::after {
   content: "";
@@ -445,22 +510,27 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 .list--detergents .list__header {
   background-color: #ffc6ffff;
+  border-radius: 0.5em 0.5em 0 0;
   text-align: center;
-  padding: 1em 0em;
-  font-weight: 700;
+  padding: 0.5em 0em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .list--detergents .list__list {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 2px solid #ffc6ffff;
-  outline-offset: -2px;
+  outline: 5px solid #ffc6ffff;
+  outline-offset: -5px;
 }
 .list--detergents .list__element {
-  font-size: 1.125rem;
+  font-size: 1rem;
+  font-weight: 300;
   position: relative;
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 }
 .list--detergents .list__element + .list__element {
   margin-top: 0.5em;
@@ -476,6 +546,9 @@ input[type=radio]:checked ~ .form__option--detergents {
   background-color: #ffc6ffff;
   margin-top: -0.25em;
   opacity: 0.5;
+}
+.list--detergents .list__remove :hover {
+  color: red;
 }
 
 .submitList__container {
@@ -537,12 +610,50 @@ input[type=radio]:checked ~ .form__option--detergents {
   text-decoration-color: red;
 }
 
+.hamburger {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.hamburger-line {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #222;
+}
+.hamburger-line::after, .hamburger-line::before {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #222;
+  content: "";
+  left: 0;
+}
+.hamburger-line::after {
+  top: 6px;
+}
+.hamburger-line::before {
+  top: -6px;
+}
+
+.nav__list {
+  list-style: none;
+}
+
 .shoppingList {
-  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.add__title {
+  margin-left: 2rem;
+  color: #00b4d8ff;
+  font-weight: 900;
 }
 
 .layout {

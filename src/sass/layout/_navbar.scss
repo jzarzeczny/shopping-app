@@ -1,0 +1,36 @@
+@use '../abstracts/' as *;
+
+.hamburger {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+@mixin line {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: $clr-dark-800;
+}
+
+.hamburger-line {
+  @include line;
+  &::after,
+  &::before {
+    @include line;
+    content: "";
+    left: 0;
+  }
+  &::after {
+    top: 6px;
+  }
+  &::before {
+    top: -6px;
+  }
+}
+
+.nav__list {
+  list-style: none;
+}

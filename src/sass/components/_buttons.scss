@@ -16,7 +16,6 @@
   &:hover,
   &:active {
     background-color: $clr-main-700;
-    outline-offset: -2px;
   }
   & + .btn {
     margin-left: 1em;

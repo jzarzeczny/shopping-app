@@ -20,7 +20,7 @@ describe("Testing List component", () => {
   test("Renders the correct header", () => {
     render(<List name={name} data={data} removeElement={fn} />);
     const header = screen.getByRole("heading");
-    expect(header.innerHTML).toBe("NAME");
+    expect(header.innerHTML).toBe("name");
   });
   test("Checks the classname of the parent div", () => {
     const { container } = render(

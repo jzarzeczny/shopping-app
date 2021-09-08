@@ -116,18 +116,26 @@ input[type=radio]:checked ~ .form__option--detergents {
 }
 
 .form__control--radio {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   gap: 1em;
+}
+@media (min-width: 1024px) {
+  .form__control--radio {
+    justify-content: flex-start;
+  }
+}
+.form__control--radio > * {
+  flex: 1 1 100%;
 }
 
 .form__radio {
-  width: 100%;
+  max-width: 100px;
 }
 
 .form__radio .form__option {
   padding: 0.25em;
-  width: 100%;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -144,14 +152,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list:first-of-type {
-  margin-top: 2rem;
 }
 .list::before, .list::after {
   content: "";
@@ -172,6 +177,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -180,8 +186,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #caffbfff;
-  outline-offset: -5px;
+  outline: 2px solid #caffbfff;
+  outline-offset: -2px;
 }
 .list .list__element {
   font-size: 1rem;
@@ -212,14 +218,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list--vegitables {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list--vegitables:first-of-type {
-  margin-top: 2rem;
 }
 .list--vegitables::before, .list--vegitables::after {
   content: "";
@@ -240,6 +243,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -248,8 +252,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #ffd6a5ff;
-  outline-offset: -5px;
+  outline: 2px solid #ffd6a5ff;
+  outline-offset: -2px;
 }
 .list--vegitables .list__element {
   font-size: 1rem;
@@ -280,14 +284,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list--fruts {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list--fruts:first-of-type {
-  margin-top: 2rem;
 }
 .list--fruts::before, .list--fruts::after {
   content: "";
@@ -308,6 +309,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -316,8 +318,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #ffadadff;
-  outline-offset: -5px;
+  outline: 2px solid #ffadadff;
+  outline-offset: -2px;
 }
 .list--fruts .list__element {
   font-size: 1rem;
@@ -348,14 +350,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list--drinks {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list--drinks:first-of-type {
-  margin-top: 2rem;
 }
 .list--drinks::before, .list--drinks::after {
   content: "";
@@ -376,6 +375,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -384,8 +384,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #a0c4ffff;
-  outline-offset: -5px;
+  outline: 2px solid #a0c4ffff;
+  outline-offset: -2px;
 }
 .list--drinks .list__element {
   font-size: 1rem;
@@ -416,14 +416,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list--frozen {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list--frozen:first-of-type {
-  margin-top: 2rem;
 }
 .list--frozen::before, .list--frozen::after {
   content: "";
@@ -444,6 +441,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -452,8 +450,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #9bf6ffff;
-  outline-offset: -5px;
+  outline: 2px solid #9bf6ffff;
+  outline-offset: -2px;
 }
 .list--frozen .list__element {
   font-size: 1rem;
@@ -484,14 +482,11 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .list--detergents {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: #fff;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
-}
-.list--detergents:first-of-type {
-  margin-top: 2rem;
 }
 .list--detergents::before, .list--detergents::after {
   content: "";
@@ -512,6 +507,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 0.5em 0em;
+  font-size: 1.25rem;
   font-weight: 400;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -520,8 +516,8 @@ input[type=radio]:checked ~ .form__option--detergents {
   list-style: none;
   padding: 1em 2em;
   margin: 0;
-  outline: 5px solid #ffc6ffff;
-  outline-offset: -5px;
+  outline: 2px solid #ffc6ffff;
+  outline-offset: -2px;
 }
 .list--detergents .list__element {
   font-size: 1rem;
@@ -707,13 +703,20 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .shoppingList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1em;
 }
 
 .add__title {
-  margin-left: 2rem;
   color: #00b4d8ff;
   font-weight: 900;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }

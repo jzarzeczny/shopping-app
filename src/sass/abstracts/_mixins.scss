@@ -3,15 +3,12 @@
 
 @mixin list($theme: #fff) {
   display: block;
-  width: min(15rem);
+  min-width: 12rem;
   background-color: $clr-light-100;
   margin-bottom: 2rem;
   position: relative;
   isolation: isolate;
 
-  &:first-of-type {
-    margin-top: 2rem;
-  }
   &::before,
   &::after {
     content: "";
@@ -32,6 +29,7 @@
     border-radius: 0.5em 0.5em 0 0;
     text-align: center;
     padding: 0.5em 0em;
+    font-size: 1.25rem;
     font-weight: $fw-normal;
     letter-spacing: 1px;
     text-transform: capitalize;
@@ -40,8 +38,8 @@
     list-style: none;
     padding: 1em 2em;
     margin: 0;
-    outline: 5px solid $theme;
-    outline-offset: -5px;
+    outline: 2px solid $theme;
+    outline-offset: -2px;
   }
   .list__element {
     font-size: 1rem;
@@ -73,6 +71,10 @@
     }
   }
 }
+
+// @media(min-width: 768px){
+//   .list__list
+// }
 
 @mixin checked-radio($theme: #fff) {
   background-color: $theme;

@@ -9,9 +9,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 // const TEST_VALUE = { item: "Mandarynki", type: "fruits", id: "qvhftbs" };
 
 describe("Testing List component", () => {
-  afterEach(() => {
-    localStorage.clear();
-  });
+  // afterEach(() => {
+  //   localStorage.clear();
+  // });
   test("Renders component", () => {
     render(
       <Router>

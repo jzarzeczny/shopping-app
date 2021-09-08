@@ -14,7 +14,7 @@ export default function Add() {
   }
 
   const checkLocalStorage = () => {
-    console.log(shoppingList);
+    console.log("Check the local storage after rerender");
     const localStorageList = JSON.parse(localStorage.getItem("list"));
     console.log(shoppingList);
 
@@ -23,13 +23,15 @@ export default function Add() {
 
   useEffect(() => {
     // Fill the shopping list after refresh
+    console.log("Function inside the useEffect");
     const localStorageList = JSON.parse(localStorage.getItem("list"));
     console.log(localStorageList);
     checkLocalStorage();
   }, []);
-
+  console.log("Fucntion in the body of component");
   // Save the data to local memeory
-  if (shoppingList.length !== null) {
+  if (shoppingList.length !== 0) {
+    console.log("Function inside the adding localsotorage");
     localStorage.setItem("list", JSON.stringify(shoppingList));
   }
   console.log(shoppingList);

@@ -159,7 +159,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -225,7 +225,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -291,7 +291,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -357,7 +357,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -423,7 +423,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -489,7 +489,7 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: block;
   min-width: 12rem;
   background-color: #fff;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
   isolation: isolate;
 }
@@ -555,6 +555,17 @@ input[type=radio]:checked ~ .form__option--detergents {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.submitList__container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80%;
+  margin: 0 auto;
+  height: 2px;
+  background-color: #00b4d8ff;
+  opacity: 0.2;
 }
 
 .paper {

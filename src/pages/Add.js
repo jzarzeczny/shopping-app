@@ -7,7 +7,6 @@ import sorter from "../services/sorter";
 
 export default function Add() {
   const [shoppingList, setShoppingList] = useState([]);
-
   function handleRemove(id) {
     const newList = shoppingList.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
@@ -15,17 +14,25 @@ export default function Add() {
   }
 
   const checkLocalStorage = () => {
+    console.log(shoppingList);
     const localStorageList = JSON.parse(localStorage.getItem("list"));
+    console.log(shoppingList);
+
     setShoppingList(localStorageList);
   };
 
   useEffect(() => {
+    // Fill the shopping list after refresh
+    const localStorageList = JSON.parse(localStorage.getItem("list"));
+    console.log(localStorageList);
     checkLocalStorage();
   }, []);
-  // Fill the shopping list after refresh
+
+  // Save the data to local memeory
   if (shoppingList.length !== null) {
     localStorage.setItem("list", JSON.stringify(shoppingList));
   }
+  console.log(shoppingList);
 
   // Create an object with correct grup-value
   const list = sorter(shoppingList);

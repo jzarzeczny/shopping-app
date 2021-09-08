@@ -85,3 +85,30 @@
 .nav__element {
   font-size: 1.25em;
 }
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+  .hamburger {
+    display: none;
+  }
+  .nav__list {
+    position: relative;
+    transform: none;
+    flex-flow: row nowrap;
+    height: inherit;
+    background-color: transparent;
+    max-width: unset;
+    flex: 1 1 70%;
+    &:first-of-type {
+      padding: 0;
+    }
+  }
+  .nav__element {
+    font-size: 1rem;
+    & + .nav__element {
+      margin-left: 2em;
+    }
+  }
+}

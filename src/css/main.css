@@ -19,6 +19,11 @@ p {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .btn {
   max-width: 200px;
   align-self: center;
@@ -690,6 +695,35 @@ input[type=radio]:checked ~ .form__option--detergents {
   font-size: 1.25em;
 }
 
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav__list {
+    position: relative;
+    transform: none;
+    flex-flow: row nowrap;
+    height: inherit;
+    background-color: transparent;
+    max-width: unset;
+    flex: 1 1 70%;
+  }
+  .nav__list:first-of-type {
+    padding: 0;
+  }
+
+  .nav__element {
+    font-size: 1rem;
+  }
+  .nav__element + .nav__element {
+    margin-left: 2em;
+  }
+}
 .header {
   margin: 0 2rem;
   width: calc(100%-2rem);
@@ -701,6 +735,11 @@ input[type=radio]:checked ~ .form__option--detergents {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  .header {
+    margin-bottom: 1em;
+  }
+}
 .shoppingList {
   display: flex;
   flex-flow: row wrap;

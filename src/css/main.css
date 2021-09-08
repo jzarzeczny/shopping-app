@@ -570,8 +570,8 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .paper {
   position: relative;
-  height: 400px;
-  width: 300px;
+  height: 300px;
+  max-width: 300px;
   background-color: #fff;
   opacity: 0.9;
   margin: 0 auto;
@@ -607,6 +607,7 @@ input[type=radio]:checked ~ .form__option--detergents {
 
 .paper__header {
   text-transform: capitalize;
+  font-size: 1.125rem;
 }
 
 .paper__list {

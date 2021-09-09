@@ -14,27 +14,27 @@ export default function Add() {
   }
 
   const checkLocalStorage = () => {
-    console.log("Check the local storage after rerender");
-    const localStorageList = JSON.parse(localStorage.getItem("list"));
-    console.log(shoppingList);
-
-    setShoppingList(localStorageList);
+    const check = () => {
+      try {
+        JSON.parse(localStorage.getItem("list"));
+      } catch (e) {
+        return [];
+      }
+    };
+    const localStorageList = check();
+    if (localStorageList) {
+      setShoppingList(localStorageList);
+    }
   };
 
   useEffect(() => {
     // Fill the shopping list after refresh
-    console.log("Function inside the useEffect");
-    const localStorageList = JSON.parse(localStorage.getItem("list"));
-    console.log(localStorageList);
+
     checkLocalStorage();
+    if (shoppingList.length !== 0) {
+      localStorage.setItem("list", JSON.stringify(shoppingList));
+    }
   }, []);
-  console.log("Fucntion in the body of component");
-  // Save the data to local memeory
-  if (shoppingList.length !== 0) {
-    console.log("Function inside the adding localsotorage");
-    localStorage.setItem("list", JSON.stringify(shoppingList));
-  }
-  console.log(shoppingList);
 
   // Create an object with correct grup-value
   const list = sorter(shoppingList);

@@ -17,8 +17,14 @@ describe("Testing SubmitList component", () => {
   });
 
   test("Display correnct amount of buttons", () => {
-    render();
-    const ButtonsElements = screen.queryAllByRole("button");
+    render(
+      <Router>
+        <ListContextProvider>
+          <SubmitList />
+        </ListContextProvider>
+      </Router>
+    );
+    const ButtonsElements = screen.getAllByRole("button");
     expect(ButtonsElements.length).toBe(2);
   });
 

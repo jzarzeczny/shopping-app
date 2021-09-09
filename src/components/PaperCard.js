@@ -6,23 +6,37 @@ import PaperText from "./PaperText";
 
 export default function PaperCard() {
   const { listToDisplay } = useContext(ListContext);
-  const storageList = JSON.parse(localStorage.getItem("list")) || listToDisplay;
+  const checkTheLocalStorage = () => {
+    if (listToDisplay.length > 0) {
+      console.log(listToDisplay);
+      return listToDisplay;
+    } else {
+      return JSON.parse(localStorage.getItem("list"));
+    }
+  };
+
+  const storageList = checkTheLocalStorage();
 
   const newList = sorter(storageList);
+  console.log(newList);
 
   return (
     <div className="cardContainer">
-      <div className="paper">
-        <div className="paper__lines">
-          <div className="paper__text">
-            {newList &&
-              Object.keys(newList).map((key) => (
-                <PaperText data={newList[key]} key={key} />
-              ))}
-            <br />
+      {Object.keys(newList).length > 0 ? (
+        <div className="paper">
+          <div className="paper__lines">
+            <div className="paper__text">
+              {newList &&
+                Object.keys(newList).map((key) => (
+                  <PaperText data={newList[key]} key={key} />
+                ))}
+              <br />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <p className="paper__empty">Nie masz jeszcze swojej listy zakupów.</p>
+      )}
 
       <Link to="/add" className="btn" onClick={() => localStorage.clear()}>
         Nowa lista

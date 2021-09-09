@@ -59,6 +59,11 @@
   margin: 1rem auto 0;
 }
 
+.paper__empty {
+  display: block;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .paper {
     transform: scale(1.2);

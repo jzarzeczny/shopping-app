@@ -1,17 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function PaperText({ data }) {
-  const [taken, setTaken] = useState(0);
   const handleBoughtItem = (id) => {
-    data.forEach((order) => {
-      if (order.id === id && order.className) {
-        return delete order.className;
-      }
-      if (order.id === id) {
-        return (order.className = "paper__item--taken");
-      }
-    });
-    setTaken(taken + 1);
+    id.target.classList.toggle("paper__item--taken");
   };
   useEffect(() => {}, [data]);
   return (
@@ -21,7 +12,7 @@ export default function PaperText({ data }) {
         {data.map((content) => (
           <li
             className={`paper__item ${content.className}`}
-            onClick={() => handleBoughtItem(content.id)}
+            onClick={(e) => handleBoughtItem(e)}
             key={content.id}
           >
             {content.item}

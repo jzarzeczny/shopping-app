@@ -7,22 +7,17 @@ import PaperText from "./PaperText";
 export default function PaperCard() {
   const { listToDisplay } = useContext(ListContext);
   const checkTheLocalStorage = () => {
-    if (listToDisplay.length > 0) {
+    if (Object.keys(listToDisplay).length > 0) {
       console.log(listToDisplay);
       return listToDisplay;
     } else {
-      try {
-        return JSON.parse(localStorage.getItem("list"));
-      } finally {
-        return [];
-      }
+      return JSON.parse(localStorage.getItem("list"));
     }
   };
 
-  const storageList = checkTheLocalStorage();
+  const storageList = checkTheLocalStorage() || [];
 
   const newList = sorter(storageList);
-  console.log(newList);
 
   return (
     <div className="cardContainer">

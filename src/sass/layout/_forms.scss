@@ -27,6 +27,12 @@
       border: 2px solid $clr-main-500;
     }
   }
+  .form__error {
+    color: $clr-main-700;
+    &:first-of-type {
+      margin-top: 1em;
+    }
+  }
 }
 // Styling radiobuttons
 input[type="radio"] {
@@ -84,8 +90,4 @@ input[type="radio"] {
   background-color: $clr-main-100;
   outline: 2px solid transparent;
   transition: all 0.1s ease-in-out;
-}
-
-.form__submit {
-  // width: 100%;
 }

@@ -24,8 +24,9 @@ export default function PaperCard() {
           </div>
         </div>
       </div>
-      <Link to="/add">
-        <Button>Nowa lista</Button>
+
+      <Link to="/add" className="btn" onClick={() => localStorage.clear()}>
+        Nowa lista
       </Link>
     </div>
   );

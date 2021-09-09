@@ -10,6 +10,7 @@ export default function SubmitList({ setShoppingList, shoppingList }) {
   };
 
   const saveTheList = (list) => {
+    localStorage.setItem("list", JSON.stringify(list));
     setListToDisplay(list);
   };
 

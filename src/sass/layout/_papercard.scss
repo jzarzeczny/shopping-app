@@ -37,7 +37,7 @@
   line-height: 25px;
   overflow: hidden;
   outline: none;
-  font-family: "Indie Flower", cursive;
+  font-family: "Architects Daughter", cursive;
 }
 
 .paper__header {
@@ -53,4 +53,19 @@
 .paper__item--taken {
   text-decoration: line-through;
   text-decoration-color: rgba(255, 0, 0);
+}
+.cardContainer button {
+  display: block;
+  margin: 1rem auto 0;
+}
+
+@media (min-width: 768px) {
+  .paper {
+    transform: scale(1.2);
+  }
+
+  .cardContainer a {
+    display: block;
+    margin: 3rem auto 0;
+  }
 }

@@ -2,7 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export default function Form({ setShoppingList, shoppingList }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const categories = ["fruits", "vegitables", "drinks", "frozen", "detergents"];
   function revisedRandId() {
     return Math.random()
@@ -24,6 +28,9 @@ export default function Form({ setShoppingList, shoppingList }) {
           id="item"
           {...register("item", { required: true })}
         />
+        {errors.item && (
+          <div className="form__error">Musisz wybrać przedmiot</div>
+        )}
       </div>
       <div className="form__control">
         <label htmlFor="type">Dział</label>
@@ -36,8 +43,9 @@ export default function Form({ setShoppingList, shoppingList }) {
                 key={category}
                 value={category}
                 // change into type!
-                {...register("type")}
+                {...register("type", { required: true })}
               />
+
               <label
                 htmlFor={category}
                 className={`form__option form__option--${category}`}
@@ -46,6 +54,9 @@ export default function Form({ setShoppingList, shoppingList }) {
               </label>
             </div>
           ))}
+          {errors.type && (
+            <div className="form__error">Musisz wybrać kategorię</div>
+          )}
         </div>
       </div>
       <input

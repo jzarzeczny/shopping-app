@@ -11,7 +11,11 @@ export default function PaperCard() {
       console.log(listToDisplay);
       return listToDisplay;
     } else {
-      return JSON.parse(localStorage.getItem("list"));
+      try {
+        return JSON.parse(localStorage.getItem("list"));
+      } finally {
+        return [];
+      }
     }
   };
 

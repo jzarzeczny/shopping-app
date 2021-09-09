@@ -3,7 +3,6 @@ import { ListContext } from "../context/DisplayListContext";
 import { Link } from "react-router-dom";
 import sorter from "../services/sorter";
 import PaperText from "./PaperText";
-import Button from "./Button";
 
 export default function PaperCard() {
   const { listToDisplay } = useContext(ListContext);

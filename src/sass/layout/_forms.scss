@@ -22,6 +22,7 @@
     border: 2px solid $clr-main-100;
     border-radius: 0.5rem;
     width: 100%;
+    max-width: 300px;
     outline: none;
     &:focus {
       border: 2px solid $clr-main-500;

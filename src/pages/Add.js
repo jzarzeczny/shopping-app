@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Form from "../components/Form";
 import List from "../components/List";
 import Layout from "../components/Layout";
 import SubmitList from "../components/SubmitList";
 import sorter from "../services/sorter";
+import { ListContext } from "../context/DisplayListContext";
+import checkTheLocalStorage from "../utils/checkTheLocalStorage";
 
 export default function Add() {
   const [shoppingList, setShoppingList] = useState([]);
+  const { listToDisplay } = useContext(ListContext);
   function handleRemove(id) {
     const newList = shoppingList.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
     setShoppingList(newList);
   }
 
-  const checkLocalStorage = () => {
-    const check = () => {
-      try {
-        JSON.parse(localStorage.getItem("list"));
-      } catch (e) {
-        return [];
-      }
-    };
-    const localStorageList = check();
-    if (localStorageList) {
-      setShoppingList(localStorageList);
-    }
-  };
-
   useEffect(() => {
     // Fill the shopping list after refresh
-
-    checkLocalStorage();
-    if (shoppingList.length !== 0) {
-      localStorage.setItem("list", JSON.stringify(shoppingList));
-    }
+    setShoppingList(checkTheLocalStorage(listToDisplay) || []);
   }, []);
+
+  if (shoppingList.length !== 0) {
+    localStorage.setItem("list", JSON.stringify(shoppingList));
+  }
 
   // Create an object with correct grup-value
   const list = sorter(shoppingList);

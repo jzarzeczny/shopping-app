@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.login__form {
+  text-align: center;
+  margin-top: 1rem;
+  .form__control {
+    padding: 1em 0;
+    max-width: 400px;
+    position: relative;
+    .form__error {
+      bottom: -1rem;
+      left: 0;
+    }
+  }
+}

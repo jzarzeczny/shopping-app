@@ -3,21 +3,15 @@ import { ListContext } from "../context/DisplayListContext";
 import { Link } from "react-router-dom";
 import sorter from "../services/sorter";
 import PaperText from "./PaperText";
+import checkTheLocalStorage from "../utils/checkTheLocalStorage";
 
 export default function PaperCard() {
-  const { listToDisplay } = useContext(ListContext);
-  const checkTheLocalStorage = () => {
-    if (Object.keys(listToDisplay).length > 0) {
-      console.log(listToDisplay);
-      return listToDisplay;
-    } else {
-      return JSON.parse(localStorage.getItem("list"));
-    }
-  };
+  const { listToDisplay, setListToDisplay } = useContext(ListContext);
 
-  const storageList = checkTheLocalStorage() || [];
+  const storageList = checkTheLocalStorage(listToDisplay) || [];
 
   const newList = sorter(storageList);
+  console.log(newList);
 
   return (
     <div className="cardContainer">
@@ -36,10 +30,23 @@ export default function PaperCard() {
       ) : (
         <p className="paper__empty">Nie masz jeszcze swojej listy zakupów.</p>
       )}
-
-      <Link to="/add" className="btn" onClick={() => localStorage.clear()}>
-        Nowa lista
-      </Link>
+      <div className="card__links">
+        {Object.keys(newList).length > 0 && (
+          <Link to="/add" className="btn">
+            Edytuj listę
+          </Link>
+        )}
+        <Link
+          to="/add"
+          className="btn btn--secondary"
+          onClick={() => {
+            localStorage.clear();
+            setListToDisplay([]);
+          }}
+        >
+          Nowa lista
+        </Link>
+      </div>
     </div>
   );
 }

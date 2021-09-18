@@ -25,7 +25,18 @@ describe("Testing SubmitList component", () => {
       </Router>
     );
     const ButtonsElements = screen.getAllByRole("button");
-    expect(ButtonsElements.length).toBe(2);
+    expect(ButtonsElements.length).toBe(1);
+  });
+  test("Display correnct amount of links", () => {
+    render(
+      <Router>
+        <ListContextProvider>
+          <SubmitList />
+        </ListContextProvider>
+      </Router>
+    );
+    const ButtonsElements = screen.getAllByRole("link");
+    expect(ButtonsElements.length).toBe(1);
   });
 
   // Integration test

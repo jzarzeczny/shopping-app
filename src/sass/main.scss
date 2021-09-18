@@ -2,6 +2,7 @@
 
 @use "components/buttons";
 @use "components/hamburger";
+@use "components/loginForm";
 
 @use "layout/forms";
 @use "layout/list";
@@ -9,6 +10,7 @@
 @use "layout/papercard";
 @use "layout/navbar";
 @use "layout/header";
+@use 'layout/login';
 
 @use "pages/add";
 @use 'pages/layout';

@@ -108,8 +108,13 @@
   }
   .nav__element {
     font-size: 1rem;
+    font-weight: $fw-light;
     & + .nav__element {
       margin-left: 2em;
     }
+  }
+  .nav__element--important {
+    font-weight: $fw-normal;
+    color: $clr-main-700;
   }
 }

@@ -16,18 +16,17 @@ export default function SubmitList({ setShoppingList, shoppingList }) {
 
   return (
     <div className="submitList__container">
-      <Button type="red" clickHandler={removeTheList}>
+      <Button type="secondary" color="red" clickHandler={removeTheList}>
         Usuń listę
       </Button>
-      <Link to="/">
-        <Button
-          type="green"
-          clickHandler={() => {
-            saveTheList(shoppingList);
-          }}
-        >
-          Zapisz listę
-        </Button>
+      <Link
+        className="btn btn--secondary btn--green"
+        onClick={() => {
+          saveTheList(shoppingList);
+        }}
+        to="/"
+      >
+        Zapisz listę
       </Link>
     </div>
   );

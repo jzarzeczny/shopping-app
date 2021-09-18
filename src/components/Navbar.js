@@ -21,7 +21,15 @@ export default function Navbar() {
           <Link to="/">Lista zakupów</Link>
         </li>
         <li className="nav__element">
-          <Link to="/add">Stwórz listę</Link>
+          <Link class="nav__element--important" to="/add">
+            Stwórz listę
+          </Link>
+        </li>
+        <li className="nav__element">
+          <Link to="/login">Zaloguj się</Link>
+        </li>
+        <li className="nav__element">
+          <Link to="/register">Zarejestruj się</Link>
         </li>
       </ul>
     </nav>

@@ -6,7 +6,7 @@
   max-width: 300px;
   background-color: $clr-light-100;
   opacity: 0.9;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   box-shadow: 0 0 5px 0 #888;
   padding-bottom: 25px;
   &::before {
@@ -54,13 +54,13 @@
   text-decoration: line-through;
   text-decoration-color: rgba(255, 0, 0);
 }
-.cardContainer a {
-  display: block;
-  margin: 1rem auto 0;
-}
 
 .paper__empty {
   display: block;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.card__links {
   text-align: center;
 }
 
@@ -68,9 +68,10 @@
   .paper {
     transform: scale(1.2);
   }
-
+  .paper__empty {
+    margin-bottom: 2rem;
+  }
   .cardContainer a {
-    display: block;
-    margin: 3rem auto 0;
+    display: inline-block;
   }
 }

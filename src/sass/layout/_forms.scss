@@ -6,10 +6,12 @@
 }
 .form__control {
   border-radius: 1rem;
-  padding: 1em 2em;
+  padding: 0 2em;
   width: 100%;
   text-align: start;
   display: block;
+  margin-bottom: 2rem;
+  position: relative;
 
   label {
     display: block;
@@ -30,6 +32,9 @@
   }
   .form__error {
     color: $clr-main-700;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 2rem;
     &:first-of-type {
       margin-top: 1em;
     }
@@ -42,7 +47,7 @@ input[type="radio"] {
   position: absolute;
   &:checked ~ .form__option {
     background-color: $tea-green;
-    outline: 2px solid $clr-main-500;
+    outline: none;
   }
   &:checked ~ .form__option--vegitables {
     @include checked-radio($theme: $deep-champagne);
@@ -61,8 +66,6 @@ input[type="radio"] {
   }
 }
 .form__control--radio {
-  // display: grid;
-  // grid-template-columns: repeat(3, 1fr);
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -90,5 +93,9 @@ input[type="radio"] {
   font-weight: $fw-light;
   background-color: $clr-main-100;
   outline: 2px solid transparent;
+  outline-offset: -2px;
   transition: all 0.1s ease-in-out;
+}
+.form__submit {
+  margin-bottom: 2rem;
 }

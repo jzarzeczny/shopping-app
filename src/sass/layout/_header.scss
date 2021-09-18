@@ -1,7 +1,7 @@
 @use '../abstracts/' as *;
 
 .header {
-  margin: 0 2rem;
+  margin: 0 2rem 1rem;
   width: calc(100%-2rem);
   padding: 1rem 0;
   position: relative;
@@ -13,6 +13,6 @@
 
 @media (min-width: 1024px) {
   .header {
-    margin-bottom: 1em;
+    margin-bottom: 2rem;
   }
 }

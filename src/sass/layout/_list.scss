@@ -6,7 +6,7 @@
 .list--vegitables {
   @include list($theme: $deep-champagne);
 }
-.list--fruts {
+.list--fruits {
   @include list($theme: $light-pink);
 }
 .list--drinks {

@@ -9,7 +9,6 @@
   background-color: $clr-main-500;
   color: $clr-light-100;
   border-radius: 0.75rem;
-  margin: 1em;
   font-size: 1rem;
   font-weight: $fw-normal;
   cursor: pointer;
@@ -22,20 +21,22 @@
     margin-left: 1em;
   }
 }
+.btn--secondary {
+  background-color: transparent;
+  outline: 3px solid $clr-main-500;
+  outline-offset: -3px;
+  transition: outline 0.1s ease-in;
+  color: #555;
+}
+.btn--secondary:hover,
+.btn--secondary:active {
+  outline: initial;
+  color: $clr-light-100;
+}
 
 .btn--red {
-  background-color: $light-pink;
-  color: #555;
-  &:hover,
-  &:active {
-    color: #fff;
-  }
+  outline-color: $light-pink;
 }
 .btn--green {
-  background-color: $tea-green;
-  color: #555;
-  &:hover,
-  &:active {
-    color: #fff;
-  }
+  outline-color: $tea-green;
 }

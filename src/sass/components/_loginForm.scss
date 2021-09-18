@@ -7,11 +7,9 @@
     padding: 1em 0;
     max-width: 400px;
     position: relative;
-  }
-  .form__error {
-    position: absolute;
-    display: block;
-    bottom: -5px;
-    font-weight: $fw-light;
+    .form__error {
+      bottom: -1rem;
+      left: 0;
+    }
   }
 }

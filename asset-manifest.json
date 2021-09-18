@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/shopping-app/static/css/main.eb22ad9e.chunk.css",
+    "main.js": "/shopping-app/static/js/main.6f34a55e.chunk.js",
+    "main.js.map": "/shopping-app/static/js/main.6f34a55e.chunk.js.map",
+    "runtime-main.js": "/shopping-app/static/js/runtime-main.a998d8f0.js",
+    "runtime-main.js.map": "/shopping-app/static/js/runtime-main.a998d8f0.js.map",
+    "static/js/2.9de05825.chunk.js": "/shopping-app/static/js/2.9de05825.chunk.js",
+    "static/js/2.9de05825.chunk.js.map": "/shopping-app/static/js/2.9de05825.chunk.js.map",
+    "static/js/3.388d21c6.chunk.js": "/shopping-app/static/js/3.388d21c6.chunk.js",
+    "static/js/3.388d21c6.chunk.js.map": "/shopping-app/static/js/3.388d21c6.chunk.js.map",
+    "index.html": "/shopping-app/index.html",
+    "static/css/main.eb22ad9e.chunk.css.map": "/shopping-app/static/css/main.eb22ad9e.chunk.css.map",
+    "static/js/2.9de05825.chunk.js.LICENSE.txt": "/shopping-app/static/js/2.9de05825.chunk.js.LICENSE.txt",
+    "static/media/loginImage.70eae111.svg": "/shopping-app/static/media/loginImage.70eae111.svg",
+    "static/media/registerImage.f3f6193f.svg": "/shopping-app/static/media/registerImage.f3f6193f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a998d8f0.js",
+    "static/js/2.9de05825.chunk.js",
+    "static/css/main.eb22ad9e.chunk.css",
+    "static/js/main.6f34a55e.chunk.js"
+  ]
+}

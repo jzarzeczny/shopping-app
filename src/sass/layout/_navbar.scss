@@ -86,6 +86,10 @@
   }
 }
 
+.nav__logout {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .nav {
     display: flex;

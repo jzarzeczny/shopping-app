@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { AuthContext } from "../context/FirebaseContext";
+import { logout } from "../firebase";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
+  let history = useHistory();
   const toggle = () => {
     setOpen(!open);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    history.push("/");
   };
 
   return (
@@ -17,20 +26,31 @@ export default function Navbar() {
         <li className="nav__element">
           <Link to="/">Strona główna</Link>
         </li>
-        <li className="nav__element">
-          <Link to="/">Lista zakupów</Link>
-        </li>
-        <li className="nav__element">
-          <Link class="nav__element--important" to="/add">
-            Stwórz listę
-          </Link>
-        </li>
-        <li className="nav__element">
-          <Link to="/login">Zaloguj się</Link>
-        </li>
-        <li className="nav__element">
-          <Link to="/register">Zarejestruj się</Link>
-        </li>
+
+        {currentUser ? (
+          <>
+            <li className="nav__element">
+              <Link to="/">Lista zakupów</Link>
+            </li>
+            <li className="nav__element">
+              <Link className="nav__element--important" to="/add">
+                Stwórz listę
+              </Link>
+            </li>
+            <li className="nav__element nav__logout" onClick={handleLogout}>
+              Wyloguj się
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav__element">
+              <Link to="/login">Zaloguj się</Link>
+            </li>
+            <li className="nav__element">
+              <Link to="/register">Zarejestruj się</Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

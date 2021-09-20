@@ -12,7 +12,7 @@
   font-size: 1rem;
   font-weight: $fw-normal;
   cursor: pointer;
-  transition: background-color 0.2s ease-in, color 0.2s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
   &:hover,
   &:active {
     background-color: $clr-main-700;
@@ -25,7 +25,6 @@
   background-color: transparent;
   outline: 3px solid $clr-main-500;
   outline-offset: -3px;
-  transition: outline 0.1s ease-in;
   color: #555;
 }
 .btn--secondary:hover,

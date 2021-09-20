@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -22,6 +28,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
+// Sign into the app
 const signIn = async (email, password) => {
   try {
     signInWithEmailAndPassword(auth, email, password);
@@ -30,20 +37,28 @@ const signIn = async (email, password) => {
   }
 };
 
+// Create a user with email
 const registerUser = async (email, password, nickname) => {
   try {
+    // Create user
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
+
+    // Create user instance in "users" collection
     await setDoc(doc(db, "users", user.uid), {
       authProvider: "local",
       nickname,
       email,
     });
+
+    // Create user instance in "lists hisotry" collection
+    const listRef = doc(db, "list", user.uid);
+    await setDoc(listRef, { list: {} }).catch((e) => console.log(e));
   } catch (err) {
     console.log(err);
   }
 };
-
+// Send password reset - currently dead
 const sendPasswordReset = async (email) => {
   try {
     sendPasswordResetEmail(auth, email).then("Password reset sent!");
@@ -51,9 +66,34 @@ const sendPasswordReset = async (email) => {
     console.log(e);
   }
 };
-
+// Logout user
 const logout = () => {
   signOut(auth);
 };
 
-export { auth, db, signIn, registerUser, sendPasswordReset, logout };
+// Add data to current list
+const addListToCurrent = async (user, data) => {
+  const listRef = doc(db, "currentList", user.uid);
+  await setDoc(listRef, { list: data }).catch((e) => console.log(e));
+};
+
+// Add list to list hisotry collection
+const addList = async (user, data) => {
+  const listRef = doc(db, "list", user.uid);
+  await updateDoc(
+    listRef,
+    { list: arrayUnion({ data }) },
+    { merge: true }
+  ).catch((e) => console.log(e));
+};
+
+export {
+  auth,
+  db,
+  signIn,
+  registerUser,
+  sendPasswordReset,
+  logout,
+  addListToCurrent,
+  addList,
+};

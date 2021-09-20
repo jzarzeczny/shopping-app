@@ -2,15 +2,18 @@ import React, { useContext } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { ListContext } from "../context/DisplayListContext";
+import { addListToCurrent } from "../firebase";
+import { AuthContext } from "../context/FirebaseContext";
 
 export default function SubmitList({ setShoppingList, shoppingList }) {
   const { setListToDisplay } = useContext(ListContext);
+  const { currentUser } = useContext(AuthContext);
   const removeTheList = () => {
     setShoppingList([]);
   };
-
   const saveTheList = (list) => {
     localStorage.setItem("list", JSON.stringify(list));
+    addListToCurrent(currentUser, list);
     setListToDisplay(list);
   };
 

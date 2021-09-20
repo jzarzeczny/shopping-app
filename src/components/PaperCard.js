@@ -14,7 +14,7 @@ export default function PaperCard() {
   console.log(newList);
 
   return (
-    <div className="cardContainer">
+    <section className="cardContainer">
       {Object.keys(newList).length > 0 ? (
         <div className="paper">
           <div className="paper__lines">
@@ -47,6 +47,6 @@ export default function PaperCard() {
           Nowa lista
         </Link>
       </div>
-    </div>
+    </section>
   );
 }

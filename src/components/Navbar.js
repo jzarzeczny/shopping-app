@@ -21,6 +21,7 @@ export default function Navbar() {
     <nav className={`nav ${open && "nav--open"}`}>
       <button className="hamburger" onClick={toggle}>
         <div className="hamburger-line"></div>
+        <div className="hamburger-line"></div>
       </button>
       <ul className="nav__list">
         <li className="nav__element">

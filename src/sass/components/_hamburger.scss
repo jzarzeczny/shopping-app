@@ -1,8 +1,8 @@
 @use '../abstracts/' as *;
 
 .hamburger {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   background-color: transparent;
   border: none;
   position: fixed;
@@ -14,34 +14,26 @@
 
 @mixin line {
   position: absolute;
-  width: 20px;
+  width: 30px;
   height: 2px;
   background-color: $clr-dark-800;
 }
 
 .hamburger-line {
   @include line;
+  transition: transform 0.4s ease-in-out;
+  &::first-of-type {
+    top: 5px;
+  }
+  &:last-of-type {
+    bottom: 5px;
+  }
   .nav--open & {
-    transform: rotate(-45deg);
-    transition: transform 0.3s ease-in-out;
-  }
-  &::after,
-  &::before {
-    @include line;
-    content: "";
-    left: 0;
-  }
-  &::after {
-    top: 6px;
-    .nav--open & {
-      transform: rotate(-90deg);
-      top: 0;
+    &:first-child {
+      transform: rotate(-45deg) translateY(5px);
     }
-  }
-  &::before {
-    top: -6px;
-    .nav--open & {
-      opacity: 0;
+    &:last-child {
+      transform: rotate(45deg) translateY(-5px);
     }
   }
 }

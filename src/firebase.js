@@ -5,6 +5,7 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
+  getDoc,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -85,6 +86,28 @@ const addList = async (user, data) => {
     { list: arrayUnion({ data }) },
     { merge: true }
   ).catch((e) => console.log(e));
+};
+
+const getListToCurrent = async (user) => {
+  const listRef = doc(db, "currentList", user.uid);
+
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap;
+  } else {
+    console.log("There is no data");
+  }
+};
+
+const getList = async (user) => {
+  const listRef = doc(db, "list", user.uid);
+
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap;
+  } else {
+    console.log("There is no data");
+  }
 };
 
 export {

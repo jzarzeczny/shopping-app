@@ -6,7 +6,6 @@ import { logout } from "../firebase";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   let history = useHistory();
   const toggle = () => {
     setOpen(!open);

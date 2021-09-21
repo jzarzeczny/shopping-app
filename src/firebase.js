@@ -78,9 +78,22 @@ const addListToCurrent = async (user, data) => {
   await setDoc(listRef, { list: data }).catch((e) => console.log(e));
 };
 
-// Add list to list hisotry collection
+// Get data from current list
+const getListFromCurrent = async (user) => {
+  const listRef = doc(db, "currentList", user.uid);
+
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    console.log("There is no data");
+  }
+};
+
+// Add list to history collection
 const addList = async (user, data) => {
   const listRef = doc(db, "list", user.uid);
+
   await updateDoc(
     listRef,
     { list: arrayUnion({ data }) },
@@ -88,23 +101,13 @@ const addList = async (user, data) => {
   ).catch((e) => console.log(e));
 };
 
-const getListToCurrent = async (user) => {
-  const listRef = doc(db, "currentList", user.uid);
-
-  const docSnap = await getDoc(listRef);
-  if (docSnap.exists()) {
-    return docSnap;
-  } else {
-    console.log("There is no data");
-  }
-};
-
+// Get list from hisotry collection
 const getList = async (user) => {
   const listRef = doc(db, "list", user.uid);
 
   const docSnap = await getDoc(listRef);
   if (docSnap.exists()) {
-    return docSnap;
+    return docSnap.data();
   } else {
     console.log("There is no data");
   }
@@ -118,5 +121,7 @@ export {
   sendPasswordReset,
   logout,
   addListToCurrent,
+  getListFromCurrent,
   addList,
+  getList,
 };

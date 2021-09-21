@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Form({ setShoppingList, shoppingList }) {
+export default function Form({ setShoppingList }) {
   const {
     register,
     formState: { errors },

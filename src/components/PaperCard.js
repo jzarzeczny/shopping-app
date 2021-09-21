@@ -1,52 +1,60 @@
-import React, { useContext } from "react";
-import { ListContext } from "../context/DisplayListContext";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import sorter from "../services/sorter";
 import PaperText from "./PaperText";
-import checkTheLocalStorage from "../utils/checkTheLocalStorage";
+import { addListToCurrent } from "../firebase";
+import { AuthContext } from "../context/FirebaseContext";
+import { checkForUserData } from "../utils/checkTheServerForData";
 
 export default function PaperCard() {
-  const { listToDisplay, setListToDisplay } = useContext(ListContext);
+  const [list, setList] = useState();
+  const { currentUser } = useContext(AuthContext);
 
-  const storageList = checkTheLocalStorage(listToDisplay) || [];
-
-  const newList = sorter(storageList);
-  console.log(newList);
+  useEffect(() => {
+    if (currentUser) {
+      checkForUserData(currentUser, setList, true);
+    }
+  }, [currentUser]);
 
   return (
     <section className="cardContainer">
-      {Object.keys(newList).length > 0 ? (
-        <div className="paper">
-          <div className="paper__lines">
-            <div className="paper__text">
-              {newList &&
-                Object.keys(newList).map((key) => (
-                  <PaperText data={newList[key]} key={key} />
-                ))}
-              <br />
+      {list ? (
+        Object.keys(list).length > 0 ? (
+          <div className="paper">
+            <div className="paper__lines">
+              <div className="paper__text">
+                {list &&
+                  Object.keys(list).map((key) => (
+                    <PaperText data={list[key]} key={key} />
+                  ))}
+                <br />
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <p className="paper__empty">Nie masz jeszcze swojej listy zakupów.</p>
+        )
       ) : (
-        <p className="paper__empty">Nie masz jeszcze swojej listy zakupów.</p>
+        <div className="card__loading">Loading...</div>
       )}
-      <div className="card__links">
-        {Object.keys(newList).length > 0 && (
-          <Link to="/add" className="btn">
-            Edytuj listę
+
+      {list && (
+        <div className="card__links">
+          {Object.keys(list).length > 0 && (
+            <Link to="/add" className="btn">
+              Edytuj listę
+            </Link>
+          )}
+          <Link
+            to="/add"
+            className="btn btn--secondary"
+            onClick={() => {
+              addListToCurrent(currentUser, []);
+            }}
+          >
+            Nowa lista
           </Link>
-        )}
-        <Link
-          to="/add"
-          className="btn btn--secondary"
-          onClick={() => {
-            localStorage.clear();
-            setListToDisplay([]);
-          }}
-        >
-          Nowa lista
-        </Link>
-      </div>
+        </div>
+      )}
     </section>
   );
 }

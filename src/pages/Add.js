@@ -32,7 +32,7 @@ export default function Add() {
     }
   }, [currentUser]);
   if (shoppingList.length !== 0) {
-    localStorage.setItem("list", JSON.stringify(shoppingList));
+    localStorage.setItem("list", JSON.stringify(listObject));
   }
   // console.log(shoppingList);
   // console.log(listObject);

@@ -6,14 +6,15 @@ import SubmitList from "../components/SubmitList";
 import sorter from "../utils/sorter";
 import { AuthContext } from "../context/FirebaseContext";
 import { checkForUserData } from "../utils/checkTheServerForData";
-
+const listObject = {};
+listObject.list = [];
 export default function Add() {
-  const [shoppingList, setShoppingList] = useState([]);
-
+  const [shoppingList, setShoppingList] = useState(listObject.list);
   const { currentUser } = useContext(AuthContext);
-
+  listObject.list = shoppingList;
+  console.log(listObject);
   function handleRemove(id) {
-    const newList = shoppingList.filter((element) => element.id !== id);
+    const newList = listObject.list.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
     setShoppingList(newList);
   }
@@ -31,24 +32,25 @@ export default function Add() {
       setShoppingList(localList);
     }
   }, [currentUser]);
-
   if (shoppingList.length !== 0) {
     localStorage.setItem("list", JSON.stringify(shoppingList));
   }
-  // Create an object with correct grup-value
-  const list = sorter(shoppingList);
+  // console.log(shoppingList);
+  // console.log(listObject);
+  const list = sorter(listObject);
+  // console.log(list);
   return (
     <Layout>
       <section className="addContainer">
         <h2 className="add__title">Stwórz listę zakupów</h2>
-        <Form setShoppingList={setShoppingList} />
+        <Form setShoppingList={setShoppingList} shoppingList={shoppingList} />
         <div className="shoppingList">
-          {list &&
-            Object.keys(list).map((key) => (
+          {list.list &&
+            Object.keys(list.list).map((key) => (
               <List
                 name={key}
                 key={key}
-                data={list[key]}
+                data={list.list[key]}
                 removeElement={handleRemove}
               />
             ))}

@@ -1,30 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PaperText from "./PaperText";
-import { addListToCurrent } from "../firebase";
-import { AuthContext } from "../context/FirebaseContext";
+import { addList, addListToCurrent } from "../firebase";
 import { checkForUserData } from "../utils/checkTheServerForData";
 
-export default function PaperCard() {
-  const [list, setList] = useState();
-  const { currentUser } = useContext(AuthContext);
-
+export default function PaperCard({ user }) {
+  const [list, setList] = useState(null);
   useEffect(() => {
-    if (currentUser) {
-      checkForUserData(currentUser, setList, true);
+    if (user) {
+      checkForUserData(user, setList, true);
     }
-  }, [currentUser]);
-
+  }, []);
   return (
     <section className="cardContainer">
-      {list ? (
-        Object.keys(list).length > 0 ? (
+      {list &&
+        (Object.keys(list.list).length > 0 ? (
           <div className="paper">
             <div className="paper__lines">
               <div className="paper__text">
                 {list &&
-                  Object.keys(list).map((key) => (
-                    <PaperText data={list[key]} key={key} />
+                  Object.keys(list.list).map((key) => (
+                    <PaperText data={list.list[key]} key={key} />
                   ))}
                 <br />
               </div>
@@ -32,10 +28,7 @@ export default function PaperCard() {
           </div>
         ) : (
           <p className="paper__empty">Nie masz jeszcze swojej listy zakupów.</p>
-        )
-      ) : (
-        <div className="card__loading">Loading...</div>
-      )}
+        ))}
 
       {list && (
         <div className="card__links">
@@ -48,7 +41,8 @@ export default function PaperCard() {
             to="/add"
             className="btn btn--secondary"
             onClick={() => {
-              addListToCurrent(currentUser, []);
+              addList(user, list);
+              addListToCurrent(user, {});
             }}
           >
             Nowa lista

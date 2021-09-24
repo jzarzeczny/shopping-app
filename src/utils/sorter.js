@@ -1,11 +1,15 @@
-export default function sorter(arr) {
+export default function sorter(obj) {
   let finalObject = {};
+  finalObject.id = obj.id;
+  finalObject.date = obj.date;
+  finalObject.list = {};
+  let arr = obj.list || [];
   arr.forEach((element) => {
-    if (!(element.type in finalObject)) {
-      finalObject[element.type] = [];
+    if (!(element.type in finalObject["list"])) {
+      finalObject.list[element.type] = [];
     }
-    if (element.type in finalObject) {
-      finalObject[element.type].push(element);
+    if (element.type in finalObject.list) {
+      finalObject.list[element.type].push(element);
     }
   });
   return finalObject;

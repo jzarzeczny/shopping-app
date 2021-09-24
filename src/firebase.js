@@ -15,6 +15,8 @@ import {
   signOut,
 } from "firebase/auth";
 
+import { revisedRandId } from "./utils/idGenerator";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAvzhg_wdwTncCp4X5uOuqiWvSoimL4EV0",
   authDomain: "shopper-77a6f.firebaseapp.com",
@@ -75,7 +77,11 @@ const logout = () => {
 // Add data to current list
 const addListToCurrent = async (user, data) => {
   const listRef = doc(db, "currentList", user.uid);
-  await setDoc(listRef, { list: data }).catch((e) => console.log(e));
+  await setDoc(listRef, {
+    list: data,
+    id: revisedRandId(),
+    date: Date.now(),
+  }).catch((e) => console.log(e));
 };
 
 // Get data from current list

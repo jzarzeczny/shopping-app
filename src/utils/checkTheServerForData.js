@@ -1,13 +1,23 @@
-import { getListFromCurrent } from "../firebase";
+import { getListFromCurrent, getList } from "../firebase";
 import sorter from "../utils/sorter";
 
 const checkForUserData = async (user, setter, sort) => {
   getListFromCurrent(user).then((data) => {
     if (sort) {
-      setter(sorter(data.list));
+      setter(sorter(data));
     } else {
-      setter(data.list);
+      setter(data);
     }
   });
 };
-export { checkForUserData };
+
+const checkForAllUserData = async (user, setter, sort) => {
+  getList(user).then((data) => {
+    if (sort) {
+      setter(sorter(data));
+    } else {
+      setter(data);
+    }
+  });
+};
+export { checkForUserData, checkForAllUserData };

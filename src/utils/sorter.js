@@ -1,4 +1,5 @@
 export default function sorter(obj) {
+  console.log(obj);
   let finalObject = {};
   finalObject.id = obj.id;
   finalObject.date = obj.date;

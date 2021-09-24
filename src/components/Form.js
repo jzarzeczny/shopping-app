@@ -16,7 +16,6 @@ export default function Form({ setShoppingList, shoppingList }) {
       shoppingList = [];
     }
     const newArray = [...shoppingList, data];
-    console.log(newArray);
     setShoppingList(newArray);
   };
 

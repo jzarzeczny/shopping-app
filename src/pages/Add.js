@@ -6,13 +6,12 @@ import SubmitList from "../components/SubmitList";
 import sorter from "../utils/sorter";
 import { AuthContext } from "../context/FirebaseContext";
 import { checkForUserData } from "../utils/checkTheServerForData";
-const listObject = {};
-listObject.list = [];
 export default function Add() {
+  const [listObject, setListObject] = useState({});
+  listObject.list = [];
   const [shoppingList, setShoppingList] = useState(listObject.list);
   const { currentUser } = useContext(AuthContext);
   listObject.list = shoppingList;
-  console.log(listObject);
   function handleRemove(id) {
     const newList = listObject.list.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
@@ -24,7 +23,7 @@ export default function Add() {
     // Fill the shopping list after refresh
     if (localList === null) {
       if (currentUser) {
-        checkForUserData(currentUser, setShoppingList);
+        checkForUserData(currentUser, setListObject);
       } else {
         setShoppingList([]);
       }
@@ -38,7 +37,6 @@ export default function Add() {
   // console.log(shoppingList);
   // console.log(listObject);
   const list = sorter(listObject);
-  // console.log(list);
   return (
     <Layout>
       <section className="addContainer">
@@ -55,10 +53,7 @@ export default function Add() {
               />
             ))}
         </div>
-        <SubmitList
-          setShoppingList={setShoppingList}
-          shoppingList={shoppingList}
-        />
+        <SubmitList setListObject={listObject} listObject={listObject} />
       </section>
     </Layout>
   );

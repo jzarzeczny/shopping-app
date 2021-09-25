@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { revisedRandId } from "../utils/idGenerator";
 
-export default function Form({ setShoppingList, shoppingList }) {
+export default function Form({ setListObject, listObject }) {
   const {
     register,
     formState: { errors },
@@ -12,11 +12,8 @@ export default function Form({ setShoppingList, shoppingList }) {
 
   const onSubmit = (data) => {
     data.id = revisedRandId();
-    if (!shoppingList) {
-      shoppingList = [];
-    }
-    const newArray = [...shoppingList, data];
-    setShoppingList(newArray);
+
+    setListObject({ ...listObject, list: [...listObject.list, data] });
   };
 
   return (

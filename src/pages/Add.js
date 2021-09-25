@@ -25,8 +25,6 @@ export default function Add() {
     if (localList === null) {
       if (currentUser) {
         checkForUserData(currentUser, setListObject);
-        console.log("in current user");
-        console.log(listObject);
         setShoppingList(listObject.list);
       } else {
         setShoppingList([]);
@@ -35,10 +33,10 @@ export default function Add() {
       setShoppingList(localList);
     }
   }, [currentUser]);
-  listObject.list = shoppingList;
   if (shoppingList.length !== 0) {
     localStorage.setItem("list", JSON.stringify(listObject.list));
   }
+  console.log(listObject);
   // console.log(shoppingList);
   // console.log(listObject);
   const list = sorter(listObject);
@@ -46,7 +44,7 @@ export default function Add() {
     <Layout>
       <section className="addContainer">
         <h2 className="add__title">Stwórz listę zakupów</h2>
-        <Form setShoppingList={setShoppingList} shoppingList={shoppingList} />
+        <Form setListObject={setListObject} listObject={listObject} />
         <div className="shoppingList">
           {list.list &&
             Object.keys(list.list).map((key) => (

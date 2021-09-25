@@ -6,52 +6,6 @@
   overflow-x: hidden;
 }
 
-.hamburger {
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  position: fixed;
-  top: 0.5em;
-  right: 2rem;
-  cursor: pointer;
-  z-index: 2;
-}
-
-@mixin line {
-  position: absolute;
-  width: 20px;
-  height: 2px;
-  background-color: $clr-dark-800;
-}
-
-.hamburger-line {
-  @include line;
-  .nav--open & {
-    transform: rotate(-45deg);
-    transition: transform 0.3s ease-in-out;
-  }
-  &::after,
-  &::before {
-    @include line;
-    content: "";
-    left: 0;
-  }
-  &::after {
-    top: 6px;
-    .nav--open & {
-      transform: rotate(-90deg);
-      top: 0;
-    }
-  }
-  &::before {
-    top: -6px;
-    .nav--open & {
-      opacity: 0;
-    }
-  }
-}
-
 .nav__list {
   position: fixed;
   top: 0;
@@ -84,6 +38,10 @@
     text-decoration: underline;
     text-decoration-color: $clr-main-700;
   }
+}
+
+.nav__logout {
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

@@ -1,22 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { revisedRandId } from "../utils/idGenerator";
 
-export default function Form({ setShoppingList, shoppingList }) {
+export default function Form({ setListObject, listObject }) {
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
   const categories = ["fruits", "vegitables", "drinks", "frozen", "detergents"];
-  function revisedRandId() {
-    return Math.random()
-      .toString(36)
-      .replace(/[^a-z]+/g, "")
-      .substr(2, 10);
-  }
+
   const onSubmit = (data) => {
     data.id = revisedRandId();
-    setShoppingList((prevArray) => [...prevArray, data]);
+    const newList = [...listObject.list, data];
+    localStorage.setItem("list", JSON.stringify(newList));
+
+    setListObject({ ...listObject, list: [...listObject.list, data] });
   };
 
   return (

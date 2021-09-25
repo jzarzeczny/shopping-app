@@ -1,13 +1,23 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
+import { registerUser } from "../firebase";
 
 export default function RegisterForm() {
+  let history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      registerUser(data.email, data.password, data.nickname);
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="login__form">
       <div className="form__control">
@@ -58,7 +68,7 @@ export default function RegisterForm() {
           Powtórz hasło
         </label>
         <input
-          type="password2"
+          type="password"
           id="password2"
           {...register("password2", { required: true })}
           className="form__input"

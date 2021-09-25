@@ -3,12 +3,13 @@ import Add from "./pages/Add";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { ListContextProvider } from "./context/DisplayListContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AuthProvider } from "./context/FirebaseContext";
+
 function App() {
   return (
-    <Router>
-      <ListContextProvider>
+    <AuthProvider>
+      <Router>
         <Switch>
           <Route path="/register">
             <Register />
@@ -23,8 +24,8 @@ function App() {
             <Main />
           </Route>
         </Switch>
-      </ListContextProvider>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 

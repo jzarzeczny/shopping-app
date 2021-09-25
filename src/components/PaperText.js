@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function PaperText({ data }) {
   const handleBoughtItem = (id) => {
     id.target.classList.toggle("paper__item--taken");
   };
-  useEffect(() => {}, [data]);
   return (
     <>
       <h2 className="paper__header">{data[0].type}</h2>

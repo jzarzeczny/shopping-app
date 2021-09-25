@@ -10,7 +10,7 @@
 @use "layout/papercard";
 @use "layout/navbar";
 @use "layout/header";
-@use 'layout/login';
-
+@use "layout/login";
+@use "layout/history";
 @use "pages/add";
-@use 'pages/layout';
+@use "pages/layout";

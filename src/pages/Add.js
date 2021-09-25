@@ -3,50 +3,54 @@ import Form from "../components/Form";
 import List from "../components/List";
 import Layout from "../components/Layout";
 import SubmitList from "../components/SubmitList";
-import sorter from "../services/sorter";
-import { ListContext } from "../context/DisplayListContext";
-import checkTheLocalStorage from "../utils/checkTheLocalStorage";
-
+import sorter from "../utils/sorter";
+import { AuthContext } from "../context/FirebaseContext";
+import { checkForUserData } from "../utils/checkTheServerForData";
 export default function Add() {
-  const [shoppingList, setShoppingList] = useState([]);
-  const { listToDisplay } = useContext(ListContext);
+  const [listObject, setListObject] = useState({ list: [] });
+
+  const { currentUser } = useContext(AuthContext);
+
   function handleRemove(id) {
-    const newList = shoppingList.filter((element) => element.id !== id);
+    const newList = listObject.list.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
-    setShoppingList(newList);
+    setListObject({ list: newList });
   }
+  const localList = JSON.parse(localStorage.getItem("list"));
 
   useEffect(() => {
     // Fill the shopping list after refresh
-    setShoppingList(checkTheLocalStorage(listToDisplay) || []);
-  }, []);
+    if (localList === null) {
+      if (currentUser) {
+        checkForUserData(currentUser, setListObject);
+      } else {
+        setListObject({ list: [] });
+      }
+    } else {
+      setListObject({ list: localList });
+    }
+  }, [currentUser]);
 
-  if (shoppingList.length !== 0) {
-    localStorage.setItem("list", JSON.stringify(shoppingList));
-  }
-
-  // Create an object with correct grup-value
-  const list = sorter(shoppingList);
+  // console.log(shoppingList);
+  // console.log(listObject);
+  const list = sorter(listObject);
   return (
     <Layout>
       <section className="addContainer">
         <h2 className="add__title">Stwórz listę zakupów</h2>
-        <Form setShoppingList={setShoppingList} shoppingList={shoppingList} />
+        <Form setListObject={setListObject} listObject={listObject} />
         <div className="shoppingList">
-          {list &&
-            Object.keys(list).map((key) => (
+          {list.list &&
+            Object.keys(list.list).map((key) => (
               <List
                 name={key}
                 key={key}
-                data={list[key]}
+                data={list.list[key]}
                 removeElement={handleRemove}
               />
             ))}
         </div>
-        <SubmitList
-          setShoppingList={setShoppingList}
-          shoppingList={shoppingList}
-        />
+        <SubmitList setListObject={setListObject} listObject={listObject} />
       </section>
     </Layout>
   );

@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { ListContext } from "../context/DisplayListContext";
+import { addListToCurrent } from "../firebase";
+import { AuthContext } from "../context/FirebaseContext";
 
-export default function SubmitList({ setShoppingList, shoppingList }) {
-  const { setListToDisplay } = useContext(ListContext);
+export default function SubmitList({ setListObject, listObject }) {
+  const { currentUser } = useContext(AuthContext);
   const removeTheList = () => {
-    setShoppingList([]);
+    setListObject({ list: [] });
+    localStorage.clear();
   };
-
   const saveTheList = (list) => {
-    localStorage.setItem("list", JSON.stringify(list));
-    setListToDisplay(list);
+    localStorage.clear();
+    addListToCurrent(currentUser, list);
   };
 
   return (
@@ -22,7 +23,7 @@ export default function SubmitList({ setShoppingList, shoppingList }) {
       <Link
         className="btn btn--secondary btn--green"
         onClick={() => {
-          saveTheList(shoppingList);
+          saveTheList(listObject);
         }}
         to="/"
       >

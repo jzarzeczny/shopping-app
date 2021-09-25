@@ -37,18 +37,19 @@
   line-height: 25px;
   overflow: hidden;
   outline: none;
-  font-family: "Architects Daughter", cursive;
 }
 
 .paper__header {
   text-transform: capitalize;
   font-size: 1.125rem;
+  font-weight: $fw-normal;
 }
 .paper__list {
   margin: 0;
   padding: 0;
   list-style: none;
   cursor: pointer;
+  font-weight: $fw-light;
 }
 .paper__item--taken {
   text-decoration: line-through;
@@ -62,6 +63,11 @@
 }
 .card__links {
   text-align: center;
+}
+.card__loading {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {

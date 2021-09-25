@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PaperText from "./PaperText";
-import { addList, addListToCurrent } from "../firebase";
+import { addList, addListToCurrent, deleteListFromCurrent } from "../firebase";
 import { checkForUserData } from "../utils/checkTheServerForData";
 
 export default function PaperCard({ user }) {
@@ -11,6 +11,7 @@ export default function PaperCard({ user }) {
       checkForUserData(user, setList, true);
     }
   }, []);
+  console.log(list);
   return (
     <section className="cardContainer">
       {list &&
@@ -42,7 +43,7 @@ export default function PaperCard({ user }) {
             className="btn btn--secondary"
             onClick={() => {
               addList(user, list.list);
-              addListToCurrent(user);
+              deleteListFromCurrent(user);
             }}
           >
             Nowa lista

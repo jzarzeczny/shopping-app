@@ -9,14 +9,12 @@ import { checkForUserData } from "../utils/checkTheServerForData";
 export default function Add() {
   const [listObject, setListObject] = useState({ list: [] });
 
-  const [shoppingList, setShoppingList] = useState(listObject.list);
-
   const { currentUser } = useContext(AuthContext);
 
   function handleRemove(id) {
     const newList = listObject.list.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
-    setShoppingList(newList);
+    setListObject({ list: newList });
   }
   const localList = JSON.parse(localStorage.getItem("list"));
 
@@ -25,18 +23,14 @@ export default function Add() {
     if (localList === null) {
       if (currentUser) {
         checkForUserData(currentUser, setListObject);
-        setShoppingList(listObject.list);
       } else {
-        setShoppingList([]);
+        setListObject({ list: [] });
       }
     } else {
-      setShoppingList(localList);
+      setListObject({ list: localList });
     }
   }, [currentUser]);
-  if (shoppingList.length !== 0) {
-    localStorage.setItem("list", JSON.stringify(listObject.list));
-  }
-  console.log(listObject);
+
   // console.log(shoppingList);
   // console.log(listObject);
   const list = sorter(listObject);
@@ -56,7 +50,7 @@ export default function Add() {
               />
             ))}
         </div>
-        <SubmitList setListObject={listObject} listObject={listObject} />
+        <SubmitList setListObject={setListObject} listObject={listObject} />
       </section>
     </Layout>
   );

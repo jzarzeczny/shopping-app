@@ -6,6 +6,7 @@ import {
   updateDoc,
   arrayUnion,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -93,7 +94,14 @@ const getListFromCurrent = async (user) => {
     return docSnap.data();
   } else {
     console.log("There is no data");
+    return { list: [] };
   }
+};
+
+// Delate data from current list
+const deleteListFromCurrent = async (user) => {
+  const listRef = doc(db, "currentList", user.uid);
+  await deleteDoc(listRef);
 };
 
 // Add list to history collection
@@ -128,6 +136,7 @@ export {
   logout,
   addListToCurrent,
   getListFromCurrent,
+  deleteListFromCurrent,
   addList,
   getList,
 };

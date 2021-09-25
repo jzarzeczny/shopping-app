@@ -12,6 +12,8 @@ export default function Form({ setListObject, listObject }) {
 
   const onSubmit = (data) => {
     data.id = revisedRandId();
+    const newList = [...listObject.list, data];
+    localStorage.setItem("list", JSON.stringify(newList));
 
     setListObject({ ...listObject, list: [...listObject.list, data] });
   };

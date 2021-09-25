@@ -7,7 +7,9 @@ import { AuthContext } from "../context/FirebaseContext";
 export default function SubmitList({ setListObject, listObject }) {
   const { currentUser } = useContext(AuthContext);
   const removeTheList = () => {
-    setListObject = {};
+    console.log("trying to remove");
+    setListObject({ list: [] });
+    localStorage.clear();
   };
   const saveTheList = (list) => {
     localStorage.clear();

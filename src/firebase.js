@@ -81,6 +81,7 @@ const addListToCurrent = async (user, data) => {
   await setDoc(listRef, {
     list: data.list,
     id: revisedRandId(),
+    status: "open",
     date: Date.now(),
   }).catch((e) => console.log(e));
 };
@@ -107,7 +108,6 @@ const deleteListFromCurrent = async (user) => {
 // Add list to history collection
 const addList = async (user, list) => {
   const listRef = doc(db, "list", user.uid);
-
   await updateDoc(
     listRef,
     { list: arrayUnion({ list }) },

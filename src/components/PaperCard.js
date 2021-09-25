@@ -11,7 +11,6 @@ export default function PaperCard({ user }) {
       checkForUserData(user, setList, true);
     }
   }, []);
-  console.log(list);
   return (
     <section className="cardContainer">
       {list &&
@@ -42,6 +41,7 @@ export default function PaperCard({ user }) {
             to="/add"
             className="btn btn--secondary"
             onClick={() => {
+              list.status = "closed";
               addList(user, list);
               deleteListFromCurrent(user);
             }}

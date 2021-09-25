@@ -3,7 +3,6 @@ import sorter from "../utils/sorter";
 
 const checkForUserData = async (user, setter, sort) => {
   getListFromCurrent(user).then((data) => {
-    console.log(data);
     if (sort) {
       setter(sorter(data));
     } else {

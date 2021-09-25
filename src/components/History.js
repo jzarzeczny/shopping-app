@@ -4,10 +4,14 @@ import { checkForAllUserData } from "../utils/checkTheServerForData";
 
 export default function History({ user }) {
   const [list, setList] = useState(null);
-
   useEffect(() => {
     checkForAllUserData(user, setList);
   }, []);
+  if (list) {
+    list.reverse();
+  }
+  console.log(list);
+  console.log(typeof list);
   return (
     <section className="historyContainer">
       <table className="table">
@@ -20,7 +24,10 @@ export default function History({ user }) {
           </tr>
         </thead>
         <tbody className="table__body">
-          {/* {list && list.map((row) => <HisotryRow data={row} key="" />)} */}
+          {list &&
+            list
+              .reverse()
+              .map((row) => <HisotryRow data={row.list} key={row.list.id} />)}
         </tbody>
       </table>
     </section>

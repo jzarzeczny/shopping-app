@@ -7,11 +7,12 @@ import sorter from "../utils/sorter";
 import { AuthContext } from "../context/FirebaseContext";
 import { checkForUserData } from "../utils/checkTheServerForData";
 export default function Add() {
-  const [listObject, setListObject] = useState({});
-  listObject.list = [];
+  const [listObject, setListObject] = useState({ list: [] });
+
   const [shoppingList, setShoppingList] = useState(listObject.list);
+
   const { currentUser } = useContext(AuthContext);
-  listObject.list = shoppingList;
+
   function handleRemove(id) {
     const newList = listObject.list.filter((element) => element.id !== id);
     localStorage.setItem("list", JSON.stringify(newList));
@@ -24,6 +25,9 @@ export default function Add() {
     if (localList === null) {
       if (currentUser) {
         checkForUserData(currentUser, setListObject);
+        console.log("in current user");
+        console.log(listObject);
+        setShoppingList(listObject.list);
       } else {
         setShoppingList([]);
       }
@@ -31,8 +35,9 @@ export default function Add() {
       setShoppingList(localList);
     }
   }, [currentUser]);
+  listObject.list = shoppingList;
   if (shoppingList.length !== 0) {
-    localStorage.setItem("list", JSON.stringify(listObject));
+    localStorage.setItem("list", JSON.stringify(listObject.list));
   }
   // console.log(shoppingList);
   // console.log(listObject);

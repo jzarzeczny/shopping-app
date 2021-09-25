@@ -76,13 +76,11 @@ const logout = () => {
 
 // Add data to current list
 const addListToCurrent = async (user, data) => {
-  console.log("In firebase function");
-  console.log(data);
   const listRef = doc(db, "currentList", user.uid);
   await setDoc(listRef, {
-    list: data,
-    // id: revisedRandId(),
-    // date: Date.now(),
+    list: data.list,
+    id: revisedRandId(),
+    date: Date.now(),
   }).catch((e) => console.log(e));
 };
 

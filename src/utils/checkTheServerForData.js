@@ -5,9 +5,9 @@ const checkForUserData = async (user, setter, sort) => {
   getListFromCurrent(user).then((data) => {
     console.log(data);
     if (sort) {
-      setter(sorter(data.list));
+      setter(sorter(data));
     } else {
-      setter(data.list);
+      setter(data);
     }
   });
 };

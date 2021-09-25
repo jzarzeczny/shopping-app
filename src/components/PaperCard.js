@@ -42,7 +42,7 @@ export default function PaperCard({ user }) {
             to="/add"
             className="btn btn--secondary"
             onClick={() => {
-              addList(user, list.list);
+              addList(user, list);
               deleteListFromCurrent(user);
             }}
           >

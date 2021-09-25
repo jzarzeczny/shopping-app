@@ -11,7 +11,6 @@ export default function PaperCard({ user }) {
       checkForUserData(user, setList, true);
     }
   }, []);
-  console.log(list);
   return (
     <section className="cardContainer">
       {list &&

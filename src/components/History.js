@@ -7,11 +7,6 @@ export default function History({ user }) {
   useEffect(() => {
     checkForAllUserData(user, setList);
   }, []);
-  if (list) {
-    list.reverse();
-  }
-  console.log(list);
-  console.log(typeof list);
   return (
     <section className="historyContainer">
       <table className="table">

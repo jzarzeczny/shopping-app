@@ -11,8 +11,6 @@ export default function HistoryRow({ data }) {
     return finalNumber;
   }
 
-  const number = countListItems(data.list);
-  console.log(number);
   return (
     <tr className="table__row">
       <td className="table__data">

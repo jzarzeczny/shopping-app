@@ -19,14 +19,15 @@ import {
 import { revisedRandId } from "./utils/idGenerator";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAvzhg_wdwTncCp4X5uOuqiWvSoimL4EV0",
-  authDomain: "shopper-77a6f.firebaseapp.com",
-  projectId: "shopper-77a6f",
-  storageBucket: "shopper-77a6f.appspot.com",
-  messagingSenderId: "467553839839",
-  appId: "1:467553839839:web:085038149275f012c5176a",
-  measurementId: "G-SFB6GE9WDZ",
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
+console.log(firebaseConfig);
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);

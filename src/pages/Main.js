@@ -16,7 +16,7 @@ export default function Main() {
             <History user={currentUser} />
           </>
         ) : (
-          <div>Loading</div>
+          <div>Zaloguj się aby stworzyć swój pierwszy koszyk</div>
         )}
       </main>
     </Layout>

@@ -27,7 +27,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APPID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
-console.log(firebaseConfig);
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
@@ -35,11 +34,7 @@ const auth = getAuth();
 
 // Sign into the app
 const signIn = async (email, password) => {
-  try {
-    signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    console.log(err);
-  }
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 // Create a user with email
@@ -58,9 +53,12 @@ const registerUser = async (email, password, nickname) => {
 
     // Create user instance in "lists hisotry" collection
     const listRef = doc(db, "list", user.uid);
-    await setDoc(listRef, { list: {} }).catch((e) => console.log(e));
-  } catch (err) {
-    console.log(err);
+    await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    console.log(errorCode);
   }
 };
 // Send password reset - currently dead
@@ -119,12 +117,13 @@ const addList = async (user, list) => {
 // Get list from hisotry collection
 const getList = async (user) => {
   const listRef = doc(db, "list", user.uid);
-
   const docSnap = await getDoc(listRef);
   if (docSnap.exists()) {
     return docSnap.data();
   } else {
     console.log("There is no data");
+
+    return { list: [] };
   }
 };
 

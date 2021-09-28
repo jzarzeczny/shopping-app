@@ -41,7 +41,6 @@ export default function Form({ setListObject, listObject }) {
                 id={category}
                 key={category}
                 value={category}
-                // change into type!
                 {...register("type", { required: true })}
               />
 

@@ -3,10 +3,11 @@ import HisotryRow from "./HistoryRow";
 import { checkForAllUserData } from "../utils/checkTheServerForData";
 
 export default function History({ user }) {
-  const [list, setList] = useState(null);
+  const [list, setList] = useState([]);
   useEffect(() => {
     checkForAllUserData(user, setList);
   }, []);
+
   return (
     <section className="historyContainer">
       <table className="table">
@@ -20,9 +21,7 @@ export default function History({ user }) {
         </thead>
         <tbody className="table__body">
           {list &&
-            list
-              .reverse()
-              .map((row) => <HisotryRow data={row.list} key={row.list.id} />)}
+            list.map((row) => <HisotryRow data={row.list} key={row.list.id} />)}
         </tbody>
       </table>
     </section>

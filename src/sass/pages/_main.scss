@@ -1,1 +1,6 @@
-@use '../abstracts/' as *;
+@use "../abstracts/" as *;
+
+.dashboard__notification {
+  padding: 3rem;
+  text-align: center;
+}

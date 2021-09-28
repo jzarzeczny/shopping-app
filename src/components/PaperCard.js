@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PaperText from "./PaperText";
-import { addList, addListToCurrent, deleteListFromCurrent } from "../firebase";
+import { addList, deleteListFromCurrent } from "../firebase";
 import { checkForUserData } from "../utils/checkTheServerForData";
 
 export default function PaperCard({ user }) {

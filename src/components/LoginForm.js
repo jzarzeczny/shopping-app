@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "../firebase";
 import { useHistory } from "react-router";
-import { errorPrefix } from "@firebase/util";
 
 export default function LoginForm() {
   let history = useHistory();

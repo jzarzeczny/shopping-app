@@ -1,21 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../firebase";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
 export default function RegisterForm() {
+  const [loading, setLoading] = useState(false);
   let history = useHistory();
+  const validationSchema = Yup.object().shape({
+    nickname: Yup.string()
+      .required("Nickname jest wymagany")
+      .min(6, "Nickname musi być dłuższy"),
+    email: Yup.string().email().required("Email jest wymagany"),
+    password: Yup.string()
+      .required("Hasło jest wymagane")
+      .min(6, "Hasło musi być dłuższe"),
+    password2: Yup.string()
+      .required("Potwierdzenie hasła wymagane")
+      .oneOf([Yup.ref("password")], "Hasła muszą być takie same"),
+  });
+
+  const formOptions = { resolver: yupResolver(validationSchema) };
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
-  } = useForm();
+  } = useForm(formOptions);
+
   const onSubmit = async (data) => {
+    setLoading(true);
+
     try {
-      registerUser(data.email, data.password, data.nickname);
+      await registerUser(data.email, data.password, data.nickname);
+      setLoading(false);
       history.push("/");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      const errorCode = error.code;
+      switch (errorCode) {
+        case "auth/email-already-in-use":
+          setError("email", {
+            type: "server",
+            message: "Ten email jest zajęty",
+          });
+          break;
+        default:
+          setError("server", {
+            type: "server",
+            message: "Server nie odpowowiada",
+          });
+          break;
+      }
+      setLoading(false);
     }
   };
   return (
@@ -27,11 +65,11 @@ export default function RegisterForm() {
         <input
           type="text"
           id="username"
-          {...register("nickname", { required: true })}
+          {...register("nickname")}
           className="form__input"
         />
         {errors.nickname && (
-          <span className="form__error">To pole jest wymagane</span>
+          <span className="form__error">{errors.nickname?.message}</span>
         )}
       </div>
       <div className="form__control">
@@ -41,14 +79,13 @@ export default function RegisterForm() {
         <input
           type="email"
           id="email"
-          {...register("email", { required: true })}
+          {...register("email")}
           className="form__input"
         />
-        {errors.password && (
-          <span className="form__error">To pole jest wymagane</span>
+        {errors.email && (
+          <span className="form__error">{errors.email.message}</span>
         )}
       </div>
-
       <div className="form__control">
         <label htmlFor="password" className="form__label">
           Hasło
@@ -56,12 +93,11 @@ export default function RegisterForm() {
         <input
           type="password"
           id="password"
-          {...register("password", { required: true })}
+          {...register("password", { required: "To pole jest wymagane" })}
           className="form__input"
         />
-        {errors.password && (
-          <span className="form__error">To pole jest wymagane</span>
-        )}
+
+        <span className="form__error">{errors.password?.message}</span>
       </div>
       <div className="form__control">
         <label htmlFor="password2" className="form__label">
@@ -70,16 +106,23 @@ export default function RegisterForm() {
         <input
           type="password"
           id="password2"
-          {...register("password2", { required: true })}
+          {...register("password2", { required: "To pole jest wymagane" })}
           className="form__input"
         />
-        {errors.password && (
-          <span className="form__error">To pole jest wymagane</span>
+        {errors.password2 && (
+          <span className="form__error">{errors.password2.message}</span>
         )}
       </div>
-
       <span className="label__forgot"></span>
-      <input type="submit" className="btn form__submit" value="Zarejstuj się" />
+      <button
+        type="submit"
+        className={`btn form__submit ${loading ? "button--loading" : null}`}
+        value="Zarejstuj się"
+      >
+        <span className="button__text">Zarejstuj się</span>
+      </button>
+
+      <span className="form__error--final">{errors.server?.message}</span>
     </form>
   );
 }

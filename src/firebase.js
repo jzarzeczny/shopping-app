@@ -40,27 +40,20 @@ const signIn = async (email, password) => {
 
 // Create a user with email
 const registerUser = async (email, password, nickname) => {
-  try {
-    // Create user
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+  // Create user
+  const res = await createUserWithEmailAndPassword(auth, email, password);
+  const user = res.user;
 
-    // Create user instance in "users" collection
-    await setDoc(doc(db, "users", user.uid), {
-      authProvider: "local",
-      nickname,
-      email,
-    });
+  // Create user instance in "users" collection
+  await setDoc(doc(db, "users", user.uid), {
+    authProvider: "local",
+    nickname,
+    email,
+  });
 
-    // Create user instance in "lists hisotry" collection
-    const listRef = doc(db, "list", user.uid);
-    await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage);
-    console.log(errorCode);
-  }
+  // Create user instance in "lists hisotry" collection
+  const listRef = doc(db, "list", user.uid);
+  await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
 };
 // Send password reset - currently dead
 const sendPasswordReset = async (email) => {

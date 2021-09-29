@@ -3,8 +3,9 @@ import React from "react";
 export default function HistoryRow({ data }) {
   function countListItems(list) {
     let finalNumber = 0;
+
     for (const element in list) {
-      list[element].map((singleList) => {
+      list[element].forEach(() => {
         finalNumber += 1;
       });
     }

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "../firebase";
 import { useHistory } from "react-router";
-import { errorPrefix } from "@firebase/util";
 
 export default function LoginForm() {
   let history = useHistory();
@@ -21,7 +20,6 @@ export default function LoginForm() {
       await signIn(data.email, data.password);
       history.push("/");
     } catch (error) {
-      console.log(error.message);
       switch (error.message) {
         case "Firebase: Error (auth/user-not-found).":
           setError("nickname", {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { useForm } from "react-hook-form";
 import { registerUser } from "../firebase";
@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 export default function RegisterForm() {
+  const [loading, setLoading] = useState(false);
   let history = useHistory();
   const validationSchema = Yup.object().shape({
     nickname: Yup.string()
@@ -30,8 +31,11 @@ export default function RegisterForm() {
   } = useForm(formOptions);
 
   const onSubmit = async (data) => {
+    setLoading(true);
+
     try {
       await registerUser(data.email, data.password, data.nickname);
+      setLoading(false);
       history.push("/");
     } catch (error) {
       const errorCode = error.code;
@@ -47,7 +51,9 @@ export default function RegisterForm() {
             type: "server",
             message: "Server nie odpowowiada",
           });
+          break;
       }
+      setLoading(false);
     }
   };
   return (
@@ -59,7 +65,7 @@ export default function RegisterForm() {
         <input
           type="text"
           id="username"
-          {...register("nickname", { required: "To pole jest wymagane" })}
+          {...register("nickname")}
           className="form__input"
         />
         {errors.nickname && (
@@ -73,7 +79,7 @@ export default function RegisterForm() {
         <input
           type="email"
           id="email"
-          {...register("email", { required: "To pole jest wymagane" })}
+          {...register("email")}
           className="form__input"
         />
         {errors.email && (
@@ -108,7 +114,14 @@ export default function RegisterForm() {
         )}
       </div>
       <span className="label__forgot"></span>
-      <input type="submit" className="btn form__submit" value="Zarejstuj się" />
+      <button
+        type="submit"
+        className={`btn form__submit ${loading ? "button--loading" : null}`}
+        value="Zarejstuj się"
+      >
+        <span className="button__text">Zarejstuj się</span>
+      </button>
+
       <span className="form__error--final">{errors.server?.message}</span>
     </form>
   );

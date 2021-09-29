@@ -34,8 +34,8 @@ const db = getFirestore(app);
 const auth = getAuth();
 
 // Sign into the app
-const signIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password);
+const signIn = async (email, password) => {
+  await signInWithEmailAndPassword(auth, email, password);
 };
 
 // Create a user with email

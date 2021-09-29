@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "../firebase";
 import { useHistory } from "react-router";
@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 export default function LoginForm() {
+  const [loading, setLoading] = useState(false);
   let history = useHistory();
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -19,13 +20,14 @@ export default function LoginForm() {
     register,
     handleSubmit,
     setError,
-    clearErrors,
     formState: { errors },
   } = useForm(formOptions);
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       await signIn(data.email, data.password);
+      setLoading(false);
       history.push("/");
     } catch (error) {
       console.log(error.code);
@@ -37,14 +39,14 @@ export default function LoginForm() {
             message: "Nie znaleziono użytkownika",
           });
           break;
-        case "Firebase: Error (auth/wrong-password).":
+        case "auth/wrong-password":
           setError("password", {
             type: "server",
 
             message: "Nieprawidłowe hasło",
           });
           break;
-        case "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).":
+        case "auth/too-many-requests":
           setError("server", {
             type: "server",
 
@@ -56,6 +58,7 @@ export default function LoginForm() {
           setError("server", { type: "server", message: "Problem z serverem" });
           break;
       }
+      setLoading(false);
     }
   };
 
@@ -88,12 +91,12 @@ export default function LoginForm() {
         <span className="form__error">{errors.password?.message}</span>
       </div>
       <span className="label__forgot"></span>
-      <input
+      <button
         type="submit"
-        onClick={() => clearErrors()}
-        className="btn form__submit"
-        value="Zaloguj się"
-      />
+        className={`btn form__submit ${loading ? "button--loading" : null}`}
+      >
+        <span className="button__text">Zaloguj się</span>
+      </button>
 
       <span className="form__error--final">{errors.server?.message}</span>
     </form>

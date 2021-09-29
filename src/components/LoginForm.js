@@ -20,7 +20,6 @@ export default function LoginForm() {
       await signIn(data.email, data.password);
       history.push("/");
     } catch (error) {
-      console.log(error.message);
       switch (error.message) {
         case "Firebase: Error (auth/user-not-found).":
           setError("nickname", {

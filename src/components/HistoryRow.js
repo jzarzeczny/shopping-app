@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ActionMenu from "./ActionMenu";
 
-export default function HistoryRow({ data }) {
+export default function HistoryRow({ data, setOpenMenu, openMenu }) {
   const [toggleActionMenu, setToggleActionMenu] = useState(false);
   function countListItems(list) {
     let finalNumber = 0;
@@ -13,9 +13,29 @@ export default function HistoryRow({ data }) {
     }
     return finalNumber;
   }
+  function handleClick() {
+    if (toggleActionMenu) {
+      setToggleActionMenu(!toggleActionMenu);
+      setOpenMenu(null);
+    } else if (!toggleActionMenu) {
+      setToggleActionMenu(!toggleActionMenu);
+      setOpenMenu(data.id);
+    }
+  }
   useEffect(() => {
     setToggleActionMenu(false);
   }, []);
+
+  const menu = () => {
+    if (openMenu !== null && openMenu === data.id) {
+      return false;
+    } else if (openMenu !== null && openMenu !== data.id) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  console.log(menu());
   return (
     <>
       <tr className="table__row">
@@ -27,8 +47,10 @@ export default function HistoryRow({ data }) {
         <th className="table__data">
           <button
             className="table__button"
+            id={data.id}
+            disabled={menu()}
             onClick={() => {
-              setToggleActionMenu(!toggleActionMenu);
+              handleClick();
             }}
           >
             <div

@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ActionMenu({ active, data }) {
-  console.log(data);
   return (
     <div className="actionMenu">
       <ul className={`action__list ${active ? "actionMenu--active" : null}`}>

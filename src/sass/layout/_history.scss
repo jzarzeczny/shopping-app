@@ -28,7 +28,19 @@
 .table__data {
   padding: 1rem;
   border: 1px solid $clr-main-500;
+  &:nth-child(2) {
+    display: none;
+  }
 }
 .table__data:nth-child(2) {
   text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .table__header,
+  .table__data {
+    &:nth-child(2) {
+      display: table-cell;
+    }
+  }
 }

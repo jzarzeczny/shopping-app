@@ -16,9 +16,10 @@
   border: 3px solid $clr-main-500;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+  transform: translateX(-100%);
 }
 .actionMenu--active {
-  transform: translateX(-100%);
+  transform: translateX(0);
 }
 
 .action__element {

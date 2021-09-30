@@ -4,6 +4,7 @@ import { checkForAllUserData } from "../utils/checkTheServerForData";
 
 export default function History({ user }) {
   const [list, setList] = useState([]);
+
   useEffect(() => {
     checkForAllUserData(user, setList);
   }, []);

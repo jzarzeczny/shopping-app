@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ActionMenu from "./ActionMenu";
 
 export default function HistoryRow({ data }) {
@@ -13,7 +13,9 @@ export default function HistoryRow({ data }) {
     }
     return finalNumber;
   }
-
+  useEffect(() => {
+    setToggleActionMenu(false);
+  }, []);
   return (
     <>
       <tr className="table__row">
@@ -26,20 +28,18 @@ export default function HistoryRow({ data }) {
           <button
             className="table__button"
             onClick={() => {
-              setToggleActionMenu((prevState) => {
-                return !prevState;
-              });
+              setToggleActionMenu(!toggleActionMenu);
             }}
           >
             <div
-              className={` table__dots ${
+              className={`table__dots ${
                 toggleActionMenu ? "table__dots--rotate" : null
               }`}
             ></div>
           </button>
+          <ActionMenu active={toggleActionMenu} data={data} />
         </th>
       </tr>
-      <ActionMenu active={toggleActionMenu} />
     </>
   );
 }

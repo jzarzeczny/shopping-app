@@ -104,5 +104,10 @@
 }
 
 .table__dots--rotate {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
+  background-color: $clr-main-900;
+  &::before,
+  &::after {
+    background-color: $clr-main-900;
+  }
 }

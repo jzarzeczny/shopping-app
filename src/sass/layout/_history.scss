@@ -11,7 +11,9 @@
   margin: 0 auto;
   border-radius: 10px;
 }
-
+.table__body {
+  position: relative;
+}
 .table__head {
   background-color: $clr-main-500;
   color: $clr-light-100;

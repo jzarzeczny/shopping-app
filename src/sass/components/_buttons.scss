@@ -66,3 +66,43 @@
     transform: rotate(1turn);
   }
 }
+
+@mixin dot {
+  background-color: $clr-main-500;
+  border-radius: 50%;
+}
+
+.table__button {
+  padding: 0.25rem 0.75rem;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.table__dots {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  transform: 0;
+  transition: transform 0.5s ease-in-out;
+  @include dot;
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    @include dot;
+  }
+  &::before {
+    right: 8px;
+  }
+  &::after {
+    left: 8px;
+  }
+}
+
+.table__dots--rotate {
+  transform: rotate(-90deg);
+}

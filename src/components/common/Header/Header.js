@@ -21,7 +21,7 @@ export default function Header() {
     <header className="header">
       <PageTitle title="something" />
       <Hamburger open={open} setOpen={setOpen} />
-      {/* <Navbar /> */}
+      <Navbar />
     </header>
   );
 }

@@ -1,0 +1,16 @@
+@use "../../../sass/abstracts/" as *;
+
+.logo__title {
+  text-align: center;
+  font-weight: $fw-normal;
+  margin-bottom: -1.7rem;
+  margin-left: -1.5rem;
+  &::first-letter {
+    color: $clr-main;
+  }
+}
+
+.logo__image {
+  width: 40%;
+  margin: 0 auto;
+}

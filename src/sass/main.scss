@@ -1,19 +1,22 @@
 @use "base/reset";
+@use "base/basicStyling";
 
-@use "components/buttons";
-@use "components/hamburger";
-@use "components/loginForm";
-@use "components/actionMenu";
+// @use "components/buttons";
+// @use "components/hamburger";
+// @use "components/loginForm";
+// @use "components/actionMenu";
 
-@use "layout/forms";
-@use "layout/list";
-@use "layout/submitList";
-@use "layout/papercard";
-@use "layout/navbar";
-@use "layout/header";
-@use "layout/login";
-@use "layout/history";
+// @use "layout/forms";
+// @use "layout/list";
+// @use "layout/submitList";
+// @use "layout/papercard";
+// @use "layout/navbar";
+// @use "layout/header";
+// @use "layout/login";
+// @use "layout/history";
 
-@use "pages/add";
-@use "pages/layout";
-@use "pages/main";
+// @use "pages/add";
+// @use "pages/layout";
+// @use "pages/main";
+
+@use "../components/index.scss";

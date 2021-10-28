@@ -1,0 +1,19 @@
+@use "../../../sass/abstracts/" as *;
+
+.button {
+  display: block;
+
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  background-color: $clr-main;
+
+  border-radius: 25px;
+  border: none;
+
+  text-align: center;
+  font-size: 1.25rem;
+  color: $clr-white;
+}
+.button--action {
+  margin-top: 2rem;
+}

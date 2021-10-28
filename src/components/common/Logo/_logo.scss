@@ -1,5 +1,23 @@
 @use "../../../sass/abstracts/" as *;
 
+.logo__container {
+}
+
+.logo__container--main {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 40%;
+
+  .logo__title {
+    display: block;
+  }
+
+  .logo__image {
+    display: none;
+  }
+}
+
 .logo__title {
   text-align: center;
   font-weight: $fw-normal;

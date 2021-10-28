@@ -1,5 +1,5 @@
-function Button({ children }) {
-  return <button>{children}</button>;
+function Button({ children, source }) {
+  return <button className={`button ${"button" + source}`}>{children}</button>;
 }
 
 export default Button;

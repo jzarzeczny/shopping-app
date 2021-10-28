@@ -7,7 +7,7 @@ function MainAction() {
         Z Nami organizacja Twojej listy zakupów będzie prostrza niż
         kiedykolwiek.
       </h1>
-      <Button>Dołącz teraz!</Button>
+      <Button source="--action">Dołącz teraz!</Button>
     </div>
   );
 }

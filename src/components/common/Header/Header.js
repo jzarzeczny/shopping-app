@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Logo from "../../../images/logo.svg";
 import Hamburger from "./Hamburger/Hamburger";
 import Navbar from "./Navbar/Navbar";
+import PageTitle from "./PageTitle/PageTitle";
 
 const headerNav = [
   { name: "", path: "/", login: "false" },
@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <img src={Logo} alt="Page logo" />
+      <PageTitle title="something" />
       <Hamburger open={open} setOpen={setOpen} />
       {/* <Navbar /> */}
     </header>

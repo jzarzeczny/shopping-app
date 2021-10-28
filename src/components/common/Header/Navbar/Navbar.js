@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ open, setOpen }) {
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${open && "navbar--open"}`}>
       <ul className="navbar__list">
         <li className="navbar__listElement">
           <NavLink to="/" className="navbar__link">

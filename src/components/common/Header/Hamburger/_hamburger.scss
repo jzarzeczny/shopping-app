@@ -10,6 +10,7 @@
   position: relative;
   overflow-x: hidden;
   background-color: $clr-white;
+  z-index: 3;
 }
 
 @mixin hamburger-line {

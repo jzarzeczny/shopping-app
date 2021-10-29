@@ -1,29 +1,16 @@
 import { NavLink } from "react-router-dom";
 
-function Navbar({ open, setOpen }) {
+function Navbar({ open, setOpen, navList }) {
   return (
     <nav className={`navbar ${open && "navbar--open"}`}>
       <ul className="navbar__list">
-        <li className="navbar__listElement">
-          <NavLink to="/" className="navbar__link">
-            Link a
-          </NavLink>
-        </li>
-        <li className="navbar__listElement">
-          <NavLink to="/" className="navbar__link">
-            Link b
-          </NavLink>
-        </li>
-        <li className="navbar__listElement">
-          <NavLink to="/" className="navbar__link">
-            Link c
-          </NavLink>
-        </li>
-        <li className="navbar__listElement">
-          <NavLink to="/" className="navbar__link">
-            Link d
-          </NavLink>
-        </li>
+        {navList.map((element, index) => (
+          <li className="navbar__listElement" key={index}>
+            <NavLink to={element.path} className="navbar__link">
+              {element.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

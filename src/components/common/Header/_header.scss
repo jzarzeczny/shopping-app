@@ -1,3 +1,4 @@
+@use "../../../sass/abstracts/" as *;
 .header {
   height: 40px;
   width: 100%;
@@ -8,4 +9,9 @@
   align-items: center;
 
   position: relative;
+}
+@media (min-width: $smallDesktop) {
+  .header {
+    margin-bottom: 8rem;
+  }
 }

@@ -14,7 +14,7 @@
     list-style: none;
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
     margin: 0;
     padding: 0;
@@ -23,6 +23,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    z-index: 999;
   }
 
   .navbar__link {
@@ -34,4 +35,22 @@
 }
 .navbar--open {
   transform: translateX(0);
+}
+
+@media (min-width: $smallDesktop) {
+  .navbar {
+    position: relative;
+    transform: translateX(0);
+    height: 40px;
+
+    .navbar__list {
+      width: 100%;
+      height: inherit;
+      min-height: 0;
+      flex-direction: row;
+      & > * + * {
+        margin-left: 1rem;
+      }
+    }
+  }
 }

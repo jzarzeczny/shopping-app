@@ -1,8 +1,5 @@
 @use "../../../sass/abstracts/" as *;
 
-.logo__container {
-}
-
 .logo__container--main {
   position: absolute;
   top: 10%;
@@ -11,6 +8,9 @@
 
   .logo__title {
     display: block;
+    font-size: 10vw;
+    margin-bottom: -1.7rem;
+    margin-left: -1.5rem;
   }
 
   .logo__image {
@@ -18,11 +18,35 @@
   }
 }
 
+@media (min-width: $tablet) {
+  .logo__container--main {
+    .logo__title {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .logo__container--main {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    position: relative;
+    justify-self: center;
+    .logo__title {
+      font-size: 3rem;
+    }
+    .logo__image {
+      display: block;
+    }
+  }
+}
+
 .logo__title {
   text-align: center;
   font-weight: $fw-normal;
-  margin-bottom: -1.7rem;
-  margin-left: -1.5rem;
+
   &::first-letter {
     color: $clr-main;
   }

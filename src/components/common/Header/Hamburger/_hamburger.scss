@@ -55,3 +55,9 @@
     bottom: 13px;
   }
 }
+
+@media (min-width: $smallDesktop) {
+  .hamburger__container {
+    display: none;
+  }
+}

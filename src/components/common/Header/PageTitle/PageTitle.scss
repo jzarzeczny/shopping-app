@@ -1,0 +1,7 @@
+@use "../../../../sass/abstracts/" as *;
+
+.pageTitle {
+  color: $clr-main;
+  font-size: 32px;
+  font-weight: $fw-bold;
+}

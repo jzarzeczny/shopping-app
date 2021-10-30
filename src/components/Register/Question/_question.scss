@@ -1,0 +1,9 @@
+@use "../../../sass/abstracts/" as *;
+.register__question {
+  margin-top: 2rem;
+  a {
+    text-decoration: none;
+    color: $clr-dark;
+    font-weight: $fw-bold;
+  }
+}

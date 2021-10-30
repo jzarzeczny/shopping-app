@@ -1,0 +1,40 @@
+@use "../../../sass/abstracts/" as *;
+
+$margin-bot: 0.5rem;
+.form__control {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+
+  & > * {
+    margin-bottom: $margin-bot;
+  }
+  .form__label {
+    font-weight: $fw-bold;
+    font-size: 18px;
+    margin-bottom: $margin-bot / 2;
+  }
+  .form__input {
+    max-width: 300px;
+    border-radius: 8px;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid $clr-main;
+    margin-bottom: calc(#{$margin-bot} * 2 + 12px);
+
+    &:focus {
+      border: 2px solid $clr-dark;
+      outline: none;
+    }
+    &:focus-visible {
+      border: 2px solid $clr-dark;
+      outline: none;
+    }
+  }
+  .form__error {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 12px;
+  }
+}

@@ -6,7 +6,7 @@ import PageTitle from "./PageTitle/PageTitle";
 
 const navList = [
   { name: "", path: "/", login: false },
-  { name: "Utwórz kontro", path: "/register", login: false },
+  { name: "Utwórz konto", path: "/register", login: false },
   { name: "Zaloguj się", path: "/login", login: false },
   { name: "Listy", path: "/lists", login: true },
   { name: "Kategorie", path: "/category", login: true },
@@ -33,7 +33,6 @@ export default function Header() {
     const newLocation = determineLocation();
     setCurrentLocation(newLocation);
   }, []);
-  console.log(currentLocation);
 
   return (
     <>

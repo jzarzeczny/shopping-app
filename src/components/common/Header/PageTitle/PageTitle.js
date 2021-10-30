@@ -1,6 +1,5 @@
 function PageTitle({ title }) {
-  console.log(title);
-  return <h3>{title}</h3>;
+  return <h3 className="pageTitle">{title}</h3>;
 }
 
 export default PageTitle;

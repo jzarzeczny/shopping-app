@@ -15,6 +15,7 @@ $icon-size-mobile: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     width: $icon-size-mobile;
     height: $icon-size-mobile;
@@ -48,6 +49,8 @@ $icon-size-mobile: 40px;
   }
   .shopping__icon--sort {
     position: absolute;
+
+    cursor: pointer;
 
     right: 0;
     top: 0;

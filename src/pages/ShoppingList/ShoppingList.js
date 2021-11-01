@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
+import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
 
 function ShoppingList() {
@@ -7,6 +8,7 @@ function ShoppingList() {
     <Layout>
       <ShoppingListContainer>
         <ButtonsContainer list="true" />
+        <ShoppingDetails>bla bla bla</ShoppingDetails>
       </ShoppingListContainer>
     </Layout>
   );

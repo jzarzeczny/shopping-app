@@ -19,15 +19,16 @@ $margin-bot: 0.5rem;
     max-width: 300px;
     border-radius: 8px;
     padding: 0.25rem 0.5rem;
-    border: 2px solid $clr-main;
     margin-bottom: calc(#{$margin-bot} * 2 + 12px);
+    background-color: $clr-gray;
+    border: 2px solid transparent;
 
     &:focus {
-      border: 2px solid $clr-dark;
+      border: 2px solid $clr-main;
       outline: none;
     }
     &:focus-visible {
-      border: 2px solid $clr-dark;
+      border: 2px solid $clr-main;
       outline: none;
     }
   }

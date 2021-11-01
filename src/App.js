@@ -5,6 +5,7 @@ import { AuthProvider } from "./context/FirebaseContext";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Lists from "./pages/Lists/Lists";
+import ShoppingList from "./pages/ShoppingList/ShoppingList";
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
           <Route path="/lists">
             <Lists />
           </Route>
-          {/* <Route path="/add">
-            <Add />
-          </Route> */}
+          <Route path="/shoppinglist">
+            <ShoppingList />
+          </Route>
           <Route path="/">
             <Main />
           </Route>

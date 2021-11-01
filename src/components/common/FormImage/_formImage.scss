@@ -1,0 +1,14 @@
+@use "../../../sass/abstracts/" as *;
+
+.form__image {
+  display: none;
+}
+
+@media (min-width: $tablet) {
+  .form__image {
+    display: block;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    align-self: center;
+  }
+}

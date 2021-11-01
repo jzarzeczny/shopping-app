@@ -20,7 +20,7 @@ function Form({ inputFields, button }) {
           errors={errors}
         />
       ))}
-      <input className="button" type="submit" value={button} />
+      <input className="button button--submit" type="submit" value={button} />
     </form>
   );
 }

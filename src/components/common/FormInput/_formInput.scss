@@ -38,3 +38,8 @@ $margin-bot: 0.5rem;
     font-size: 12px;
   }
 }
+@media (min-width: $smallDesktop) {
+  .form__input {
+    width: 350px;
+  }
+}

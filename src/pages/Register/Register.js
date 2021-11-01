@@ -1,4 +1,7 @@
 import Form from "../../components/common/Form/Form";
+import FormContainer from "../../components/common/FormContainer/FormContainer";
+import FormImage from "../../components/common/FormImage/FormImage";
+import FormIntro from "../../components/common/FormIntro/FormIntro";
 import Layout from "../../components/Layout/Layout";
 import Question from "../../components/Register/Question/Question";
 
@@ -12,8 +15,12 @@ const inputFields = [
 function Register() {
   return (
     <Layout>
-      <Form inputFields={inputFields} button={"Zarejstruj się"} />
-      <Question />
+      <FormContainer>
+        <FormIntro />
+        <Form inputFields={inputFields} button={"Zarejstruj się"} />
+        <Question />
+        <FormImage />
+      </FormContainer>
     </Layout>
   );
 }

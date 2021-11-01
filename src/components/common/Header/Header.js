@@ -12,9 +12,10 @@ const navList = [
   { name: "Kategorie", path: "/category", login: true },
   { name: "Konto", path: "/account", login: true },
   { name: "Wyloguj", path: "/logout", login: true },
+  { name: "Zakupy", path: "/shoppinglist", login: true },
 ];
 
-// Todo -> render correct navList based on information about login
+// TODO -> render correct navList based on information about login
 
 export default function Header() {
   const [open, setOpen] = useState(false);

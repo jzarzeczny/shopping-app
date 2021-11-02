@@ -1,0 +1,17 @@
+@use "../../../sass/abstracts/" as *;
+
+.shopping__container {
+  position: relative;
+  &::after {
+    content: "";
+
+    width: 100%;
+    height: 2px;
+
+    background: $clr-main;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}

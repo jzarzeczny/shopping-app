@@ -32,7 +32,10 @@ function ShoppingList() {
       <ShoppingListContainer>
         <ButtonsContainer list="true" />
         {mockedData["listCategories"].map((category) => (
-          <ShoppingDetails data={category}></ShoppingDetails>
+          <ShoppingDetails
+            data={category}
+            key={category.name}
+          ></ShoppingDetails>
         ))}
       </ShoppingListContainer>
     </Layout>

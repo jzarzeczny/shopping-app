@@ -15,10 +15,9 @@
   &[open] {
     height: var(--details-height-open, auto);
   }
-  &[open] .list__content {
-    opacity: 1;
-    max-height: var(--content-height-open, auto);
-  }
+}
+.shopping__details--open .list__content {
+  max-height: var(--content-height-open, auto);
 }
 
 .shopping__summary {
@@ -41,7 +40,6 @@
     transform: rotate(180deg);
 
     transition: transform 0.2s ease-in;
-    // display: block;
   }
 }
 
@@ -50,9 +48,9 @@
 }
 
 .list__content {
-  opacity: 0;
   overflow: hidden;
-  max-height: 0;
+  max-height: var(--content-height-closed, auto);
+
   transition: all 1s ease;
 }
 

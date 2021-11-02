@@ -24,6 +24,17 @@ function ShoppingDetails({ data }) {
     ref.style.setProperty("--content-height-open", openHeight + "px");
   };
 
+  const toggleOpenClass = () => {
+    if (open === false) {
+      setOpen(true);
+    }
+    if (open === true) {
+      setTimeout(() => {
+        setOpen(false);
+      }, 1000);
+    }
+  };
+
   useEffect(() => {
     getHeightOfDetails(detailsElement.current);
     getHeightOfContent(contentElement.current);
@@ -32,13 +43,13 @@ function ShoppingDetails({ data }) {
   return (
     <details
       ref={detailsElement}
-      onClick={() => {
-        setOpen(!open);
-      }}
-      className="shopping__details"
+      className={`shopping__details ${open ? "shopping__details--open" : ""}`}
     >
       <summary
-        className={`shopping__summary ${open ? "shopping__summary--open" : ""}`}
+        onClick={() => {
+          toggleOpenClass();
+        }}
+        className="shopping__summary"
       >
         {data.name}
       </summary>

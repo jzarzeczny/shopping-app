@@ -1,12 +1,18 @@
 import { useRef } from "react";
+import ShoppingListContent from "../ShoppingListContent/ShoppingListContent";
 
-function ShoppingDetails({ children }) {
+function ShoppingDetails({ data }) {
   const detailsElement = useRef(null);
-  console.log(detailsElement.current);
   return (
     <details ref={detailsElement} className="shopping__details">
-      <summary className="shopping__summary">Hello</summary>
-      {children}
+      <summary className="shopping__summary">{data.name}</summary>
+      <div className="list__content">
+        <ul className="list__list">
+          {data["list"].map((product) => (
+            <ShoppingListContent product={product} />
+          ))}
+        </ul>
+      </div>
     </details>
   );
 }

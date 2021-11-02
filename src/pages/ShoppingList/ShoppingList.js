@@ -2,13 +2,38 @@ import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
 import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
+const mockedData = {
+  listName: "Test list",
+  listData: "25.10.21",
+  listCategories: [
+    {
+      name: "Owoce",
+      list: [
+        { product: "Banany", amount: "3", remarks: "lorem ipsum dori" },
+        {
+          product: "Maliny",
+          amount: "Opakowanie",
+          remarks: "lorem ipsum dori",
+        },
+      ],
+    },
+    {
+      name: "Warzywa",
+      list: [
+        { product: "Pomidory", amount: "3 kg", remarks: "lorem ipsum dori" },
+      ],
+    },
+  ],
+};
 
 function ShoppingList() {
   return (
     <Layout>
       <ShoppingListContainer>
         <ButtonsContainer list="true" />
-        <ShoppingDetails>bla bla bla</ShoppingDetails>
+        {mockedData["listCategories"].map((category) => (
+          <ShoppingDetails data={category}></ShoppingDetails>
+        ))}
       </ShoppingListContainer>
     </Layout>
   );

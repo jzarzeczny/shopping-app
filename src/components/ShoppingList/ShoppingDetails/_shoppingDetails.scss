@@ -15,9 +15,12 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 1rem;
 
   list-style: none;
+
+  font-size: 20px;
+  font-weight: $fw-bold;
 
   &::after {
     content: url("../../../images/icons/arrow.svg");
@@ -31,4 +34,12 @@
 
 .shopping__details[open] summary::after {
   transform: rotate(0);
+}
+
+.list__list {
+  list-style: none;
+  padding-left: 2rem;
+  & > * + * {
+    margin-top: 1rem;
+  }
 }

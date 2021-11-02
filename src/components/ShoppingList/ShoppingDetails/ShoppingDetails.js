@@ -1,29 +1,48 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ShoppingListContent from "../ShoppingListContent/ShoppingListContent";
 
 function ShoppingDetails({ data }) {
+  const [open, setOpen] = useState(false);
   const detailsElement = useRef();
+  const contentElement = useRef();
 
   const getHeightOfDetails = (ref) => {
-    console.log(ref);
     const closedHeight = ref.scrollHeight;
-    console.log(closedHeight);
     ref.open = true;
     const openHeight = ref.scrollHeight;
-    console.log(openHeight);
     ref.open = false;
     ref.style.setProperty("--details-height-closed", closedHeight + "px");
     ref.style.setProperty("--details-height-open", openHeight + "px");
   };
 
+  const getHeightOfContent = (ref) => {
+    const closedHeight = ref.scrollHeight;
+    detailsElement.current.open = true;
+    const openHeight = ref.scrollHeight;
+    detailsElement.current.open = false;
+    ref.style.setProperty("--content-height-closed", closedHeight + "px");
+    ref.style.setProperty("--content-height-open", openHeight + "px");
+  };
+
   useEffect(() => {
     getHeightOfDetails(detailsElement.current);
+    getHeightOfContent(contentElement.current);
   }, [detailsElement]);
 
   return (
-    <details ref={detailsElement} className="shopping__details">
-      <summary className="shopping__summary">{data.name}</summary>
-      <div className="list__content">
+    <details
+      ref={detailsElement}
+      onClick={() => {
+        setOpen(!open);
+      }}
+      className="shopping__details"
+    >
+      <summary
+        className={`shopping__summary ${open ? "shopping__summary--open" : ""}`}
+      >
+        {data.name}
+      </summary>
+      <div ref={contentElement} className="list__content">
         <ul className="list__list">
           {data["list"].map((product) => (
             <ShoppingListContent product={product} key={product.product} />

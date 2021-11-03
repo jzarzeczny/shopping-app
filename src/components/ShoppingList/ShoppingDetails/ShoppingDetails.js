@@ -29,6 +29,7 @@ function ShoppingDetails({ data }) {
       setOpen(true);
     }
     if (open === true) {
+      setOpen(false);
       setTimeout(() => {
         setOpen(false);
       }, 1000);

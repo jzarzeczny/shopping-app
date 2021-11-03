@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
+import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
 import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
 const mockedData = {
@@ -38,6 +39,7 @@ function ShoppingList() {
           ></ShoppingDetails>
         ))}
       </ShoppingListContainer>
+      <ShoppingButtons />
     </Layout>
   );
 }

@@ -10,7 +10,7 @@
   background-color: $clr-main;
 
   border-radius: 25px;
-  border: none;
+  border: 2px solid transparent;
 
   text-align: center;
   font-size: 1.25rem;
@@ -18,6 +18,12 @@
 }
 .button--action {
   margin-top: 2rem;
+}
+
+.button--danger {
+  background: $clr-white;
+  border: 2px solid $clr-main;
+  color: $clr-main;
 }
 
 @media (min-width: $smallDesktop) {

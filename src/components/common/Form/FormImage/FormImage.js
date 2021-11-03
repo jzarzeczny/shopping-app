@@ -1,4 +1,4 @@
-import { LoginImage, RegisterImage } from "../../../images/form";
+import { LoginImage, RegisterImage } from "../../../../images/form";
 
 function FormImage({ login }) {
   return (

@@ -1,0 +1,7 @@
+@use "../../../../sass/abstracts/" as *;
+
+// This component share classes (form__control, form__label, form__input) with _formInput.scss
+
+.form__option > * {
+  padding: 0.25rem 0.5rem;
+}

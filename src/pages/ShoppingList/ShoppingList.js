@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import Form from "../../components/common/Form/Form";
+import FormContainer from "../../components/common/Form/FormContainer/FormContainer";
 import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
@@ -32,6 +33,21 @@ const mockedData = {
   ],
 };
 
+const inputFields = [
+  { name: "Produkt*", id: "product" },
+  { name: "Ilość", id: "quantity" },
+  {
+    name: "Kategoria",
+    id: "category",
+    type: "select",
+    options: [
+      { value: "fruits", text: "Owoce" },
+      { value: "vegitables", text: "Warzywa" },
+    ],
+  },
+  { name: "Uwagi", id: "remarks" },
+];
+
 function ShoppingList() {
   const [listView, setListView] = useState(true);
 
@@ -40,10 +56,7 @@ function ShoppingList() {
       {listView ? (
         <ShoppingView>
           <ShoppingListContainer>
-            <ButtonsContainer
-              list={listView ? "true" : "false"}
-              setListView={setListView}
-            />
+            <ButtonsContainer list={listView} setListView={setListView} />
             {mockedData["listCategories"].map((category) => (
               <ShoppingDetails
                 data={category}
@@ -55,10 +68,10 @@ function ShoppingList() {
         </ShoppingView>
       ) : (
         <ShoppingEdit>
-          <ButtonsContainer
-            list={listView ? "false" : "true"}
-            setListView={setListView}
-          />
+          <ButtonsContainer list={listView} setListView={setListView} />
+          <FormContainer>
+            <Form inputFields={inputFields} button="Dodaj" />
+          </FormContainer>
         </ShoppingEdit>
       )}
     </Layout>

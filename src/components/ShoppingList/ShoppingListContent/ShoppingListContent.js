@@ -1,14 +1,14 @@
 import { useState } from "react";
-function ShoppingListContent({ product }) {
+function ShoppingListContent({ product, changeSizeOfBox }) {
   const [listDone, setListDone] = useState(false);
   const [listInformation, setListInformation] = useState(false);
 
+  const openInformation = () => {
+    setListInformation(!listInformation);
+  };
   return (
     <li className={`list__element ${listDone ? "list__element--done" : ""}`}>
-      <i
-        className="list__more"
-        onClick={() => setListInformation(!listInformation)}
-      >
+      <i className="list__more" onClick={() => openInformation()}>
         <div className="list__dot"></div>
         <div className="list__dot"></div>
         <div className="list__dot"></div>
@@ -31,3 +31,5 @@ function ShoppingListContent({ product }) {
 }
 
 export default ShoppingListContent;
+
+// Ref the content element and get size of it. Might need to get values of content and details.

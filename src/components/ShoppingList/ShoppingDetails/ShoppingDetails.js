@@ -65,7 +65,11 @@ function ShoppingDetails({ data }) {
       <div ref={contentElement} className="list__content">
         <ul className="list__list">
           {data["list"].map((product) => (
-            <ShoppingListContent product={product} key={product.product} />
+            <ShoppingListContent
+              product={product}
+              changeSizeOfBox={getHeight}
+              key={product.product}
+            />
           ))}
         </ul>
       </div>

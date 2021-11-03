@@ -51,7 +51,7 @@
   overflow: hidden;
   max-height: var(--content-height-closed, auto);
 
-  transition: all 1s ease;
+  transition: all 1s 0.1s ease;
 }
 
 .list__list {

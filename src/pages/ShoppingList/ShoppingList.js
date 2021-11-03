@@ -1,8 +1,13 @@
+import { useState } from "react";
+
 import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
 import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
+import ShoppingEdit from "../../components/ShoppingList/ShoppingEdit/ShoppingEdit";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
+import ShoppingView from "../../components/ShoppingList/ShoppingView/ShoppingView";
+
 const mockedData = {
   listName: "Test list",
   listData: "25.10.21",
@@ -28,18 +33,34 @@ const mockedData = {
 };
 
 function ShoppingList() {
+  const [listView, setListView] = useState(true);
+
   return (
     <Layout>
-      <ShoppingListContainer>
-        <ButtonsContainer list="true" />
-        {mockedData["listCategories"].map((category) => (
-          <ShoppingDetails
-            data={category}
-            key={category.name}
-          ></ShoppingDetails>
-        ))}
-      </ShoppingListContainer>
-      <ShoppingButtons />
+      {listView ? (
+        <ShoppingView>
+          <ShoppingListContainer>
+            <ButtonsContainer
+              list={listView ? "true" : "false"}
+              setListView={setListView}
+            />
+            {mockedData["listCategories"].map((category) => (
+              <ShoppingDetails
+                data={category}
+                key={category.name}
+              ></ShoppingDetails>
+            ))}
+          </ShoppingListContainer>
+          <ShoppingButtons />
+        </ShoppingView>
+      ) : (
+        <ShoppingEdit>
+          <ButtonsContainer
+            list={listView ? "false" : "true"}
+            setListView={setListView}
+          />
+        </ShoppingEdit>
+      )}
     </Layout>
   );
 }

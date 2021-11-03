@@ -6,22 +6,31 @@ function ShoppingDetails({ data }) {
   const detailsElement = useRef();
   const contentElement = useRef();
 
-  const getHeightOfDetails = (ref) => {
-    const closedHeight = ref.scrollHeight;
-    ref.open = true;
-    const openHeight = ref.scrollHeight;
-    ref.open = false;
-    ref.style.setProperty("--details-height-closed", closedHeight + "px");
-    ref.style.setProperty("--details-height-open", openHeight + "px");
-  };
-
-  const getHeightOfContent = (ref) => {
-    const closedHeight = ref.scrollHeight;
+  const getHeight = () => {
+    // Get height of closes height of details and content
+    const closedHeightOfDetails = detailsElement.current.scrollHeight;
+    const closedHeightOfContent = contentElement.current.scrollHeight;
     detailsElement.current.open = true;
-    const openHeight = ref.scrollHeight;
+    const openHeightOfDetails = detailsElement.current.scrollHeight;
+    const openHeightOfContent = contentElement.current.scrollHeight;
+
     detailsElement.current.open = false;
-    ref.style.setProperty("--content-height-closed", closedHeight + "px");
-    ref.style.setProperty("--content-height-open", openHeight + "px");
+    detailsElement.current.style.setProperty(
+      "--details-height-closed",
+      closedHeightOfDetails + "px"
+    );
+    detailsElement.current.style.setProperty(
+      "--details-height-open",
+      openHeightOfDetails + "px"
+    );
+    contentElement.current.style.setProperty(
+      "--content-height-closed",
+      closedHeightOfContent + "px"
+    );
+    contentElement.current.style.setProperty(
+      "--content-height-open",
+      openHeightOfContent + "px"
+    );
   };
 
   const toggleOpenClass = () => {
@@ -37,9 +46,8 @@ function ShoppingDetails({ data }) {
   };
 
   useEffect(() => {
-    getHeightOfDetails(detailsElement.current);
-    getHeightOfContent(contentElement.current);
-  }, [detailsElement]);
+    getHeight();
+  }, [detailsElement, contentElement]);
 
   return (
     <details

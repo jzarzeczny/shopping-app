@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
 import Form from "../../components/common/Form/Form";
 import FormContainer from "../../components/common/Form/FormContainer/FormContainer";
+import FormImage from "../../components/common/Form/FormImage/FormImage";
 import Layout from "../../components/Layout/Layout";
 import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
+import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
 import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
 import ShoppingEdit from "../../components/ShoppingList/ShoppingEdit/ShoppingEdit";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
@@ -50,29 +53,64 @@ const inputFields = [
 
 function ShoppingList() {
   const [listView, setListView] = useState(true);
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakingPoint = 1024;
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, []);
 
   return (
     <Layout>
-      {listView ? (
-        <ShoppingView>
-          <ShoppingListContainer>
-            <ButtonsContainer list={listView} setListView={setListView} />
-            {mockedData["listCategories"].map((category) => (
-              <ShoppingDetails
-                data={category}
-                key={category.name}
-              ></ShoppingDetails>
-            ))}
-          </ShoppingListContainer>
-          <ShoppingButtons />
-        </ShoppingView>
+      {width < breakingPoint ? (
+        <>
+          {listView ? (
+            <ShoppingView>
+              <ShoppingListContainer>
+                <ButtonsContainer list={listView} setListView={setListView} />
+                {mockedData["listCategories"].map((category) => (
+                  <ShoppingDetails
+                    data={category}
+                    key={category.name}
+                  ></ShoppingDetails>
+                ))}
+              </ShoppingListContainer>
+              <ShoppingButtons display />
+            </ShoppingView>
+          ) : (
+            <ShoppingEdit>
+              <ButtonsContainer list={listView} setListView={setListView} />
+              <FormContainer>
+                <FormImage cart />
+                <Form inputFields={inputFields} />
+              </FormContainer>
+              <ShoppingButtons />
+            </ShoppingEdit>
+          )}
+        </>
       ) : (
-        <ShoppingEdit>
-          <ButtonsContainer list={listView} setListView={setListView} />
-          <FormContainer>
-            <Form inputFields={inputFields} button="Dodaj" />
-          </FormContainer>
-        </ShoppingEdit>
+        <ShoppingContainer>
+          <ShoppingView>
+            <ShoppingListContainer>
+              <ButtonsContainer list={listView} setListView={setListView} />
+              {mockedData["listCategories"].map((category) => (
+                <ShoppingDetails
+                  data={category}
+                  key={category.name}
+                ></ShoppingDetails>
+              ))}
+            </ShoppingListContainer>
+            <ShoppingButtons display />
+          </ShoppingView>
+          <ShoppingEdit>
+            <ButtonsContainer list={listView} setListView={setListView} />
+            <FormContainer>
+              <FormImage cart />
+              <Form inputFields={inputFields} />
+            </FormContainer>
+            <ShoppingButtons />
+          </ShoppingEdit>
+        </ShoppingContainer>
       )}
     </Layout>
   );

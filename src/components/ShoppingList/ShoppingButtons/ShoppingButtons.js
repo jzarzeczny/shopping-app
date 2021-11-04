@@ -1,10 +1,19 @@
 import Button from "../../common/Button/Button";
 
-function ShoppingButtons() {
+function ShoppingButtons({ display }) {
   return (
     <div className="shopping__buttons">
-      <Button source="--danger">Usuń</Button>
-      <Button>Zapisz</Button>
+      {display ? (
+        <>
+          <Button source="--danger">Usuń</Button>
+          <Button>Zapisz</Button>
+        </>
+      ) : (
+        <>
+          <Button source="--danger">Wyczyść</Button>
+          <Button>Dodaj</Button>
+        </>
+      )}
     </div>
   );
 }

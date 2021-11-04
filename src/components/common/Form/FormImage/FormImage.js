@@ -1,15 +1,23 @@
-import { LoginImage, RegisterImage } from "../../../../images/form";
+import { LoginImage, RegisterImage, AddToCart } from "../../../../images/form";
 
-function FormImage({ login }) {
-  return (
-    <>
-      {login ? (
-        <img className="form__image" src={LoginImage} alt="login" />
-      ) : (
-        <img className="form__image" src={RegisterImage} alt="register" />
-      )}
-    </>
-  );
+function FormImage(props) {
+  const determineTheImage = (props) => {
+    if (props.login) {
+      return <img className="form__image" src={LoginImage} alt="login" />;
+    } else if (props.cart) {
+      return (
+        <img
+          className="form__image form__image--cart"
+          src={AddToCart}
+          alt="cart"
+        />
+      );
+    } else {
+      <img className="form__image" src={RegisterImage} alt="register" />;
+    }
+  };
+
+  return determineTheImage(props);
 }
 
 export default FormImage;

@@ -1,6 +1,6 @@
 @use "../../../sass/abstracts/" as *;
 
-.shopping__container {
+.shopping__list__container {
   position: relative;
   &::after {
     content: "";

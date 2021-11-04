@@ -12,3 +12,8 @@
     align-self: center;
   }
 }
+@media (min-width: $smallDesktop) {
+  .form__image--cart {
+    display: none;
+  }
+}

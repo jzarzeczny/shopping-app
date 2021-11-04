@@ -62,3 +62,9 @@ $icon-size-mobile: 40px;
     mask: url("../../../images/icons/sort.svg") no-repeat center;
   }
 }
+
+@media (min-width: $smallDesktop) {
+  .shopping__buttons {
+    display: none;
+  }
+}

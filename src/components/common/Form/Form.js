@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import FormSelect from "./FormSelect/FormSelect";
 import FormInput from "./FormInput/FormInput";
 
-function Form({ inputFields, button, source }) {
+function Form({ inputFields, button, source, dataGetter }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => dataGetter(data);
 
   return (
     <form

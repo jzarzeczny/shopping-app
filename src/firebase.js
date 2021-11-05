@@ -10,7 +10,6 @@ import {
 } from "firebase/firestore";
 import {
   getAuth,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
@@ -33,11 +32,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-// Sign into the app
-const signIn = async (email, password) => {
-  await signInWithEmailAndPassword(auth, email, password);
-};
-
 // Create a user with email
 const registerUser = async (email, password, nickname) => {
   // Create user
@@ -52,8 +46,8 @@ const registerUser = async (email, password, nickname) => {
   });
 
   // Create user instance in "lists hisotry" collection
-  const listRef = doc(db, "list", user.uid);
-  await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
+  // const listRef = doc(db, "list", user.uid);
+  // await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
 };
 // Send password reset - currently dead
 const sendPasswordReset = async (email) => {
@@ -124,7 +118,6 @@ const getList = async (user) => {
 export {
   auth,
   db,
-  signIn,
   registerUser,
   sendPasswordReset,
   logout,

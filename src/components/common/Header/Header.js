@@ -3,6 +3,8 @@ import { useLocation } from "react-router";
 import Hamburger from "./Hamburger/Hamburger";
 import Navbar from "./Navbar/Navbar";
 import PageTitle from "./PageTitle/PageTitle";
+import useWindowRes from "../../../utilities/windowResize";
+import Logo from "../Logo/Logo";
 
 const navList = [
   { name: "", path: "/", login: false },
@@ -40,6 +42,7 @@ export default function Header() {
       {currentLocation !== null && (
         <header className="header">
           <PageTitle title={currentLocation.name} />
+          <Logo source="header" />
           <Hamburger open={open} setOpen={setOpen} />
           <Navbar open={open} setOpen={setOpen} navList={navList} />
         </header>

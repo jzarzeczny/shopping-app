@@ -18,6 +18,10 @@
   }
 }
 
+.logo__container--header {
+  display: none;
+}
+
 @media (min-width: $tablet) {
   .logo__container--main {
     .logo__title {
@@ -39,6 +43,13 @@
     }
     .logo__image {
       display: block;
+    }
+  }
+  .logo__container--header {
+    display: flex;
+    width: 120px;
+    .logo__image {
+      margin-left: 0.5rem;
     }
   }
 }

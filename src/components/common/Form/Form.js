@@ -32,7 +32,9 @@ function Form({ inputFields, button }) {
           )}
         </>
       ))}
-      <input className="button button--submit" type="submit" value={button} />
+      {button && (
+        <input className="button button--submit" type="submit" value={button} />
+      )}
     </form>
   );
 }

@@ -6,12 +6,16 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Lists from "./pages/Lists/Lists";
 import ShoppingList from "./pages/ShoppingList/ShoppingList";
+import Categories from "./pages/Categories/Categories";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Switch>
+          <Route path="/category">
+            <Categories />
+          </Route>
           <Route path="/register">
             <Register />
           </Route>

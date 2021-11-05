@@ -14,8 +14,19 @@
     position: absolute;
     top: -2rem;
     left: 0;
-    width: 100%;
+    width: 70vh;
     height: 3px;
     background: $clr-main;
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .lists__group {
+    grid-column: 1/2;
+    min-width: 400px;
+    margin-top: 0;
+    &::before {
+      content: none;
+    }
   }
 }

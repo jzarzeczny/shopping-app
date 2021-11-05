@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import FormSelect from "./FormSelect/FormSelect";
 import FormInput from "./FormInput/FormInput";
 
-function Form({ inputFields, button }) {
+function Form({ inputFields, button, source }) {
   const {
     register,
     handleSubmit,
@@ -11,7 +11,10 @@ function Form({ inputFields, button }) {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={`form ${source ? "form--" + source : ""}`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {inputFields.map((field) => (
         <>
           {field.type === "select" ? (

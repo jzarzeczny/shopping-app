@@ -4,23 +4,21 @@ import ListsContainer from "../../components/Lists/Container/ListsContainer";
 import GroupOfLists from "../../components/Lists/GroupOfLists/GroupOfLists";
 import SingleList from "../../components/Lists/SingleList/SingleList";
 
-const inputFields = [{ name: "Nowa Lista", id: "newList" }];
+const inputFields = [{ name: "Nowa kategoria", id: "category" }];
 
-const GroupOfListMock = [
-  { name: "First" },
-  { name: "Second" },
-  { name: "Third" },
-  { name: "Fourth" },
+const categoriesMock = [
+  { name: "ABCD", id: 1 },
+  { name: "EFGH", id: 2 },
 ];
 
-function Lists() {
+function Categories() {
   return (
     <Layout>
       <ListsContainer>
         <Form inputFields={inputFields} source="lists" button="Dodaj" />
         <GroupOfLists>
-          {GroupOfListMock.map((singleList, id) => (
-            <SingleList singleList={singleList} key={id} />
+          {categoriesMock.map((singleList, id) => (
+            <SingleList source="category" singleList={singleList} key={id} />
           ))}
         </GroupOfLists>
       </ListsContainer>
@@ -28,4 +26,4 @@ function Lists() {
   );
 }
 
-export default Lists;
+export default Categories;

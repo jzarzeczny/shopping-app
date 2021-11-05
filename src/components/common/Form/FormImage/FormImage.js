@@ -13,7 +13,7 @@ function FormImage(props) {
         />
       );
     } else {
-      <img className="form__image" src={RegisterImage} alt="register" />;
+      return <img className="form__image" src={RegisterImage} alt="register" />;
     }
   };
 

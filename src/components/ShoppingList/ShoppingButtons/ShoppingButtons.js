@@ -2,7 +2,7 @@ import Button from "../../common/Button/Button";
 
 function ShoppingButtons({ display }) {
   return (
-    <div className="shopping__buttons">
+    <div className="shopping__buttons--action">
       {display ? (
         <>
           <Button source="--danger">Usuń</Button>

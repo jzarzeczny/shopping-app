@@ -1,0 +1,13 @@
+@use "../../../sass/abstracts/" as *;
+
+.shopping__section__header {
+  display: none;
+}
+@media (min-width: $smallDesktop) {
+  .shopping__section__header {
+    display: block;
+    color: $clr-main;
+    margin-bottom: 2rem;
+    grid-row: 1/2;
+  }
+}

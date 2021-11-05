@@ -8,9 +8,9 @@ import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/But
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
 import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
 import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
-import ShoppingEdit from "../../components/ShoppingList/ShoppingEdit/ShoppingEdit";
+import ShoppingHeader from "../../components/ShoppingList/ShoppingHeader/ShoppingHeader";
 import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
-import ShoppingView from "../../components/ShoppingList/ShoppingView/ShoppingView";
+import ShoppingSection from "../../components/ShoppingList/ShoppingSection/ShoppingSection";
 
 const mockedData = {
   listName: "Test list",
@@ -65,7 +65,7 @@ function ShoppingList() {
       {width < breakingPoint ? (
         <>
           {listView ? (
-            <ShoppingView>
+            <ShoppingSection>
               <ShoppingListContainer>
                 <ButtonsContainer list={listView} setListView={setListView} />
                 {mockedData["listCategories"].map((category) => (
@@ -76,21 +76,22 @@ function ShoppingList() {
                 ))}
               </ShoppingListContainer>
               <ShoppingButtons display />
-            </ShoppingView>
+            </ShoppingSection>
           ) : (
-            <ShoppingEdit>
+            <ShoppingSection>
               <ButtonsContainer list={listView} setListView={setListView} />
               <FormContainer>
                 <FormImage cart />
                 <Form inputFields={inputFields} />
               </FormContainer>
               <ShoppingButtons />
-            </ShoppingEdit>
+            </ShoppingSection>
           )}
         </>
       ) : (
         <ShoppingContainer>
-          <ShoppingView>
+          <ShoppingSection>
+            <ShoppingHeader />
             <ShoppingListContainer>
               <ButtonsContainer list={listView} setListView={setListView} />
               {mockedData["listCategories"].map((category) => (
@@ -100,16 +101,18 @@ function ShoppingList() {
                 ></ShoppingDetails>
               ))}
             </ShoppingListContainer>
-            <ShoppingButtons display />
-          </ShoppingView>
-          <ShoppingEdit>
+          </ShoppingSection>
+          <ShoppingButtons display />
+
+          <ShoppingSection edit>
+            <ShoppingHeader edit />
             <ButtonsContainer list={listView} setListView={setListView} />
-            <FormContainer>
+            <FormContainer source="edit">
               <FormImage cart />
               <Form inputFields={inputFields} />
             </FormContainer>
-            <ShoppingButtons />
-          </ShoppingEdit>
+          </ShoppingSection>
+          <ShoppingButtons />
         </ShoppingContainer>
       )}
     </Layout>
@@ -118,5 +121,4 @@ function ShoppingList() {
 
 export default ShoppingList;
 
-// TODO: render Content or edit based on props
 // Details html tag for each category of list => product list inside

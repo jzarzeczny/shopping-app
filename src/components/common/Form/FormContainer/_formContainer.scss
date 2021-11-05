@@ -20,4 +20,9 @@
     gap: 3rem;
     justify-items: center;
   }
+
+  .form__container--edit {
+    display: block;
+    grid-row: 2/3;
+  }
 }

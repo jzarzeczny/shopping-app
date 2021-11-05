@@ -62,3 +62,8 @@
     margin-top: 1rem;
   }
 }
+@media (min-width: $smallDesktop) {
+  .shopping__details {
+    min-width: 500px;
+  }
+}

@@ -42,6 +42,8 @@
     position: relative;
     transform: translateX(0);
     height: 40px;
+    margin: 0;
+    justify-self: flex-end;
 
     .navbar__list {
       font-weight: 500;
@@ -50,7 +52,7 @@
       min-height: 0;
       flex-direction: row;
       & > * + * {
-        margin-left: 1rem;
+        margin-left: 2rem;
       }
     }
   }

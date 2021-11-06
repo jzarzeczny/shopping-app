@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword } from "@firebase/auth";
 import { useState, useReducer } from "react";
+import { useHistory } from "react-router";
 import { useEffect } from "react/cjs/react.development";
 import Form from "../../components/common/Form/Form";
 import FormContainer from "../../components/common/Form/FormContainer/FormContainer";
@@ -27,11 +28,11 @@ function reducer(state, action) {
 function Login() {
   const [loginData, setLoginData] = useState(null);
   const [state, dispath] = useReducer(reducer, errors);
+  let history = useHistory();
 
   useEffect(() => {
     loginAttempt(loginData);
   }, [loginData]);
-  console.log(state);
 
   const loginAttempt = async (loginData) => {
     if (loginData) {
@@ -41,6 +42,7 @@ function Login() {
           loginData.email,
           loginData.password
         );
+        history.push("/");
       } catch (error) {
         dispath({ type: error.code });
       }

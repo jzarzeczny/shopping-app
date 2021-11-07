@@ -14,6 +14,7 @@ function Form({ inputFields, button, source, dataGetter }) {
     <form
       className={`form ${source ? "form--" + source : ""}`}
       onSubmit={handleSubmit(onSubmit)}
+      id={source ? "form--" + source : ""}
     >
       {inputFields.map((field) => (
         <>

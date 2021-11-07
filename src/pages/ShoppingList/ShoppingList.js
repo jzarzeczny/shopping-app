@@ -1,16 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
-import Form from "../../components/common/Form/Form";
-import FormContainer from "../../components/common/Form/FormContainer/FormContainer";
-import FormImage from "../../components/common/Form/FormImage/FormImage";
 import Layout from "../../components/Layout/Layout";
-import ButtonsContainer from "../../components/ShoppingList/ButtonsContainer/ButtonsContainer";
+import ShoppingListView from "../../components/ShoppingList/ShoppingListView/ShoppingListView";
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
 import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
-import ShoppingDetails from "../../components/ShoppingList/ShoppingDetails/ShoppingDetails";
-import ShoppingHeader from "../../components/ShoppingList/ShoppingHeader/ShoppingHeader";
-import ShoppingListContainer from "../../components/ShoppingList/ShoppingListContainer/ShoppingListContainer";
-import ShoppingSection from "../../components/ShoppingList/ShoppingSection/ShoppingSection";
+import ShoppingListEdit from "../../components/ShoppingList/ShoppingListEdit/ShoppingListEdit";
 
 const mockedData = {
   listName: "Test list",
@@ -38,7 +32,6 @@ const mockedData = {
 
 const inputFields = [
   { name: "Produkt*", id: "product" },
-  { name: "Ilość", id: "quantity" },
   {
     name: "Kategoria",
     id: "category",
@@ -48,70 +41,62 @@ const inputFields = [
       { value: "vegitables", text: "Warzywa" },
     ],
   },
+
+  { name: "Ilość", id: "quantity" },
   { name: "Uwagi", id: "remarks" },
 ];
 
 function ShoppingList() {
   const [listView, setListView] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
+  const [addFormData, setAddFormData] = useState(null);
   const breakingPoint = 1024;
 
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
 
+  console.log(addFormData);
+
   return (
     <Layout>
       {width < breakingPoint ? (
         <>
           {listView ? (
-            <ShoppingSection>
-              <ShoppingListContainer>
-                <ButtonsContainer list={listView} setListView={setListView} />
-                {mockedData["listCategories"].map((category) => (
-                  <ShoppingDetails
-                    data={category}
-                    key={category.name}
-                  ></ShoppingDetails>
-                ))}
-              </ShoppingListContainer>
+            <>
+              <ShoppingListView
+                mockedData={mockedData}
+                listView={listView}
+                setListView={setListView}
+              />
               <ShoppingButtons display />
-            </ShoppingSection>
+            </>
           ) : (
-            <ShoppingSection>
-              <ButtonsContainer list={listView} setListView={setListView} />
-              <FormContainer>
-                <FormImage cart />
-                <Form inputFields={inputFields} />
-              </FormContainer>
+            <>
+              <ShoppingListEdit
+                inputFields={inputFields}
+                listView={listView}
+                setListView={setListView}
+                setAddFormData={setAddFormData}
+              />
               <ShoppingButtons />
-            </ShoppingSection>
+            </>
           )}
         </>
       ) : (
         <ShoppingContainer>
-          <ShoppingSection>
-            <ShoppingHeader />
-            <ShoppingListContainer>
-              <ButtonsContainer list={listView} setListView={setListView} />
-              {mockedData["listCategories"].map((category) => (
-                <ShoppingDetails
-                  data={category}
-                  key={category.name}
-                ></ShoppingDetails>
-              ))}
-            </ShoppingListContainer>
-          </ShoppingSection>
+          <ShoppingListView
+            mockedData={mockedData}
+            listView={listView}
+            setListView={setListView}
+          />
           <ShoppingButtons display />
-
-          <ShoppingSection edit>
-            <ShoppingHeader edit />
-            <ButtonsContainer list={listView} setListView={setListView} />
-            <FormContainer source="edit">
-              <FormImage cart />
-              <Form inputFields={inputFields} />
-            </FormContainer>
-          </ShoppingSection>
+          <ShoppingListEdit
+            inputFields={inputFields}
+            listView={listView}
+            setListView={setListView}
+            setAddFormData={setAddFormData}
+          />
           <ShoppingButtons />
         </ShoppingContainer>
       )}

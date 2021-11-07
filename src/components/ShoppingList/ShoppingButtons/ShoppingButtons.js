@@ -10,8 +10,12 @@ function ShoppingButtons({ display }) {
         </>
       ) : (
         <>
-          <Button source="--danger">Wyczyść</Button>
-          <Button>Dodaj</Button>
+          <Button form="form--edit" source="--danger">
+            Wyczyść
+          </Button>
+          <Button form="form--edit" type="submit">
+            Dodaj
+          </Button>
         </>
       )}
     </div>

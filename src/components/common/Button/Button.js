@@ -1,6 +1,11 @@
-function Button({ children, source, clickFunc }) {
+function Button({ children, source, clickFunc, form }) {
   return (
-    <button onClick={clickFunc} className={`button ${"button" + source}`}>
+    <button
+      onClick={clickFunc}
+      form={form}
+      type={`${form ? "submit" : "button"}`}
+      className={`button ${"button" + source}`}
+    >
       {children}
     </button>
   );

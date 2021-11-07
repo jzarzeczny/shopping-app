@@ -16,12 +16,12 @@ function Form({ inputFields, button, source, dataGetter }) {
       onSubmit={handleSubmit(onSubmit)}
       id={source ? "form--" + source : ""}
     >
-      {inputFields.map((field) => (
+      {inputFields.map((field, id) => (
         <>
           {field.type === "select" ? (
             <FormSelect
               data={field}
-              key={field.id}
+              key={id}
               register={register}
               errors={errors}
             />
@@ -29,7 +29,7 @@ function Form({ inputFields, button, source, dataGetter }) {
             <FormInput
               name={field.name}
               id={field.id}
-              key={field.id}
+              key={id}
               register={register}
               errors={errors}
             />

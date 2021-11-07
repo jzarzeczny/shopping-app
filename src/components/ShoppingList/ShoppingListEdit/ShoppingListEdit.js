@@ -4,12 +4,7 @@ import FormImage from "../../common/Form/FormImage/FormImage";
 import ShoppingSection from "../ShoppingSection/ShoppingSection";
 import ButtonsContainer from "../ButtonsContainer/ButtonsContainer";
 
-function ShoppingListEdit({
-  listView,
-  setListView,
-  inputFields,
-  setAddFormData,
-}) {
+function ShoppingListEdit({ listView, setListView, inputFields, setFormData }) {
   return (
     <ShoppingSection edit>
       <ButtonsContainer list={listView} setListView={setListView} />
@@ -17,7 +12,7 @@ function ShoppingListEdit({
         <FormImage cart />
         <Form
           inputFields={inputFields}
-          dataGetter={setAddFormData}
+          dataGetter={setFormData}
           source="edit"
         />
       </FormContainer>

@@ -5,9 +5,9 @@ function ShoppingDetails({ data }) {
   const [open, setOpen] = useState(false);
   const detailsElement = useRef();
   const contentElement = useRef();
-
   const getHeight = () => {
-    // Get height of closes height of details and content
+    console.log("changing the height of Details");
+    // Get height of details and content
     const closedHeightOfDetails = detailsElement.current.scrollHeight;
     const closedHeightOfContent = contentElement.current.scrollHeight;
     detailsElement.current.open = true;
@@ -46,9 +46,9 @@ function ShoppingDetails({ data }) {
   };
 
   useEffect(() => {
+    console.log("Running useEffect -- data changed --!");
     getHeight();
-  }, [detailsElement, contentElement]);
-
+  }, [data.list]);
   return (
     <details
       ref={detailsElement}

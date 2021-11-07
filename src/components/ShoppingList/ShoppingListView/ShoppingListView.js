@@ -1,5 +1,4 @@
 import ShoppingSection from "../ShoppingSection/ShoppingSection";
-import ShoppingButtons from "../ShoppingButtons/ShoppingButtons";
 import ShoppingDetails from "../ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../ShoppingListContainer/ShoppingListContainer";
 import ButtonsContainer from "../ButtonsContainer/ButtonsContainer";

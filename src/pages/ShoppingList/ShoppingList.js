@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import Layout from "../../components/Layout/Layout";
 import ShoppingListView from "../../components/ShoppingList/ShoppingListView/ShoppingListView";
@@ -12,6 +12,7 @@ const mockedData = {
   listCategories: [
     {
       name: "Owoce",
+      id: "fruits",
       list: [
         { product: "Banany", amount: "3", remarks: "lorem ipsum dori" },
         {
@@ -23,6 +24,7 @@ const mockedData = {
     },
     {
       name: "Warzywa",
+      id: "vegitables",
       list: [
         { product: "Pomidory", amount: "3 kg", remarks: "lorem ipsum dori" },
       ],
@@ -49,14 +51,32 @@ const inputFields = [
 function ShoppingList() {
   const [listView, setListView] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
-  const [addFormData, setAddFormData] = useState(null);
+  const [listData, setListData] = useState(mockedData);
+  const [formData, setFormData] = useState(null);
   const breakingPoint = 1024;
+
+  const addItemToArray = useCallback(
+    (item) => {
+      if (item !== null) {
+        item.id = item.product;
+        let newList = { ...listData };
+        newList["listCategories"].forEach((category) => {
+          if (category.id === item.category) {
+            console.log("This element should be add to " + category.name);
+            category["list"].push(item);
+          }
+        });
+        setFormData(null);
+        setListData(newList);
+      }
+    },
+    [formData]
+  );
 
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
-  }, []);
-
-  console.log(addFormData);
+    addItemToArray(formData);
+  }, [formData, addItemToArray]);
 
   return (
     <Layout>
@@ -65,7 +85,7 @@ function ShoppingList() {
           {listView ? (
             <>
               <ShoppingListView
-                mockedData={mockedData}
+                mockedData={listData}
                 listView={listView}
                 setListView={setListView}
               />
@@ -77,7 +97,7 @@ function ShoppingList() {
                 inputFields={inputFields}
                 listView={listView}
                 setListView={setListView}
-                setAddFormData={setAddFormData}
+                setFormData={setFormData}
               />
               <ShoppingButtons />
             </>
@@ -86,7 +106,7 @@ function ShoppingList() {
       ) : (
         <ShoppingContainer>
           <ShoppingListView
-            mockedData={mockedData}
+            mockedData={listData}
             listView={listView}
             setListView={setListView}
           />
@@ -95,7 +115,7 @@ function ShoppingList() {
             inputFields={inputFields}
             listView={listView}
             setListView={setListView}
-            setAddFormData={setAddFormData}
+            setFormData={setFormData}
           />
           <ShoppingButtons />
         </ShoppingContainer>
@@ -105,5 +125,7 @@ function ShoppingList() {
 }
 
 export default ShoppingList;
+
+// Reducer to list menagments ? -> formData, listForm!!!!
 
 // Details html tag for each category of list => product list inside

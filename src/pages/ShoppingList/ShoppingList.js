@@ -9,6 +9,12 @@ import { useParams } from "react-router";
 import { getSingleList } from "../../firebase";
 import { AuthContext } from "../../context/FirebaseContext";
 
+// To achive belove data structure, there are two possible way
+
+// Add the listCategories fetched from DB to orginally created list OR
+// Get more data from the form in order to determine what categories does user have
+// First things first, need to create Categories first + implement it!
+
 const mockedData = {
   listName: "Test list",
   listData: "25.10.21",
@@ -64,14 +70,29 @@ function ShoppingList() {
 
   const addItemToArray = useCallback(
     (item) => {
+      console.log("Im adding to array");
+
       if (item !== null) {
+        console.log(item);
         item.id = item.product;
         let newList = { ...listData };
-        newList["listCategories"].forEach((category) => {
-          if (category.id === item.category) {
-            category["list"].push(item);
-          }
-        });
+        console.log(newList);
+        if (newList["listCategories"].length > 0) {
+          newList["listCategories"].forEach((category) => {
+            console.log("in for each loop");
+            if (category.id === item.category) {
+              console.log("in if statment");
+              category["list"].push(item);
+            } else {
+              console.log("im in else statment ");
+              newList[item.category] = [];
+              newList[item.category].push(item);
+              console.log(newList);
+            }
+          });
+        } else {
+          // newList["listCategories"][item.category].push(item);
+        }
         setFormData(null);
         setListData(newList);
       }
@@ -81,16 +102,19 @@ function ShoppingList() {
 
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, []);
+
+  useEffect(() => {
     addItemToArray(formData);
   }, [formData, addItemToArray]);
 
   useEffect(() => {
     if (currentUser) {
       getSingleList(currentUser.uid).then((data) =>
-        setListData(data["lists"].filter((list) => list.id === params.id))
+        setListData(data["lists"].filter((list) => list.id === params.id)[0])
       );
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <Layout>
@@ -99,7 +123,7 @@ function ShoppingList() {
           {listView ? (
             <>
               <ShoppingListView
-                mockedData={listData}
+                listData={listData}
                 listView={listView}
                 setListView={setListView}
               />
@@ -119,11 +143,14 @@ function ShoppingList() {
         </>
       ) : (
         <ShoppingContainer>
-          <ShoppingListView
-            mockedData={listData}
-            listView={listView}
-            setListView={setListView}
-          />
+          {listData && (
+            <ShoppingListView
+              listData={listData}
+              listView={listView}
+              setListView={setListView}
+            />
+          )}
+
           <ShoppingButtons display />
           <ShoppingListEdit
             inputFields={inputFields}

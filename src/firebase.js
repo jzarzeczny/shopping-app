@@ -44,6 +44,8 @@ const registerUser = async (email, password, nickname) => {
   });
   // Create a "list" collection where lists will be stored
   await setDoc(doc(db, "lists", user.uid));
+  // Create a "categories" collection where categories and defaults will be stored
+  await setDoc(doc(db, "categories", user.uid));
 };
 // Send password reset - currently dead
 const sendPasswordReset = async (email) => {
@@ -98,19 +100,6 @@ const addList = async (user, list) => {
   ).catch((e) => console.log(e));
 };
 
-// Get list from hisotry collection
-const getList = async (user) => {
-  const listRef = doc(db, "list", user.uid);
-  const docSnap = await getDoc(listRef);
-  if (docSnap.exists()) {
-    return docSnap.data();
-  } else {
-    console.log("There is no data");
-
-    return { list: [] };
-  }
-};
-
 const pushNewList = async (user, newElement) => {
   const name = doc(db, "lists", user);
   // await setDoc(name, { lists: [] });
@@ -133,6 +122,22 @@ const getSingleList = async (user) => {
     return docSnap.data();
   }
 };
+
+const pushNewCategory = async (user, newCategory) => {
+  const name = doc(db, "categories", user);
+  // await setDoc(name, { lists: [] });
+  await updateDoc(name, { category: arrayUnion(newCategory) }, { merge: true });
+};
+
+const getUserCategories = async (user) => {
+  const listRef = doc(db, "categories", user);
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return [];
+  }
+};
 export {
   auth,
   db,
@@ -146,4 +151,6 @@ export {
   getLists,
   pushNewList,
   getSingleList,
+  pushNewCategory,
+  getUserCategories,
 };

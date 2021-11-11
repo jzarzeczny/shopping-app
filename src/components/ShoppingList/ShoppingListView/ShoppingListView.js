@@ -3,13 +3,13 @@ import ShoppingDetails from "../ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../ShoppingListContainer/ShoppingListContainer";
 import ButtonsContainer from "../ButtonsContainer/ButtonsContainer";
 
-function ShoppingListView({ mockedData, listView, setListView }) {
+function ShoppingListView({ listData, listView, setListView }) {
   return (
     <ShoppingSection>
       <ShoppingListContainer>
         <ButtonsContainer list={listView} setListView={setListView} />
-        {mockedData ? (
-          mockedData["listCategories"].map((category) => (
+        {listData["listCategories"].length > 0 ? (
+          listData["listCategories"].map((category) => (
             <ShoppingDetails
               data={category}
               key={category.name}

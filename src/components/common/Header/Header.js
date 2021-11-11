@@ -41,7 +41,7 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        {currentLocation !== null && <PageTitle title={currentLocation.name} />}
+        {currentLocation && <PageTitle title={currentLocation.name} />}
         <Logo source="header" />
         <Hamburger open={open} setOpen={setOpen} />
         <Navbar

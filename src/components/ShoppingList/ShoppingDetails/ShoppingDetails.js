@@ -6,7 +6,6 @@ function ShoppingDetails({ data }) {
   const detailsElement = useRef();
   const contentElement = useRef();
   const getHeight = () => {
-    console.log("changing the height of Details");
     // Get height of details and content
     const closedHeightOfDetails = detailsElement.current.scrollHeight;
     const closedHeightOfContent = contentElement.current.scrollHeight;
@@ -46,7 +45,6 @@ function ShoppingDetails({ data }) {
   };
 
   useEffect(() => {
-    console.log("Running useEffect -- data changed --!");
     getHeight();
   }, [data.list]);
   return (
@@ -83,3 +81,4 @@ export default ShoppingDetails;
 
 // TODO: animation of details element
 // TODO: animation of list information
+//--Disable onClick when element is animated

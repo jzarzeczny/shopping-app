@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { BinIcon } from "../../../images/icons";
 import EditIcon from "../../../images/icons/edit.svg";
 
@@ -9,7 +10,9 @@ function SingleList({ singleList, source }) {
         {source === "category" ? (
           <img src={BinIcon} alt="bin" />
         ) : (
-          <img src={EditIcon} alt="edit" />
+          <Link to={`${"shoppinglist/" + singleList.id}`}>
+            <img src={EditIcon} alt="edit" />
+          </Link>
         )}
       </i>
     </div>

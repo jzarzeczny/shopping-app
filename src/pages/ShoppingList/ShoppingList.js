@@ -1,10 +1,13 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import Layout from "../../components/Layout/Layout";
 import ShoppingListView from "../../components/ShoppingList/ShoppingListView/ShoppingListView";
 import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/ShoppingButtons";
 import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
 import ShoppingListEdit from "../../components/ShoppingList/ShoppingListEdit/ShoppingListEdit";
+import { useParams } from "react-router";
+import { getSingleList } from "../../firebase";
+import { AuthContext } from "../../context/FirebaseContext";
 
 const mockedData = {
   listName: "Test list",
@@ -51,9 +54,13 @@ const inputFields = [
 function ShoppingList() {
   const [listView, setListView] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
-  const [listData, setListData] = useState(mockedData);
+  const [listData, setListData] = useState(null);
   const [formData, setFormData] = useState(null);
+
   const breakingPoint = 1024;
+  const { currentUser } = useContext(AuthContext);
+
+  let params = useParams();
 
   const addItemToArray = useCallback(
     (item) => {
@@ -62,7 +69,6 @@ function ShoppingList() {
         let newList = { ...listData };
         newList["listCategories"].forEach((category) => {
           if (category.id === item.category) {
-            console.log("This element should be add to " + category.name);
             category["list"].push(item);
           }
         });
@@ -77,6 +83,14 @@ function ShoppingList() {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
     addItemToArray(formData);
   }, [formData, addItemToArray]);
+
+  useEffect(() => {
+    if (currentUser) {
+      getSingleList(currentUser.uid).then((data) =>
+        setListData(data["lists"].filter((list) => list.id === params.id))
+      );
+    }
+  }, []);
 
   return (
     <Layout>

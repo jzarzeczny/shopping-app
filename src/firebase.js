@@ -39,14 +39,11 @@ const registerUser = async (email, password, nickname) => {
 
   // Create user instance in "users" collection
   await setDoc(doc(db, "users", user.uid), {
-    authProvider: "local",
     nickname,
     email,
   });
-
-  // Create user instance in "lists hisotry" collection
-  // const listRef = doc(db, "list", user.uid);
-  // await setDoc(listRef, { list: [] }).catch((e) => console.log(e));
+  // Create a "list" collection where lists will be stored
+  await setDoc(doc(db, "lists", user.uid));
 };
 // Send password reset - currently dead
 const sendPasswordReset = async (email) => {
@@ -114,6 +111,28 @@ const getList = async (user) => {
   }
 };
 
+const pushNewList = async (user, newElement) => {
+  const name = doc(db, "lists", user);
+  // await setDoc(name, { lists: [] });
+  await updateDoc(name, { lists: arrayUnion(newElement) }, { merge: true });
+};
+
+const getLists = async (user) => {
+  const listRef = doc(db, "lists", user);
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    return [];
+  }
+};
+const getSingleList = async (user) => {
+  const listRef = doc(db, "lists", user);
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+};
 export {
   auth,
   db,
@@ -124,5 +143,7 @@ export {
   getListFromCurrent,
   deleteListFromCurrent,
   addList,
-  getList,
+  getLists,
+  pushNewList,
+  getSingleList,
 };

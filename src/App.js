@@ -25,7 +25,7 @@ function App() {
           <Route path="/lists">
             <Lists />
           </Route>
-          <Route path="/shoppinglist">
+          <Route path="/shoppinglist/:id">
             <ShoppingList />
           </Route>
           <Route path="/">

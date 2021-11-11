@@ -6,9 +6,13 @@ function Form({ inputFields, button, source, dataGetter }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => dataGetter(data);
+  const onSubmit = (data) => {
+    dataGetter(data);
+    reset();
+  };
 
   return (
     <form

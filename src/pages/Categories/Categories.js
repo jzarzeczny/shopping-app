@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import Form from "../../components/common/Form/Form";
 import Layout from "../../components/Layout/Layout";
@@ -6,7 +6,11 @@ import ListsContainer from "../../components/Lists/Container/ListsContainer";
 import GroupOfLists from "../../components/Lists/GroupOfLists/GroupOfLists";
 import SingleList from "../../components/Lists/SingleList/SingleList";
 import { AuthContext } from "../../context/FirebaseContext";
-import { pushNewCategory, getUserCategories } from "../../firebase";
+import {
+  pushNewCategory,
+  getUserCategories,
+  updateUserCategories,
+} from "../../firebase";
 
 const inputFields = [{ name: "Nowa kategoria", id: "category" }];
 
@@ -14,6 +18,16 @@ function Categories() {
   const [getCategories, setGetCategories] = useState(null);
   const [userCategories, setUserCategories] = useState(null);
   const { currentUser } = useContext(AuthContext);
+
+  // Filter out the field from db
+  const delateElementFromCategoryList = useCallback(
+    (id) => {
+      const newList = userCategories.filter((category) => category.id !== id);
+      updateUserCategories(currentUser.uid, { category: newList });
+    },
+    [currentUser.uid, userCategories]
+  );
+
   useEffect(() => {
     if (getCategories) {
       // Send category to FB
@@ -26,13 +40,12 @@ function Categories() {
   }, [getCategories]);
 
   useEffect(() => {
-    if (currentUser) {
-      getUserCategories(currentUser.uid).then((data) => {
-        setUserCategories(data.category);
-      });
-    }
-  }, [currentUser]);
-  console.log(userCategories);
+    if (currentUser === null) return;
+
+    getUserCategories(currentUser.uid).then((data) => {
+      setUserCategories(data.category);
+    });
+  }, [currentUser, delateElementFromCategoryList]);
 
   return (
     <Layout>
@@ -50,6 +63,7 @@ function Categories() {
                 source="category"
                 singleList={singleList}
                 key={singleList.id}
+                onClickHandler={delateElementFromCategoryList}
               />
             ))
           ) : (

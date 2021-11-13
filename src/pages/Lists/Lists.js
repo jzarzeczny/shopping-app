@@ -16,6 +16,9 @@ function Lists() {
   const [shoppingLists, setShoppingLists] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
+
+  // Delate a category from list of categories
+
   // Add list to lits
   useEffect(() => {
     if (currentUser && listFormData) {
@@ -32,11 +35,11 @@ function Lists() {
   }, [listFormData]);
   // Get list data from FB
   useEffect(() => {
-    if (currentUser) {
-      getLists(currentUser.uid).then((data) => {
-        setShoppingLists(data.lists);
-      });
-    }
+    if (currentUser === null) return;
+
+    getLists(currentUser.uid).then((data) => {
+      setShoppingLists(data.lists);
+    });
   }, [currentUser]);
 
   return (

@@ -138,6 +138,11 @@ const getUserCategories = async (user) => {
     return [];
   }
 };
+
+const updateUserCategories = async (user, data) => {
+  const name = doc(db, "categories", user);
+  await updateDoc(name, data);
+};
 export {
   auth,
   db,
@@ -153,4 +158,5 @@ export {
   getSingleList,
   pushNewCategory,
   getUserCategories,
+  updateUserCategories,
 };

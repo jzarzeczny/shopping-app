@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 import { BinIcon } from "../../../images/icons";
 import EditIcon from "../../../images/icons/edit.svg";
 
-function SingleList({ singleList, source }) {
+function SingleList({ singleList, source, onClickHandler }) {
   return (
     <div className="lists__single">
       <h3 className="lists__name">{singleList.name}</h3>
       <i>
         {source === "category" ? (
-          <img src={BinIcon} alt="bin" />
+          <img
+            src={BinIcon}
+            alt="bin"
+            onClick={() => onClickHandler(singleList.id)}
+          />
         ) : (
           <Link to={`${"shoppinglist/" + singleList.id}`}>
             <img src={EditIcon} alt="edit" />

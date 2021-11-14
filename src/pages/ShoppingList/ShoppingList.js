@@ -92,16 +92,11 @@ function ShoppingList() {
 
       function checkOfElementIsInList(arr, el) {
         const newArray = arr.filter((arrEl) => arrEl.name === el.category);
-        console.log(newArray);
         if (newArray.length === 0) {
           return false;
         } else return true;
       }
-      console.log(newList.listCategories);
-      console.log(item.category);
-      console.log(newList.listCategories.includes(item.category));
       if (checkOfElementIsInList(newList.listCategories, item)) {
-        console.log("Item in categories");
         newList.listCategories.forEach((elements) => {
           if (elements.name === item.category) {
             elements.list.push(item);
@@ -109,7 +104,6 @@ function ShoppingList() {
         });
         return;
       } else {
-        console.log("Item is not in cateogies");
         newList.listCategories.push({
           name: item.category,
           id: item.category,
@@ -141,8 +135,6 @@ function ShoppingList() {
       setCategories(updateInputFields(data.category))
     );
   }, [currentUser]);
-
-  console.log(listData);
 
   return (
     <Layout>

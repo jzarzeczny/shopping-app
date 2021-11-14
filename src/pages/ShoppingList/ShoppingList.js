@@ -6,7 +6,7 @@ import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/Shopp
 import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
 import ShoppingListEdit from "../../components/ShoppingList/ShoppingListEdit/ShoppingListEdit";
 import { useParams } from "react-router";
-import { getSingleList } from "../../firebase";
+import { getSingleList, getUserCategories } from "../../firebase";
 import { AuthContext } from "../../context/FirebaseContext";
 
 // To achive belove data structure, there are two possible way
@@ -57,11 +57,27 @@ const inputFields = [
   { name: "Uwagi", id: "remarks" },
 ];
 
+const updateInputFields = (categories) => {
+  return [
+    { name: "Produkt*", id: "product" },
+    {
+      name: "Kategoria",
+      id: "category",
+      type: "select",
+      options: categories,
+    },
+
+    { name: "Ilość", id: "quantity" },
+    { name: "Uwagi", id: "remarks" },
+  ];
+};
+
 function ShoppingList() {
   const [listView, setListView] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
   const [listData, setListData] = useState(null);
   const [formData, setFormData] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   const breakingPoint = 1024;
   const { currentUser } = useContext(AuthContext);
@@ -70,34 +86,41 @@ function ShoppingList() {
 
   const addItemToArray = useCallback(
     (item) => {
-      console.log("Im adding to array");
+      if (item === null) return;
+      item.id = item.product;
+      let newList = { ...listData };
 
-      if (item !== null) {
-        console.log(item);
-        item.id = item.product;
-        let newList = { ...listData };
-        console.log(newList);
-        if (newList["listCategories"].length > 0) {
-          newList["listCategories"].forEach((category) => {
-            console.log("in for each loop");
-            if (category.id === item.category) {
-              console.log("in if statment");
-              category["list"].push(item);
-            } else {
-              console.log("im in else statment ");
-              newList[item.category] = [];
-              newList[item.category].push(item);
-              console.log(newList);
-            }
-          });
-        } else {
-          // newList["listCategories"][item.category].push(item);
-        }
-        setFormData(null);
-        setListData(newList);
+      function checkOfElementIsInList(arr, el) {
+        const newArray = arr.filter((arrEl) => arrEl.name === el.category);
+        console.log(newArray);
+        if (newArray.length === 0) {
+          return false;
+        } else return true;
       }
+      console.log(newList.listCategories);
+      console.log(item.category);
+      console.log(newList.listCategories.includes(item.category));
+      if (checkOfElementIsInList(newList.listCategories, item)) {
+        console.log("Item in categories");
+        newList.listCategories.forEach((elements) => {
+          if (elements.name === item.category) {
+            elements.list.push(item);
+          }
+        });
+        return;
+      } else {
+        console.log("Item is not in cateogies");
+        newList.listCategories.push({
+          name: item.category,
+          id: item.category,
+          list: [item],
+        });
+      }
+
+      setFormData(null);
+      setListData(newList);
     },
-    [formData]
+    [listData]
   );
 
   useEffect(() => {
@@ -109,12 +132,17 @@ function ShoppingList() {
   }, [formData, addItemToArray]);
 
   useEffect(() => {
-    if (currentUser) {
-      getSingleList(currentUser.uid).then((data) =>
-        setListData(data["lists"].filter((list) => list.id === params.id)[0])
-      );
-    }
+    if (currentUser === null) return;
+
+    getSingleList(currentUser.uid).then((data) =>
+      setListData(data["lists"].filter((list) => list.id === params.id)[0])
+    );
+    getUserCategories(currentUser.uid).then((data) =>
+      setCategories(updateInputFields(data.category))
+    );
   }, [currentUser]);
+
+  console.log(listData);
 
   return (
     <Layout>
@@ -132,7 +160,7 @@ function ShoppingList() {
           ) : (
             <>
               <ShoppingListEdit
-                inputFields={inputFields}
+                inputFields={categories}
                 listView={listView}
                 setListView={setListView}
                 setFormData={setFormData}
@@ -152,12 +180,15 @@ function ShoppingList() {
           )}
 
           <ShoppingButtons display />
-          <ShoppingListEdit
-            inputFields={inputFields}
-            listView={listView}
-            setListView={setListView}
-            setFormData={setFormData}
-          />
+          {categories && (
+            <ShoppingListEdit
+              inputFields={categories}
+              listView={listView}
+              setListView={setListView}
+              setFormData={setFormData}
+            />
+          )}
+
           <ShoppingButtons />
         </ShoppingContainer>
       )}

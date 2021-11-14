@@ -9,7 +9,6 @@ function Navbar({ open, setOpen, navList, currentUser }) {
   let history = useHistory();
 
   const handleNavClick = (element) => {
-    console.log(element.target.text);
     if (element.target.text === "Wyloguj") {
       logout();
       history.push("/");

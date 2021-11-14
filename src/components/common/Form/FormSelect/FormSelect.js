@@ -10,12 +10,8 @@ function FormSelect({ data, register, errors }) {
           Wybierz kategorię
         </option>
         {options.map((option) => (
-          <option
-            className="form__option"
-            value={option.value}
-            key={option.value}
-          >
-            {option.text}
+          <option className="form__option" value={option.id} key={option.name}>
+            {option.name}
           </option>
         ))}
       </select>

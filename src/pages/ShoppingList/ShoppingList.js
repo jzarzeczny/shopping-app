@@ -88,8 +88,6 @@ function ShoppingList() {
     );
   }, [currentUser]);
 
-  console.log(listData);
-
   return (
     <Layout>
       {width < breakingPoint ? (
@@ -125,7 +123,7 @@ function ShoppingList() {
             />
           )}
 
-          <ShoppingButtons display />
+          <ShoppingButtons display listData={listData} />
           {categories && (
             <ShoppingListEdit
               inputFields={categories}
@@ -134,7 +132,7 @@ function ShoppingList() {
               setFormData={setFormData}
             />
           )}
-          <ShoppingButtons listData={listData} />
+          <ShoppingButtons />
         </ShoppingContainer>
       )}
     </Layout>

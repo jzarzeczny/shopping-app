@@ -102,7 +102,6 @@ const addList = async (user, list) => {
 
 const pushNewList = async (user, newElement) => {
   const name = doc(db, "lists", user);
-  // await setDoc(name, { lists: [] });
   await updateDoc(name, { lists: arrayUnion(newElement) }, { merge: true });
 };
 
@@ -123,9 +122,29 @@ const getSingleList = async (user) => {
   }
 };
 
+// Custom update an object in list
+// I did not find native solution sadly :(
+const updateSingleList = async (user, data) => {
+  const listRef = doc(db, "lists", user);
+
+  // Get list of user's lists
+  const oldList = await getLists(user);
+
+  // Find the list and add data
+  const newList = { ...oldList };
+  // Remove object from list
+  newList.lists = oldList["lists"].filter(
+    (singleList) => singleList.id !== data.id
+  );
+  // Add object!
+  newList["lists"].push(data);
+
+  // Update the DB!
+  await updateDoc(listRef, newList);
+};
+
 const pushNewCategory = async (user, newCategory) => {
   const name = doc(db, "categories", user);
-  // await setDoc(name, { lists: [] });
   await updateDoc(name, { category: arrayUnion(newCategory) }, { merge: true });
 };
 
@@ -151,8 +170,9 @@ export {
   logout,
   getLists,
   pushNewList,
-  getSingleList,
   pushNewCategory,
+  getSingleList,
   getUserCategories,
   updateUserCategories,
+  updateSingleList,
 };

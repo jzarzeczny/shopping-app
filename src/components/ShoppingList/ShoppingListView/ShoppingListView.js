@@ -2,6 +2,7 @@ import ShoppingSection from "../ShoppingSection/ShoppingSection";
 import ShoppingDetails from "../ShoppingDetails/ShoppingDetails";
 import ShoppingListContainer from "../ShoppingListContainer/ShoppingListContainer";
 import ButtonsContainer from "../ButtonsContainer/ButtonsContainer";
+import NoData from "../../common/NoData/NoData";
 
 function ShoppingListView({ listData, listView, setListView }) {
   return (
@@ -16,7 +17,7 @@ function ShoppingListView({ listData, listView, setListView }) {
             ></ShoppingDetails>
           ))
         ) : (
-          <h3>Nie posiadasz jeszcze przedmiotów w koszyku</h3>
+          <NoData>Nie posiadasz jeszcze przedmiotów w koszyku</NoData>
         )}
       </ShoppingListContainer>
     </ShoppingSection>

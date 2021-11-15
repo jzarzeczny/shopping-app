@@ -9,54 +9,6 @@ import { useParams } from "react-router";
 import { getSingleList, getUserCategories } from "../../firebase";
 import { AuthContext } from "../../context/FirebaseContext";
 
-// To achive belove data structure, there are two possible way
-
-// Add the listCategories fetched from DB to orginally created list OR
-// Get more data from the form in order to determine what categories does user have
-// First things first, need to create Categories first + implement it!
-
-const mockedData = {
-  listName: "Test list",
-  listData: "25.10.21",
-  listCategories: [
-    {
-      name: "Owoce",
-      id: "fruits",
-      list: [
-        { product: "Banany", amount: "3", remarks: "lorem ipsum dori" },
-        {
-          product: "Maliny",
-          amount: "Opakowanie",
-          remarks: "lorem ipsum dori",
-        },
-      ],
-    },
-    {
-      name: "Warzywa",
-      id: "vegitables",
-      list: [
-        { product: "Pomidory", amount: "3 kg", remarks: "lorem ipsum dori" },
-      ],
-    },
-  ],
-};
-
-const inputFields = [
-  { name: "Produkt*", id: "product" },
-  {
-    name: "Kategoria",
-    id: "category",
-    type: "select",
-    options: [
-      { value: "fruits", text: "Owoce" },
-      { value: "vegitables", text: "Warzywa" },
-    ],
-  },
-
-  { name: "Ilość", id: "quantity" },
-  { name: "Uwagi", id: "remarks" },
-];
-
 const updateInputFields = (categories) => {
   return [
     { name: "Produkt*", id: "product" },
@@ -136,6 +88,8 @@ function ShoppingList() {
     );
   }, [currentUser]);
 
+  console.log(listData);
+
   return (
     <Layout>
       {width < breakingPoint ? (
@@ -147,7 +101,7 @@ function ShoppingList() {
                 listView={listView}
                 setListView={setListView}
               />
-              <ShoppingButtons display />
+              <ShoppingButtons display listData={listData} />
             </>
           ) : (
             <>
@@ -180,8 +134,7 @@ function ShoppingList() {
               setFormData={setFormData}
             />
           )}
-
-          <ShoppingButtons />
+          <ShoppingButtons listData={listData} />
         </ShoppingContainer>
       )}
     </Layout>

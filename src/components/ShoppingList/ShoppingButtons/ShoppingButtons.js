@@ -1,11 +1,12 @@
 import Button from "../../common/Button/Button";
 
-function ShoppingButtons({ display }) {
+function ShoppingButtons({ display, listData }) {
   return (
     <div className="shopping__buttons--action">
       {display ? (
         <>
           <Button source="--danger">Usuń</Button>
+
           <Button>Zapisz</Button>
         </>
       ) : (

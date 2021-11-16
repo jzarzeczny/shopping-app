@@ -1,9 +1,11 @@
-import { useState } from "react";
-function ShoppingListContent({ product, changeSizeOfBox }) {
+import { useRef, useState } from "react";
+function ShoppingListContent({ product }) {
   const [listDone, setListDone] = useState(false);
   const [listInformation, setListInformation] = useState(false);
-
+  const informationRef = useRef();
   const openInformation = () => {
+    console.log(informationRef.current.scrollHeight);
+
     setListInformation(!listInformation);
   };
   return (
@@ -20,9 +22,10 @@ function ShoppingListContent({ product, changeSizeOfBox }) {
         className={`list__information ${
           listInformation ? "list__information--open" : ""
         }`}
+        ref={informationRef}
       >
         <h4 className="list__title">Ilość:</h4>
-        <p className="list__content">{product.amount}</p>
+        <p className="list__content">{product.quantity}</p>
         <h4 className="list__title">Uwagi:</h4>
         <p className="list__content">{product.remarks}</p>
       </div>

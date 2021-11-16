@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import Form from "../../components/common/Form/Form";
+import NoData from "../../components/common/NoData/NoData";
 import Layout from "../../components/Layout/Layout";
 import ListsContainer from "../../components/Lists/Container/ListsContainer";
 import GroupOfLists from "../../components/Lists/GroupOfLists/GroupOfLists";
@@ -33,6 +34,7 @@ function Lists() {
       );
     }
   }, [listFormData]);
+
   // Get list data from FB
   useEffect(() => {
     if (currentUser === null) return;
@@ -41,6 +43,8 @@ function Lists() {
       setShoppingLists(data.lists);
     });
   }, [currentUser]);
+
+  console.log(shoppingLists);
 
   return (
     <Layout>
@@ -52,12 +56,12 @@ function Lists() {
           button="Dodaj"
         />
         <GroupOfLists>
-          {shoppingLists ? (
+          {shoppingLists && shoppingLists.length > 0 ? (
             shoppingLists.map((singleList) => (
               <SingleList singleList={singleList} key={singleList.id} />
             ))
           ) : (
-            <h3>Nie masz jeszcze listy, stwórz nową.</h3>
+            <NoData>Nie masz jeszcze listy, stwórz nową.</NoData>
           )}
         </GroupOfLists>
       </ListsContainer>

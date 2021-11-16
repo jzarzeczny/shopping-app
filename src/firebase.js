@@ -6,7 +6,6 @@ import {
   updateDoc,
   arrayUnion,
   getDoc,
-  deleteDoc,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -14,8 +13,6 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
-
-import { revisedRandId } from "./utils/idGenerator";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -58,46 +55,6 @@ const sendPasswordReset = async (email) => {
 // Logout user
 const logout = () => {
   signOut(auth);
-};
-
-// Add data to current list
-const addListToCurrent = async (user, data) => {
-  const listRef = doc(db, "currentList", user.uid);
-  await setDoc(listRef, {
-    list: data.list,
-    id: revisedRandId(),
-    status: "open",
-    date: Date.now(),
-  }).catch((e) => console.log(e));
-};
-
-// Get data from current list
-const getListFromCurrent = async (user) => {
-  const listRef = doc(db, "currentList", user.uid);
-
-  const docSnap = await getDoc(listRef);
-  if (docSnap.exists()) {
-    return docSnap.data();
-  } else {
-    console.log("There is no data");
-    return { list: [] };
-  }
-};
-
-// Delate data from current list
-const deleteListFromCurrent = async (user) => {
-  const listRef = doc(db, "currentList", user.uid);
-  await deleteDoc(listRef);
-};
-
-// Add list to history collection
-const addList = async (user, list) => {
-  const listRef = doc(db, "list", user.uid);
-  await updateDoc(
-    listRef,
-    { list: arrayUnion({ list }) },
-    { merge: true }
-  ).catch((e) => console.log(e));
 };
 
 const pushNewList = async (user, newElement) => {
@@ -143,6 +100,20 @@ const updateSingleList = async (user, data) => {
   await updateDoc(listRef, newList);
 };
 
+const delateSingleList = async (user, data) => {
+  const listRef = doc(db, "lists", user);
+
+  const oldList = await getLists(user);
+
+  const newList = { ...oldList };
+
+  newList.lists = newList.lists = oldList["lists"].filter(
+    (singleList) => singleList.id !== data.id
+  );
+
+  await updateDoc(listRef, newList);
+};
+
 const pushNewCategory = async (user, newCategory) => {
   const name = doc(db, "categories", user);
   await updateDoc(name, { category: arrayUnion(newCategory) }, { merge: true });
@@ -175,4 +146,5 @@ export {
   getUserCategories,
   updateUserCategories,
   updateSingleList,
+  delateSingleList,
 };

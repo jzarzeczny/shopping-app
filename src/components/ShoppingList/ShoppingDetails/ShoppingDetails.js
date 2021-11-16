@@ -46,7 +46,7 @@ function ShoppingDetails({ data }) {
 
   useEffect(() => {
     getHeight();
-  }, [data.list]);
+  }, [data]);
   return (
     <details
       ref={detailsElement}

@@ -37,6 +37,7 @@ function Lists() {
     }
   }, [listFormData]);
 
+  console.log(lists);
   return (
     <Layout>
       <ListsContainer>

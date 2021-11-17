@@ -6,8 +6,9 @@ import ShoppingButtons from "../../components/ShoppingList/ShoppingButtons/Shopp
 import ShoppingContainer from "../../components/ShoppingList/ShoppingContainer/ShoppingContainer";
 import ShoppingListEdit from "../../components/ShoppingList/ShoppingListEdit/ShoppingListEdit";
 import { useParams } from "react-router";
-import { getSingleList, getUserCategories } from "../../firebase";
+import { getUserCategories } from "../../firebase";
 import { AuthContext } from "../../context/FirebaseContext";
+import { useLists, useListsDisplatch } from "../../context/ListContext";
 
 const updateInputFields = (categories) => {
   return [
@@ -27,7 +28,6 @@ const updateInputFields = (categories) => {
 function ShoppingList() {
   const [listView, setListView] = useState(true);
   const [width, setWidth] = useState(window.innerWidth);
-  const [listData, setListData] = useState(null);
   const [formData, setFormData] = useState(null);
   const [categories, setCategories] = useState(null);
 
@@ -36,58 +36,26 @@ function ShoppingList() {
 
   let params = useParams();
 
-  const addItemToArray = useCallback(
-    (item) => {
-      if (item === null) return;
-      item.id = item.product;
-      let newList = { ...listData };
-
-      function checkOfElementIsInList(arr, el) {
-        const newArray = arr.filter((arrEl) => arrEl.name === el.category);
-        if (newArray.length === 0) {
-          return false;
-        } else return true;
-      }
-      if (checkOfElementIsInList(newList.listCategories, item)) {
-        newList.listCategories.forEach((elements) => {
-          if (elements.name === item.category) {
-            elements.list.push(item);
-          }
-        });
-        return;
-      } else {
-        newList.listCategories.push({
-          name: item.category,
-          id: item.category,
-          list: [item],
-        });
-      }
-
-      setFormData(null);
-      setListData(newList);
-    },
-    [listData]
-  );
+  const dispatch = useListsDisplatch();
+  const list = useLists().filter((list) => list.id === params.id);
 
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
 
   useEffect(() => {
-    addItemToArray(formData);
-  }, [formData, addItemToArray]);
+    if (formData === null) return;
+    dispatch({ type: "addToList", element: formData, id: params.id });
+    setFormData(null);
+  }, [formData, dispatch]);
 
   useEffect(() => {
     if (currentUser === null) return;
 
-    getSingleList(currentUser.uid).then((data) =>
-      setListData(data["lists"].filter((list) => list.id === params.id)[0])
-    );
     getUserCategories(currentUser.uid).then((data) =>
       setCategories(updateInputFields(data.category))
     );
-  }, [currentUser]);
-
+  }, [currentUser, dispatch]);
   return (
     <Layout>
       {width < breakingPoint ? (
@@ -95,11 +63,11 @@ function ShoppingList() {
           {listView ? (
             <>
               <ShoppingListView
-                listData={listData}
+                listData={list}
                 listView={listView}
                 setListView={setListView}
               />
-              <ShoppingButtons display listData={listData} />
+              <ShoppingButtons display listData={list} />
             </>
           ) : (
             <>
@@ -115,15 +83,15 @@ function ShoppingList() {
         </>
       ) : (
         <ShoppingContainer>
-          {listData && (
+          {list && (
             <ShoppingListView
-              listData={listData}
+              listData={list}
               listView={listView}
               setListView={setListView}
             />
           )}
 
-          <ShoppingButtons display listData={listData} />
+          <ShoppingButtons display listData={list} />
           {categories && (
             <ShoppingListEdit
               inputFields={categories}

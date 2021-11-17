@@ -9,7 +9,7 @@ function ShoppingListView({ listData, listView, setListView }) {
     <ShoppingSection>
       <ShoppingListContainer>
         <ButtonsContainer list={listView} setListView={setListView} />
-        {listData["listCategories"].length > 0 ? (
+        {listData.listCategories && listData["listCategories"].length > 0 ? (
           listData["listCategories"].map((category) => (
             <ShoppingDetails
               data={category}

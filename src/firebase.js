@@ -82,6 +82,7 @@ const getSingleList = async (user) => {
 // Custom update an object in list
 // I did not find native solution sadly :(
 const updateSingleList = async (user, data) => {
+  console.log(data);
   const listRef = doc(db, "lists", user);
 
   // Get list of user's lists
@@ -94,6 +95,7 @@ const updateSingleList = async (user, data) => {
     (singleList) => singleList.id !== data.id
   );
   // Add object!
+  console.log(newList);
   newList["lists"].push(data);
 
   // Update the DB!

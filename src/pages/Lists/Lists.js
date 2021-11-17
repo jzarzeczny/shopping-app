@@ -7,6 +7,7 @@ import ListsContainer from "../../components/Lists/Container/ListsContainer";
 import GroupOfLists from "../../components/Lists/GroupOfLists/GroupOfLists";
 import SingleList from "../../components/Lists/SingleList/SingleList";
 import { AuthContext } from "../../context/FirebaseContext";
+import { useLists, useListsDisplatch } from "../../context/ListContext";
 import { getLists, pushNewList } from "../../firebase";
 import { revisedRandId } from "../../utils/idGenerator";
 
@@ -14,37 +15,27 @@ const inputFields = [{ name: "Nowa Lista", id: "newList" }];
 
 function Lists() {
   const [listFormData, setListFormData] = useState(null);
-  const [shoppingLists, setShoppingLists] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
 
+  const lists = useLists();
+  const dispatch = useListsDisplatch();
   // Delate a category from list of categories
 
   // Add list to lits
+
   useEffect(() => {
     if (currentUser && listFormData) {
-      pushNewList(currentUser.uid, {
+      console.log(listFormData);
+      dispatch({
+        type: "addList",
         name: listFormData.newList,
         id: revisedRandId(),
-        listCategories: [],
-      }).then(
-        getLists(currentUser.uid).then((data) => {
-          setShoppingLists(data.lists);
-        })
-      );
+        listCattegories: [],
+        user: currentUser.uid,
+      });
     }
   }, [listFormData]);
-
-  // Get list data from FB
-  useEffect(() => {
-    if (currentUser === null) return;
-
-    getLists(currentUser.uid).then((data) => {
-      setShoppingLists(data.lists);
-    });
-  }, [currentUser]);
-
-  console.log(shoppingLists);
 
   return (
     <Layout>
@@ -56,8 +47,8 @@ function Lists() {
           button="Dodaj"
         />
         <GroupOfLists>
-          {shoppingLists && shoppingLists.length > 0 ? (
-            shoppingLists.map((singleList) => (
+          {lists && lists.length > 0 ? (
+            lists.map((singleList) => (
               <SingleList singleList={singleList} key={singleList.id} />
             ))
           ) : (

@@ -7,32 +7,35 @@ import Login from "./pages/Login/Login";
 import Lists from "./pages/Lists/Lists";
 import ShoppingList from "./pages/ShoppingList/ShoppingList";
 import Categories from "./pages/Categories/Categories";
+import { ListsProvider } from "./context/ListContext";
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Switch>
-          <Route path="/category">
-            <Categories />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/lists">
-            <Lists />
-          </Route>
-          <Route path="/shoppinglist/:id">
-            <ShoppingList />
-          </Route>
-          <Route path="/">
-            <Main />
-          </Route>
-        </Switch>
-      </Router>
+      <ListsProvider>
+        <Router>
+          <Switch>
+            <Route path="/category">
+              <Categories />
+            </Route>
+            <Route path="/lists">
+              <Lists />
+            </Route>
+            <Route path="/shoppinglist/:id">
+              <ShoppingList />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/">
+              <Main />
+            </Route>
+          </Switch>
+        </Router>
+      </ListsProvider>
     </AuthProvider>
   );
 }

@@ -3,10 +3,13 @@ import { delateSingleList, updateSingleList } from "../../../firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/FirebaseContext";
 import { useHistory } from "react-router";
+import { useListsDisplatch } from "../../../context/ListContext";
 
 function ShoppingButtons({ display, listData }) {
   const { currentUser } = useContext(AuthContext);
   let history = useHistory();
+
+  const dispatch = useListsDisplatch();
   function sendDataToDB() {
     try {
       updateSingleList(currentUser.uid, listData);
@@ -17,7 +20,11 @@ function ShoppingButtons({ display, listData }) {
 
   async function delateDataFromDB() {
     try {
-      await delateSingleList(currentUser.uid, listData);
+      dispatch({
+        type: "delateList",
+        user: currentUser.uid,
+        listToDel: listData,
+      });
       history.push("/lists");
     } catch {
       console.log("Delate failed");

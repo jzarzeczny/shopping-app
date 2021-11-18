@@ -19,7 +19,7 @@ function Lists() {
 
   const lists = useLists();
   const dispatch = useListsDisplatch();
-
+  console.log(lists);
   // Add list to lits
 
   useEffect(() => {
@@ -34,8 +34,6 @@ function Lists() {
       });
     }
   }, [listFormData]);
-
-  console.log(lists);
   return (
     <Layout>
       <ListsContainer>

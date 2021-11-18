@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useReducer } from "react";
 import { useEffect } from "react/cjs/react.development";
 // import { useEffect } from "react/cjs/react.development";
-import { getLists, pushNewList } from "../firebase";
+import { delateSingleList, getLists, pushNewList } from "../firebase";
 import { AuthContext } from "./FirebaseContext";
 
 const ListsContext = createContext(null);
@@ -55,9 +55,20 @@ function listReducer(lists, action) {
         listCategories: [],
       };
       pushNewList(action.user, newElement);
+      lists.push(newElement);
       return [...lists];
     case "addToList":
       return addItemToArray(action.element, action.id, lists);
+
+    case "delateList":
+      delateSingleList(action.user, action.listToDel);
+      console.log(action.listToDel);
+      const returnList = lists.filter(
+        (list) => list.id !== action.listToDel.id
+      );
+      console.log(returnList);
+      return [...returnList];
+
     default:
       console.log("error");
   }
@@ -66,7 +77,6 @@ function listReducer(lists, action) {
 function addItemToArray(item, id, lists) {
   if (item === null) return;
   item.id = item.product;
-  console.log(...lists);
   let listToModify = lists.filter((l) => l.id === id)[0];
   let newList = lists.filter((l) => l.id !== id);
   function checkOfElementIsInList(arr, el) {

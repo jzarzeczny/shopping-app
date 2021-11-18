@@ -110,7 +110,3 @@ function ShoppingList() {
 }
 
 export default ShoppingList;
-
-// Reducer to list menagments ? -> formData, listForm!!!!
-
-// Details html tag for each category of list => product list inside

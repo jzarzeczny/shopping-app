@@ -1,5 +1,5 @@
 import Button from "../../common/Button/Button";
-import { delateSingleList, updateSingleList } from "../../../firebase";
+import { updateSingleList } from "../../../firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/FirebaseContext";
 import { useHistory } from "react-router";

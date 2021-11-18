@@ -56,11 +56,8 @@ function listReducer(lists, action) {
       };
       pushNewList(action.user, newElement);
       return [...lists];
-    case "getList":
-      return lists.filter((list) => list.id === action.id)[0];
     case "addToList":
       return addItemToArray(action.element, action.id, lists);
-
     default:
       console.log("error");
   }
@@ -83,10 +80,10 @@ function addItemToArray(item, id, lists) {
   if (checkOfElementIsInList(listToModify.listCategories, item)) {
     listToModify.listCategories.forEach((element) => {
       if (element.name === item.category) {
+        console.log("trying to push into existing list");
         element["list"].push(item);
       }
     });
-    return;
   } else {
     listToModify.listCategories.push({
       name: item.category,
@@ -94,6 +91,8 @@ function addItemToArray(item, id, lists) {
       list: [item],
     });
   }
+  console.log(listToModify);
+  console.log(newList);
   newList.push(listToModify);
   return newList;
 }

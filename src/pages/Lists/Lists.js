@@ -8,7 +8,6 @@ import GroupOfLists from "../../components/Lists/GroupOfLists/GroupOfLists";
 import SingleList from "../../components/Lists/SingleList/SingleList";
 import { AuthContext } from "../../context/FirebaseContext";
 import { useLists, useListsDisplatch } from "../../context/ListContext";
-import { getLists, pushNewList } from "../../firebase";
 import { revisedRandId } from "../../utils/idGenerator";
 
 const inputFields = [{ name: "Nowa Lista", id: "newList" }];
@@ -20,7 +19,6 @@ function Lists() {
 
   const lists = useLists();
   const dispatch = useListsDisplatch();
-  // Delate a category from list of categories
 
   // Add list to lits
 

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import Layout from "../../components/Layout/Layout";
 import ShoppingListView from "../../components/ShoppingList/ShoppingListView/ShoppingListView";
@@ -37,7 +37,8 @@ function ShoppingList() {
   let params = useParams();
 
   const dispatch = useListsDisplatch();
-  const list = useLists().filter((list) => list.id === params.id);
+  const lists = useLists();
+  const singleList = lists.filter((list) => list.id === params.id)[0];
 
   useEffect(() => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
@@ -56,6 +57,7 @@ function ShoppingList() {
       setCategories(updateInputFields(data.category))
     );
   }, [currentUser, dispatch]);
+
   return (
     <Layout>
       {width < breakingPoint ? (
@@ -63,11 +65,11 @@ function ShoppingList() {
           {listView ? (
             <>
               <ShoppingListView
-                listData={list}
+                listData={singleList}
                 listView={listView}
                 setListView={setListView}
               />
-              <ShoppingButtons display listData={list} />
+              <ShoppingButtons display listData={singleList} />
             </>
           ) : (
             <>
@@ -83,15 +85,15 @@ function ShoppingList() {
         </>
       ) : (
         <ShoppingContainer>
-          {list && (
+          {singleList && (
             <ShoppingListView
-              listData={list}
+              listData={singleList}
               listView={listView}
               setListView={setListView}
             />
           )}
 
-          <ShoppingButtons display listData={list} />
+          <ShoppingButtons display listData={singleList} />
           {categories && (
             <ShoppingListEdit
               inputFields={categories}

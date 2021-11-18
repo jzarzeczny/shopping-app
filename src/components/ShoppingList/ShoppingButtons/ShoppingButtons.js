@@ -15,9 +15,10 @@ function ShoppingButtons({ display, listData }) {
     }
   }
 
-  function delateDataFromDB() {
+  async function delateDataFromDB() {
     try {
-      delateSingleList(currentUser.uid, listData).then(history.push("/lists"));
+      await delateSingleList(currentUser.uid, listData);
+      history.push("/lists");
     } catch {
       console.log("Delate failed");
     }

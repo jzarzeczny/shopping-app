@@ -1,4 +1,4 @@
-function ButtonsContainer({ list, setListView }) {
+function ButtonsContainer({ list, setListView, singleList }) {
   return (
     <div className="shopping__buttons">
       <div

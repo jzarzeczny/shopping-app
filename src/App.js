@@ -8,6 +8,7 @@ import Lists from "./pages/Lists/Lists";
 import ShoppingList from "./pages/ShoppingList/ShoppingList";
 import Categories from "./pages/Categories/Categories";
 import { ListsProvider } from "./context/ListContext";
+import Account from "./pages/Account/Account";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/shoppinglist/:id">
               <ShoppingList />
+            </Route>
+            <Route path="/account">
+              <Account />
             </Route>
             <Route path="/register">
               <Register />

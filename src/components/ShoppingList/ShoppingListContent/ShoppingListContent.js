@@ -5,7 +5,11 @@ function ShoppingListContent({ product }) {
   const informationRef = useRef();
   const openInformation = () => {
     console.log(informationRef.current.scrollHeight);
-
+    const openHeightOfList = informationRef.current.scrollHeight;
+    informationRef.current.style.setProperty(
+      "--list-height-open",
+      openHeightOfList + "px"
+    );
     setListInformation(!listInformation);
   };
   return (

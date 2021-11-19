@@ -1,5 +1,18 @@
+@use "../../../sass/abstracts/" as *;
+
 .account__buttons {
   margin-top: 4rem;
   display: flex;
   flex-direction: row;
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "";
+    height: 3px;
+    width: 100%;
+    background: $clr-main;
+  }
 }

@@ -1,0 +1,29 @@
+import { useHistory } from "react-router";
+import Button from "../../common/Button/Button";
+
+function AccountModal({ openModal, setOpenModal }) {
+  const history = useHistory();
+  function handleClose() {}
+
+  function handleDelAcc() {
+    setOpenModal(false);
+    history.push("/");
+  }
+  return (
+    <div className={`modal ${openModal ? "modal--open" : ""} `}>
+      <div className="modal__content">
+        <h3 className="modal__header">Czy na pewno chcesz usunąć konto?</h3>
+        <div className="modal__buttons">
+          <Button source="--dont" clickFunc={handleClose}>
+            Nie, nie chce usuwać konta
+          </Button>
+          <Button source="--alert" clickFunc={handleDelAcc}>
+            Tak, usuń konto
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AccountModal;

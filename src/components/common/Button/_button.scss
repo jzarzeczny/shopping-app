@@ -30,6 +30,11 @@
   border: 2px solid $clr-danger;
   color: $clr-danger;
 }
+.button--dont {
+  background: $clr-white;
+  border: 2px solid $clr-dark;
+  color: $clr-dark;
+}
 
 @media (min-width: $smallDesktop) {
   .button--action {

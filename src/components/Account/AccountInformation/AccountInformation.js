@@ -4,6 +4,7 @@ function AccountInformation() {
       <div className="form__control">
         <label htmlFor="nicknameInfo">Twoje imię</label>
         <input
+          disabled
           className="form__input"
           id="nicknameInfo"
           placeholder="NickPlaceHolder"
@@ -12,6 +13,7 @@ function AccountInformation() {
       <div className="form__control">
         <label htmlFor="emailInfo">Twój email</label>
         <input
+          disabled
           className="form__input"
           id="emailInfo"
           placeholder="EmailPlaceHolder"

@@ -5,32 +5,32 @@ function ShoppingDetails({ data }) {
   const [open, setOpen] = useState(false);
   const detailsElement = useRef();
   const contentElement = useRef();
-  const getHeight = () => {
-    // Get height of details and content
-    const closedHeightOfDetails = detailsElement.current.scrollHeight;
-    const closedHeightOfContent = contentElement.current.scrollHeight;
-    detailsElement.current.open = true;
-    const openHeightOfDetails = detailsElement.current.scrollHeight;
-    const openHeightOfContent = contentElement.current.scrollHeight;
+  // const getHeight = () => {
+  //   // Get height of details and content
+  //   const closedHeightOfDetails = detailsElement.current.scrollHeight;
+  //   const closedHeightOfContent = contentElement.current.scrollHeight;
+  //   detailsElement.current.open = true;
+  //   const openHeightOfDetails = detailsElement.current.scrollHeight;
+  //   const openHeightOfContent = contentElement.current.scrollHeight;
 
-    detailsElement.current.open = false;
-    detailsElement.current.style.setProperty(
-      "--details-height-closed",
-      closedHeightOfDetails + "px"
-    );
-    detailsElement.current.style.setProperty(
-      "--details-height-open",
-      openHeightOfDetails + "px"
-    );
-    contentElement.current.style.setProperty(
-      "--content-height-closed",
-      closedHeightOfContent + "px"
-    );
-    contentElement.current.style.setProperty(
-      "--content-height-open",
-      openHeightOfContent + "px"
-    );
-  };
+  //   detailsElement.current.open = false;
+  //   detailsElement.current.style.setProperty(
+  //     "--details-height-closed",
+  //     closedHeightOfDetails + "px"
+  //   );
+  //   detailsElement.current.style.setProperty(
+  //     "--details-height-open",
+  //     openHeightOfDetails + "px"
+  //   );
+  //   contentElement.current.style.setProperty(
+  //     "--content-height-closed",
+  //     closedHeightOfContent + "px"
+  //   );
+  //   contentElement.current.style.setProperty(
+  //     "--content-height-open",
+  //     openHeightOfContent + "px"
+  //   );
+  // };
 
   const toggleOpenClass = () => {
     if (open === false) {
@@ -44,9 +44,9 @@ function ShoppingDetails({ data }) {
     }
   };
 
-  useEffect(() => {
-    getHeight();
-  }, [data]);
+  // useEffect(() => {
+  //   getHeight();
+  // }, [data]);
   return (
     <details
       ref={detailsElement}
@@ -65,7 +65,7 @@ function ShoppingDetails({ data }) {
           {data["list"].map((product) => (
             <ShoppingListContent
               product={product}
-              changeSizeOfBox={getHeight}
+              // changeSizeOfBox={getHeight}
               key={product.product}
             />
           ))}

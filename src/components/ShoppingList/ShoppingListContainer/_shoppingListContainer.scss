@@ -3,6 +3,7 @@
 .shopping__list__container {
   position: relative;
   height: 100%;
+  margin-top: -2rem;
   &::after {
     content: "";
 

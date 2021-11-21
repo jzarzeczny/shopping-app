@@ -20,7 +20,6 @@ function Lists() {
   const lists = useLists();
   const dispatch = useListsDisplatch();
   console.log(lists);
-  // Add list to lits
 
   useEffect(() => {
     if (currentUser && listFormData) {

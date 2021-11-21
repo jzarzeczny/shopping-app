@@ -10,14 +10,11 @@ const navList = [
   { name: "", path: "/", login: false },
   { name: "Utwórz konto", path: "/register", login: false },
   { name: "Zaloguj się", path: "/login", login: false },
-  { name: "Zakupy", path: "/shoppinglist", login: true },
   { name: "Listy", path: "/lists", login: true },
   { name: "Kategorie", path: "/category", login: true },
   { name: "Konto", path: "/account", login: true },
   { name: "Wyloguj", path: "/", login: true },
 ];
-
-// TODO -> render correct navList based on information about login
 
 export default function Header() {
   const [open, setOpen] = useState(false);

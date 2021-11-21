@@ -1,15 +1,17 @@
 import { initializeApp } from "firebase/app";
 import {
-  getFirestore,
+  arrayUnion,
+  deleteDoc,
   doc,
+  getDoc,
+  getFirestore,
   setDoc,
   updateDoc,
-  arrayUnion,
-  getDoc,
 } from "firebase/firestore";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
+  deleteUser,
+  getAuth,
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
@@ -28,6 +30,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
+// References
+
 // Create a user with email
 const registerUser = async (email, password, nickname) => {
   // Create user
@@ -40,9 +44,9 @@ const registerUser = async (email, password, nickname) => {
     email,
   });
   // Create a "list" collection where lists will be stored
-  await setDoc(doc(db, "lists", user.uid));
+  await setDoc(doc(db, "lists", user.uid), { lists: [] });
   // Create a "categories" collection where categories and defaults will be stored
-  await setDoc(doc(db, "categories", user.uid));
+  await setDoc(doc(db, "categories", user.uid), { category: [] });
 };
 // Send password reset - currently dead
 const sendPasswordReset = async (email) => {
@@ -55,6 +59,21 @@ const sendPasswordReset = async (email) => {
 // Logout user
 const logout = () => {
   signOut(auth);
+};
+
+const deleteSingleUser = async (user) => {
+  const categoriesRef = doc(db, "categories", user);
+  const listRef = doc(db, "lists", user);
+  const userRef = doc(db, "users", user);
+
+  deleteUser(user)
+    .then(deleteDoc(categoriesRef))
+    .then(deleteDoc(listRef))
+    .then(deleteDoc(userRef))
+    .then(() => {
+      return true;
+    })
+    .catch((error) => console.log(error));
 };
 
 const pushNewList = async (user, newElement) => {
@@ -71,6 +90,27 @@ const getLists = async (user) => {
     return [];
   }
 };
+
+const getUserData = async (user) => {
+  const listRef = doc(db, "users", user);
+  const docSnap = await getDoc(listRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+};
+
+const updateUserData = async (user, userData) => {
+  const userRef = doc(db, "users", user);
+  try {
+    await updateDoc(userRef, userData);
+    console.log("Update complite");
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 const getSingleList = async (user) => {
   const listRef = doc(db, "lists", user);
   const docSnap = await getDoc(listRef);
@@ -138,15 +178,18 @@ const updateUserCategories = async (user, data) => {
 export {
   auth,
   db,
-  registerUser,
-  sendPasswordReset,
-  logout,
+  delateSingleList,
+  deleteSingleUser,
   getLists,
-  pushNewList,
-  pushNewCategory,
   getSingleList,
   getUserCategories,
-  updateUserCategories,
+  getUserData,
+  logout,
+  pushNewCategory,
+  pushNewList,
+  registerUser,
+  sendPasswordReset,
   updateSingleList,
-  delateSingleList,
+  updateUserCategories,
+  updateUserData,
 };

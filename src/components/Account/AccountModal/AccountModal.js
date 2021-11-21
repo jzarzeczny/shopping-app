@@ -1,12 +1,18 @@
+import { useContext } from "react";
 import { useHistory } from "react-router";
+import { AuthContext } from "../../../context/FirebaseContext";
+import { deleteSingleUser, logout } from "../../../firebase";
 import Button from "../../common/Button/Button";
 
 function AccountModal({ openModal, setOpenModal }) {
+  const { currentUser } = useContext(AuthContext);
   const history = useHistory();
   function handleClose() {}
 
-  function handleDelAcc() {
+  async function handleDelAcc() {
     setOpenModal(false);
+    await deleteSingleUser(currentUser.uid);
+    logout();
     history.push("/");
   }
   return (

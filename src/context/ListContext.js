@@ -26,7 +26,7 @@ export function ListsProvider({ children }) {
     if (currentUser) {
       onReloadNeed();
     }
-  }, [currentUser]);
+  }, [currentUser, onReloadNeed]);
   return (
     <ListsContext.Provider value={lists}>
       <ListsDispatchContext.Provider value={dispatch}>

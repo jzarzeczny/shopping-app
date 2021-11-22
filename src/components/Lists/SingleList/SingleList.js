@@ -14,7 +14,12 @@ function SingleList({ singleList, source, onClickHandler }) {
             onClick={() => onClickHandler(singleList.id)}
           />
         ) : (
-          <Link to={`${"shoppinglist/" + singleList.id}`}>
+          <Link
+            to={{
+              pathname: `${"shoppinglist/" + singleList.id}`,
+              state: { listName: singleList.name },
+            }}
+          >
             <img src={EditIcon} alt="edit" />
           </Link>
         )}

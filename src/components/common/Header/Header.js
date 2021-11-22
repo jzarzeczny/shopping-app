@@ -14,6 +14,7 @@ const navList = [
   { name: "Kategorie", path: "/category", login: true },
   { name: "Konto", path: "/account", login: true },
   { name: "Wyloguj", path: "/", login: true },
+  { name: "Lista zakupów", path: "/shoppingList/", login: true },
 ];
 
 export default function Header() {
@@ -21,13 +22,17 @@ export default function Header() {
   const [currentLocation, setCurrentLocation] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const location = useLocation();
-
+  console.log(location);
   const determineLocation = () => {
-    const localizationInfo = navList.filter(
-      (navElement) => navElement.path === location.pathname
-    );
-
-    return localizationInfo[0];
+    if (location.state) {
+      console.log(location);
+      return { name: location.state.listName };
+    } else {
+      const headerTitle = navList.filter(
+        (navElement) => navElement.path === location.pathname
+      );
+      return headerTitle[0];
+    }
   };
 
   useEffect(() => {

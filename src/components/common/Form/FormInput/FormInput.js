@@ -1,4 +1,3 @@
-// Determine the inpu type based on id prop
 const typeOfInput = (id) => {
   if (id === "password" || id === "password2") {
     return "password";
@@ -8,8 +7,7 @@ const typeOfInput = (id) => {
     return;
   }
 };
-
-function FormInput({ name, id, register, errors, required }) {
+function FormInput({ name, id, errors, register, required }) {
   return (
     <div className="form__control">
       <label htmlFor={name} className="form__label">
@@ -19,7 +17,7 @@ function FormInput({ name, id, register, errors, required }) {
         className="form__input"
         id={id}
         type={typeOfInput(id)}
-        {...register(`${id}`, { required: required })}
+        {...register(`${id}`, required)}
       ></input>
       {errors[id] && <span className="form__error">To pole jest wymagane</span>}
     </div>

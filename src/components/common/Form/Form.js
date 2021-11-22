@@ -36,6 +36,7 @@ function Form({ inputFields, button, source, dataGetter }) {
               key={field.id}
               register={register}
               errors={errors}
+              required={field.required}
             />
           )}
         </>

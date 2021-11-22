@@ -1,6 +1,5 @@
 function FormSelect({ data, register, errors }) {
   const { id, name, options } = data;
-  console.log(options);
   return (
     <div className="form__control">
       <label htmlFor={id} className="form__label">

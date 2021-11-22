@@ -9,7 +9,7 @@ const typeOfInput = (id) => {
   }
 };
 
-function FormInput({ name, id, register, errors }) {
+function FormInput({ name, id, register, errors, required }) {
   return (
     <div className="form__control">
       <label htmlFor={name} className="form__label">
@@ -19,7 +19,7 @@ function FormInput({ name, id, register, errors }) {
         className="form__input"
         id={id}
         type={typeOfInput(id)}
-        {...register(`${id}`, { required: true })}
+        {...register(`${id}`, { required: required })}
       ></input>
       {errors[id] && <span className="form__error">To pole jest wymagane</span>}
     </div>

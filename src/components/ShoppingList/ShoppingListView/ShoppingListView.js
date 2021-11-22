@@ -17,7 +17,7 @@ function ShoppingListView({ listData, listView, setListView }) {
             ></ShoppingDetails>
           ))
         ) : (
-          <NoData>Nie posiadasz jeszcze przedmiotów w koszyku</NoData>
+          <NoData cart>Nie posiadasz jeszcze przedmiotów w koszyku</NoData>
         )}
       </ShoppingListContainer>
     </ShoppingSection>

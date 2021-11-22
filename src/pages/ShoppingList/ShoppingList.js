@@ -17,11 +17,12 @@ const updateInputFields = (categories) => {
       name: "Kategoria",
       id: "category",
       type: "select",
+      required: true,
       options: categories,
     },
 
-    { name: "Ilość", id: "quantity" },
-    { name: "Uwagi", id: "remarks" },
+    { name: "Ilość", id: "quantity", required: false },
+    { name: "Uwagi", id: "remarks", required: false },
   ];
 };
 
@@ -41,10 +42,6 @@ function ShoppingList() {
   const singleList = lists.filter((list) => list.id === params.id)[0];
 
   useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
-  }, []);
-
-  useEffect(() => {
     if (formData === null) return;
     dispatch({ type: "addToList", element: formData, id: params.id });
     setFormData(null);
@@ -53,23 +50,31 @@ function ShoppingList() {
   useEffect(() => {
     if (currentUser === null) return;
 
-    getUserCategories(currentUser.uid).then((data) =>
-      setCategories(updateInputFields(data.category))
-    );
+    getUserCategories(currentUser.uid).then((data) => {
+      console.log(data.category);
+      setCategories(updateInputFields(data.category));
+    });
   }, [currentUser, dispatch]);
 
+  useEffect(() => {
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, []);
   return (
     <Layout>
       {width < breakingPoint ? (
         <>
           {listView ? (
             <>
-              <ShoppingListView
-                listData={singleList}
-                listView={listView}
-                setListView={setListView}
-              />
-              <ShoppingButtons display listData={singleList} />
+              {singleList && (
+                <>
+                  <ShoppingListView
+                    listData={singleList}
+                    listView={listView}
+                    setListView={setListView}
+                  />
+                  <ShoppingButtons display listData={singleList} />
+                </>
+              )}
             </>
           ) : (
             <>

@@ -1,5 +1,7 @@
-function NoData({ children }) {
-  return <h3 className="noData">{children}</h3>;
+function NoData({ children, cart }) {
+  return (
+    <h3 className={`noData ${cart ? "noData--cart" : ""} `}>{children}</h3>
+  );
 }
 
 export default NoData;

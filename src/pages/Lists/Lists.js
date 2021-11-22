@@ -20,10 +20,8 @@ function Lists() {
   const lists = useLists();
   const dispatch = useListsDisplatch();
   console.log(lists);
-
   useEffect(() => {
     if (currentUser && listFormData) {
-      console.log(listFormData);
       dispatch({
         type: "addList",
         name: listFormData.newList,
@@ -44,9 +42,11 @@ function Lists() {
         />
         <GroupOfLists>
           {lists && lists.length > 0 ? (
-            lists.map((singleList) => (
-              <SingleList singleList={singleList} key={singleList.id} />
-            ))
+            lists
+              .reverse()
+              .map((singleList) => (
+                <SingleList singleList={singleList} key={singleList.id} />
+              ))
           ) : (
             <NoData>Nie masz jeszcze listy, stwórz nową.</NoData>
           )}

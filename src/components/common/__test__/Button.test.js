@@ -15,7 +15,7 @@ describe("Testing Button component", () => {
     expect(func).toBeCalled();
   });
   it("Change type based on props", () => {
-    render(<Button form="true" form />);
+    render(<Button form="testForm" />);
     const button = screen.getByRole("button");
     expect(button.type).toBe("submit");
   });

@@ -16,3 +16,10 @@
     background: $clr-main;
   }
 }
+
+@media (min-width: $tablet) {
+  .account__buttons {
+    grid-row: 3/4;
+    grid-column: 1/3;
+  }
+}

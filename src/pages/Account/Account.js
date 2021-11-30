@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react/cjs/react.development";
 import AccountAvatar from "../../components/Account/AccountAvatar/AccountAvatar";
 import AccountButtons from "../../components/Account/AccountButtons/AccountButtons";
 import AccountContainer from "../../components/Account/AccountContainer/AccountContainer";
+import AccountImage from "../../components/Account/AccountImage/AccountImage";
 import AccountInformation from "../../components/Account/AccountInformation/AccountInformation";
 import AccountModal from "../../components/Account/AccountModal/AccountModal";
 import Layout from "../../components/Layout/Layout";
@@ -37,7 +37,7 @@ function Account() {
             setEditInfo={setEditInfo}
           />
         )}
-
+        <AccountImage />
         <AccountButtons
           setOpenModal={setOpenModal}
           editInfo={editInfo}

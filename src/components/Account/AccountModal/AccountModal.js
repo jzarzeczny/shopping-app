@@ -7,7 +7,9 @@ import Button from "../../common/Button/Button";
 function AccountModal({ openModal, setOpenModal }) {
   const { currentUser } = useContext(AuthContext);
   const history = useHistory();
-  function handleClose() {}
+  function handleClose() {
+    setOpenModal(false);
+  }
 
   async function handleDelAcc() {
     setOpenModal(false);

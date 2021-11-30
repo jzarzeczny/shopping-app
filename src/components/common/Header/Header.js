@@ -14,7 +14,6 @@ const navList = [
   { name: "Kategorie", path: "/category", login: true },
   { name: "Konto", path: "/account", login: true },
   { name: "Wyloguj", path: "/", login: true },
-  { name: "Lista zakupów", path: "/shoppingList/", login: true },
 ];
 
 export default function Header() {

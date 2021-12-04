@@ -1,0 +1,12 @@
+@use "../../sass/abstracts/" as *;
+
+.noMatch__information {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: $tablet) {
+  .noMatch__information {
+    font-size: 2rem;
+  }
+}

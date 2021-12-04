@@ -13,7 +13,7 @@ $margin-bot: 0.5rem;
   .form__label {
     font-weight: $fw-bold;
     font-size: 18px;
-    margin-bottom: $margin-bot / 2;
+    margin-bottom: calc($margin-bot / 2);
   }
   .form__input {
     max-width: 300px;

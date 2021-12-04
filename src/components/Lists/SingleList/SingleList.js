@@ -6,7 +6,7 @@ function SingleList({ singleList, source, onClickHandler }) {
   return (
     <div className="lists__single">
       <h3 className="lists__name">{singleList.name}</h3>
-      <i>
+      <i className="lists__button">
         {source === "category" ? (
           <img
             src={BinIcon}

@@ -30,3 +30,8 @@
     left: 52%;
   }
 }
+@media (min-width: $smallDesktop) {
+  .avatar__image__container {
+    grid-column: 1/2;
+  }
+}

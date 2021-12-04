@@ -20,36 +20,38 @@ function AccountInformation({ editInfo, userData, setEditInfo }) {
   }
 
   return (
-    <form id="userForm" onSubmit={handleSubmit(onSubmit)}>
-      <div className="account__information">
-        <div className="form__control">
-          <label htmlFor="nicknameInfo">Twoje imię</label>
-          <input
-            disabled={`${editInfo ? "" : "disabled"}`}
-            className="form__input"
-            id="nicknameInfo"
-            {...register("nickname", { required: true })}
-            placeholder={userData.nickname}
-          />
-          {errors["nicknameInfo"] && (
-            <span className="form__error">To pole jest wymagane</span>
-          )}
-        </div>
+    <form
+      className="account__information"
+      id="userForm"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="form__control">
+        <label htmlFor="nicknameInfo">Twoje imię</label>
+        <input
+          disabled={`${editInfo ? "" : "disabled"}`}
+          className="form__input"
+          id="nicknameInfo"
+          {...register("nickname", { required: true })}
+          placeholder={userData.nickname}
+        />
+        {errors["nicknameInfo"] && (
+          <span className="form__error">To pole jest wymagane</span>
+        )}
+      </div>
 
-        <div className="form__control">
-          <label htmlFor="emailInfo">Twój email</label>
-          <input
-            type="email"
-            disabled={`${editInfo ? "" : "disabled"}`}
-            className="form__input"
-            id="emailInfo"
-            {...register("email", { required: true })}
-            placeholder={userData.email}
-          />
-          {errors["nicknameInfo"] && (
-            <span className="form__error">To pole jest wymagane</span>
-          )}
-        </div>
+      <div className="form__control">
+        <label htmlFor="emailInfo">Twój email</label>
+        <input
+          type="email"
+          disabled={`${editInfo ? "" : "disabled"}`}
+          className="form__input"
+          id="emailInfo"
+          {...register("email", { required: true })}
+          placeholder={userData.email}
+        />
+        {errors["nicknameInfo"] && (
+          <span className="form__error">To pole jest wymagane</span>
+        )}
       </div>
     </form>
   );

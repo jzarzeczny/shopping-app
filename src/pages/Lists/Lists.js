@@ -19,7 +19,6 @@ function Lists() {
 
   const lists = useLists();
   const dispatch = useListsDisplatch();
-  console.log(lists);
   useEffect(() => {
     if (currentUser && listFormData) {
       dispatch({

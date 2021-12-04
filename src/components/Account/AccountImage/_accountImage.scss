@@ -13,3 +13,8 @@
     justify-self: center;
   }
 }
+@media (min-width: $smallDesktop) {
+  .accountImage {
+    grid-row: 1/3;
+  }
+}

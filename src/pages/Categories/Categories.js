@@ -25,7 +25,7 @@ function Categories() {
       const newList = userCategories.filter((category) => category.id !== id);
       updateUserCategories(currentUser.uid, { category: newList });
     },
-    [currentUser.uid, userCategories]
+    [userCategories]
   );
 
   useEffect(() => {
@@ -45,8 +45,9 @@ function Categories() {
     getUserCategories(currentUser.uid).then((data) => {
       setUserCategories(data.category);
     });
-  }, [currentUser, delateElementFromCategoryList]);
+  }, [currentUser, getCategories]);
 
+  console.log(userCategories);
   return (
     <Layout>
       <ListsContainer>

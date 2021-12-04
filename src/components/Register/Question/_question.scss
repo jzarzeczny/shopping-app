@@ -1,0 +1,21 @@
+@use "../../../sass/abstracts/" as *;
+.register__question {
+  margin-top: 2rem;
+  a {
+    text-decoration: none;
+    color: $clr-dark;
+    font-weight: $fw-bold;
+  }
+}
+@media (min-width: $tablet) {
+  .register__question {
+    grid-row: 3/4;
+    grid-column: 2/3;
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .register__question {
+    width: 300px;
+  }
+}

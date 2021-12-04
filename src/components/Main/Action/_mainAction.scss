@@ -1,0 +1,31 @@
+@use "../../../sass/abstracts/" as *;
+
+.main__action {
+  margin-top: 2rem;
+}
+
+.main__action__header {
+  color: $clr-main;
+  font-size: 24px;
+  text-align: center;
+}
+
+.main__action__button {
+  display: block;
+  margin-top: 2rem;
+}
+@media (min-width: $smallDesktop) {
+  .main__action {
+    grid-column: 2/3;
+    grid-row: 2/4;
+  }
+  .main__action__header {
+    font-size: 40px;
+    line-height: 1.1;
+    width: 75%;
+    margin: 0 auto;
+  }
+  .main__action__button {
+    margin-top: 5rem;
+  }
+}

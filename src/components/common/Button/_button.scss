@@ -1,0 +1,47 @@
+@use "../../../sass/abstracts/" as *;
+
+.button {
+  cursor: pointer;
+
+  display: block;
+
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  background-color: $clr-main;
+
+  border-radius: 25px;
+  border: 2px solid transparent;
+
+  text-align: center;
+  font-size: 20px;
+  color: $clr-white;
+}
+.button--action {
+  margin-top: 2rem;
+}
+
+.button--danger {
+  background: $clr-white;
+  border: 2px solid $clr-main;
+  color: $clr-main;
+}
+.button--alert {
+  background: $clr-white;
+  border: 2px solid $clr-danger;
+  color: $clr-danger;
+}
+.button--dont {
+  background: $clr-white;
+  border: 2px solid $clr-dark;
+  color: $clr-dark;
+}
+
+@media (min-width: $smallDesktop) {
+  .button--action {
+    margin-top: 5rem;
+    font-size: 40px;
+  }
+  .button--submit {
+    margin: 0;
+  }
+}

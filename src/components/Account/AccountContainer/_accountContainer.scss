@@ -1,0 +1,29 @@
+@use "../../../sass/abstracts/" as *;
+
+.account__container {
+  margin-top: 2rem;
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media (min-width: $tablet) {
+  .account__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+  }
+}
+@media (min-width: $smallDesktop) {
+  .account__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    column-gap: 3rem;
+    row-gap: 3rem;
+  }
+}

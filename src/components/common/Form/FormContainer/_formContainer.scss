@@ -1,0 +1,28 @@
+@use "../../../../sass/abstracts/" as *;
+
+.form__container {
+  margin: 2rem auto 0;
+  max-width: 300px;
+}
+
+@media (min-width: $tablet) {
+  .form__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: min-content max-content min-content;
+    max-width: 100%;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .form__container {
+    gap: 3rem;
+    justify-items: center;
+  }
+
+  .form__container--edit {
+    display: block;
+    grid-row: 2/3;
+  }
+}

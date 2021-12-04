@@ -1,0 +1,70 @@
+@use "../../../sass/abstracts/" as *;
+
+// CSS variables to enable set value with js
+
+.shopping__details {
+  margin: 4rem 0;
+
+  height: 2.5rem;
+
+  background-color: $clr-gray;
+
+  border-radius: 8px;
+  // transition: all 1s ease;
+
+  &[open] {
+    height: auto;
+  }
+}
+
+.shopping__summary {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.25rem 1rem;
+
+  list-style: none;
+
+  font-size: 20px;
+  font-weight: $fw-bold;
+
+  &::after {
+    content: url("../../../images/icons/arrow.svg");
+
+    transform: rotate(180deg);
+
+    transition: transform 0.2s ease-in;
+  }
+}
+
+.shopping__details--open summary::after {
+  transform: rotate(0);
+}
+
+.list__content {
+  overflow: hidden;
+  max-height: 0;
+
+  transition: all 2s ease;
+}
+
+.shopping__details--open .list__content {
+  max-height: var(--content-height-open, auto);
+}
+
+.list__list {
+  list-style: none;
+  padding-left: 2rem;
+
+  & > * + * {
+    margin-top: 1rem;
+  }
+}
+@media (min-width: $smallDesktop) {
+  .shopping__details {
+    min-width: 500px;
+  }
+}

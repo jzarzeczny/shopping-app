@@ -1,0 +1,62 @@
+@use "../../../../sass/abstracts/" as *;
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin: -1rem -2rem;
+  background-color: $clr-white;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+
+  .navbar__list {
+    list-style: none;
+
+    width: 100vw;
+    min-height: calc(100vh + 40px);
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    & > * {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .navbar__link {
+    text-decoration: none;
+    color: $clr-main;
+    font-size: 32px;
+    font-weight: $fw-bold;
+  }
+}
+.navbar--open {
+  transform: translateX(0);
+}
+
+@media (min-width: $smallDesktop) {
+  .navbar {
+    position: relative;
+    transform: translateX(0);
+    height: 40px;
+    margin: 0;
+    justify-self: flex-end;
+
+    .navbar__list {
+      font-weight: 500;
+      width: 100%;
+      height: inherit;
+      min-height: 0;
+      flex-direction: row;
+      & > * + * {
+        margin-left: 2rem;
+      }
+    }
+  }
+}

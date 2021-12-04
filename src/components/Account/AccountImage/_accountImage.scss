@@ -1,0 +1,20 @@
+@use "../../../sass/abstracts/" as *;
+
+.accountImage {
+  display: none;
+}
+
+@media (min-width: $tablet) {
+  .accountImage {
+    display: block;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    max-width: 80%;
+    justify-self: center;
+  }
+}
+@media (min-width: $smallDesktop) {
+  .accountImage {
+    grid-row: 1/3;
+  }
+}

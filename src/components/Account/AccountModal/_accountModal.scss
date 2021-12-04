@@ -1,0 +1,31 @@
+@use "../../../sass/abstracts/" as *;
+.modal {
+  display: none;
+}
+.modal--open {
+  position: fixed;
+  inset: 0;
+  background: $clr-white;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.modal__content {
+  background: $clr-white;
+}
+
+.modal__header {
+  font-size: 32px;
+  color: $clr-danger;
+  text-align: center;
+  font-weight: $fw-bold;
+}
+
+.modal__buttons {
+  & > * {
+    margin-top: 2rem;
+  }
+}

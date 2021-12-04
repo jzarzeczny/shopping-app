@@ -1,0 +1,70 @@
+@use "../../../sass/abstracts/" as *;
+
+$icon-size-mobile: 40px;
+
+.shopping__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  margin-top: 2rem;
+
+  position: relative;
+  .shopping__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    width: $icon-size-mobile;
+    height: $icon-size-mobile;
+
+    border: 2px solid $clr-main;
+    border-radius: 50%;
+    background-color: $clr-white;
+    .shopping__icon--cart {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      background-color: $clr-main;
+      mask: url("../../../images/icons/cart.svg") no-repeat center;
+    }
+    .shopping__icon--edit {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      background-color: $clr-main;
+      mask: url("../../../images/icons/edit.svg") no-repeat center;
+    }
+  }
+  .shopping__icon--active {
+    background-color: $clr-main;
+    & > .shopping__icon--cart,
+    & > .shopping__icon--edit {
+      background-color: $clr-white;
+    }
+  }
+  .shopping__icon--sort {
+    position: absolute;
+
+    cursor: pointer;
+
+    right: 0;
+    top: 0;
+
+    width: 25px;
+    height: $icon-size-mobile;
+
+    background-color: $clr-main;
+    mask: url("../../../images/icons/sort.svg") no-repeat center;
+  }
+}
+
+@media (min-width: $smallDesktop) {
+  .shopping__buttons {
+    display: none;
+  }
+}

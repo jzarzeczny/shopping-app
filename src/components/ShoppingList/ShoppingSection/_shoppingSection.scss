@@ -1,0 +1,14 @@
+@use "../../../sass/abstracts/" as *;
+
+@media (min-width: $smallDesktop) {
+  .shopping__section {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: grid;
+    height: 100%;
+    grid-template-rows: max-content min-content;
+    &--edit {
+      grid-column: 2/3;
+    }
+  }
+}

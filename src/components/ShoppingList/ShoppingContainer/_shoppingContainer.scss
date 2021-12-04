@@ -1,0 +1,23 @@
+@use "../../../sass/abstracts/" as *;
+
+.shopping__container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: max-content min-content;
+  column-gap: 8rem;
+  justify-items: center;
+  position: relative;
+  & > .shopping__section:last-of-type {
+    grid-column: 2/3;
+  }
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: calc(60%);
+    top: 0;
+    background-color: $clr-main;
+    width: 2px;
+    height: calc(100% - 3rem);
+  }
+}

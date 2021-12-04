@@ -1,0 +1,27 @@
+@use "../../../sass/abstracts/" as *;
+.header {
+  height: 40px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+}
+@media (min-width: $smallDesktop) {
+  .header {
+    margin-bottom: 4rem;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -1.5rem;
+      width: 100%;
+      height: 2px;
+      background: $clr-main;
+    }
+  }
+}
